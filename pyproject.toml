@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "lifeactuary"
-version = "0.1.7"
+version = "0.1.8"
 authors = [
   { name="Pedro Corte Real", email="parcr@fct.unl.pt" },
 { name="Gracinda R. Guerreiro", email="grg@fct.unl.pt" },
@@ -15,7 +15,7 @@ maintainers=[
 { name="Gracinda R. Guerreiro", email="grg@fct.unl.pt" },
 ]
 
-description = " A set of actuarial tools for the life actuary"
+description = "A set of actuarial tools for the life actuary"
 readme = "README.md"
 license = { file="LICENSE" }
 requires-python = ">=3.7"
@@ -26,5 +26,5 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/pypa/sampleproject"
-"Bug Tracker" = "https://github.com/pypa/sampleproject/issues"
+"Homepage" = "https://github.com/parcr/lifeactuary"
+"Bug Tracker" = "https://github.com/parcr/lifeactuary/issues"
