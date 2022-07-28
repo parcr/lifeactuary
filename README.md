@@ -9,4 +9,4 @@ This package and functions herein are provided as is, without any guarantee rega
     
 This package is still under development and further useful and interesting functions will be available any time soon.
 
-You should also visit [MIT License](https://en.wikipedia.org/wiki/MIT_License) to download the file *"soa_tables"* containing a set of tables, namely the ones used in the examples in the manual.
+You should also visit [lifeactuary at github](https://github.com/parcr/lifeactuary) to download the folder *"soa_tables"* containing a set of tables, namely the ones used in the examples in the manual.
