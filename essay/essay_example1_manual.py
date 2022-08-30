@@ -2,8 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from soa_tables import read_soa_table_xml as rst
-from essential_life import mortality_table
+from essential_life import mortality_table, read_soa_table_xml as rst
 
 mt = rst.SoaTable('../soa_tables/TV7377' + '.xml')
 lt = mortality_table.MortalityTable(mt=mt.table_qx)

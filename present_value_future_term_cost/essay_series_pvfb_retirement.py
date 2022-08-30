@@ -1,9 +1,8 @@
 __author__ = "PedroCR"
 
-from soa_tables import read_soa_table_xml as rst
 from disability_tables import disability_tables as dt
 from turnover_tables import turnover_tables as tt
-from essential_life import mortality_table as mt, age
+from essential_life import mortality_table as mt, age, read_soa_table_xml as rst
 from essential_life.multidecrement_table import MultiDecrementTable as mdt
 from present_value_future_term_cost import pvftc
 from matplotlib import pyplot as plt

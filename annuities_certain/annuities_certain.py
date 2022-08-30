@@ -33,7 +33,7 @@ class Annuities_Certain:
                 terms = 0
             if terms < 0 or int(terms) != terms:
                 return np.nan
-            res = func(self, terms)
+            res = func(self, terms, *args, **kwargs)
             return res
 
         return func_wrapper

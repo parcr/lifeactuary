@@ -1,8 +1,7 @@
 __author__ = "PedroCR"
 
 import pytest
-from essential_life import mortality_table as mt, commutation_table, annuities
-from soa_tables import read_soa_table_xml as rst
+from essential_life import mortality_table as mt, commutation_table, annuities, read_soa_table_xml as rst
 
 # lt_tv7377 = mortality_table.MortalityTable(mt=TV7377)
 # lt_grf95 = mortality_table.MortalityTable(mt=GRF95)

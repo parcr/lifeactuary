@@ -1,11 +1,8 @@
-from exercisesLifeContingencies.survivalModels.someMortalityLaws import makeham_mortality_functions
-import numpy as np
-from essential_life import mortality_table, commutation_table
+from essential_life import read_soa_table_xml as rst
 import matplotlib.pyplot as plt
 import os
 import sys
 
-from soa_tables import read_soa_table_xml as rst
 from essential_life import mortality_table, commutation_table
 
 this_py = os.path.split(sys.argv[0])[-1][:-3]

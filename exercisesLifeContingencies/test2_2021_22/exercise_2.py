@@ -7,13 +7,10 @@
 \item For a capital of $1\:000\:000$\euro, the single risk premium if in case of death the capital is paid at the moment of death but considering that the cover is deferred until the age of 30, keeping the same term.
 \end{enumerate}
 '''
-import numpy as np
 import os
 import sys
 
-from soa_tables import read_soa_table_xml as rst
-from essential_life import mortality_table, commutation_table
-import matplotlib.pyplot as plt
+from essential_life import mortality_table, commutation_table, read_soa_table_xml as rst
 
 this_py = os.path.split(sys.argv[0])[-1][:-3]
 

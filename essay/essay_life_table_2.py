@@ -1,6 +1,6 @@
 __author__ = "PedroCR"
-from soa_tables import read_soa_table_xml as rst
-from essential_life import mortality_table, commutation_table
+
+from essential_life import mortality_table, commutation_table, read_soa_table_xml as rst
 
 mt_TV7377 = rst.SoaTable('../soa_tables/TV7377.xml')
 mt_GRF95 = rst.SoaTable('../soa_tables/GRF95.xml')

@@ -11,8 +11,7 @@
 
 import numpy as np
 import pandas as pd
-from soa_tables import read_soa_table_xml as rst
-from essential_life import mortality_table, commutation_table
+from essential_life import mortality_table, commutation_table, read_soa_table_xml as rst
 from annuities_certain import annuities_certain
 
 table_names = ['TV7377', 'GRF95', 'GRM95']

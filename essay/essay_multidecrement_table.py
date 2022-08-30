@@ -1,9 +1,8 @@
 __author__ = "PedroCR"
 
-from soa_tables import read_soa_table_xml as rst
 from disability_tables import disability_tables as dt
 from turnover_tables import turnover_tables as tt
-from essential_life import mortality_table as mt
+from essential_life import mortality_table as mt, read_soa_table_xml as rst
 from essential_life.multidecrement_table import MultiDecrementTable as mdt
 
 soa_TV7377 = rst.SoaTable('../soa_tables/TV7377.xml')

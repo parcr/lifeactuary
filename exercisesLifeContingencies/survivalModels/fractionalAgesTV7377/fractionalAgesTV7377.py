@@ -1,10 +1,7 @@
-import numpy as np
 import os
 import sys
 
-from soa_tables import read_soa_table_xml as rst
-from essential_life import mortality_table, commutation_table
-import matplotlib.pyplot as plt
+from essential_life import mortality_table, commutation_table, read_soa_table_xml as rst
 
 this_py = os.path.split(sys.argv[0])[-1][:-3]
 

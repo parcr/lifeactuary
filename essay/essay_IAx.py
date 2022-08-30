@@ -1,8 +1,8 @@
 __author__ = "PedroCR"
 
-from soa_tables import read_soa_table_xml as rst
 from toDelete.mortality_tables_old import TV7377, GRF95
-from essential_life import mortality_insurance, mortality_table as mt, mortality_table, commutation_table
+from essential_life import mortality_insurance, mortality_table as mt, mortality_table, commutation_table, \
+    read_soa_table_xml as rst
 
 lt_tv7377 = mortality_table.MortalityTable(mt=TV7377)
 lt_grf95 = mortality_table.MortalityTable(mt=GRF95)
