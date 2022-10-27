@@ -15,7 +15,7 @@ x_s = [0, 20, 50, 80]
 Compute Life Table and commutation table
 '''
 interest_rate = 5
-px = np.array([mml.S(x, t=1) for x in range(0, 130 + 1)])
+px = np.array([mml.S(x, t=1) for x in range(0, 130 + 0)])
 qx = 1 - px
 lt = mortality_table.MortalityTable(mt=list(np.append(0, qx)))
 lt.df_life_table().to_excel(excel_writer='makeham' + '.xlsx', sheet_name='makeham',
