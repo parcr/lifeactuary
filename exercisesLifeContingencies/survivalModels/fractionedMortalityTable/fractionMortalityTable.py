@@ -25,7 +25,7 @@ px = 1 - qx
 Dx = [l * v_fraction ** idx_l for idx_l, l in enumerate(lx)]
 Nx = [sum(Dx[idx_l:]) for idx_l, l in enumerate(lx)]
 Sx = [sum(Nx[idx_l:]) for idx_l, l in enumerate(lx)]
-Cx = [dx[idx_l] * v_fraction ** (idx_l + fraction) for idx_l, l in enumerate(lx)]
+Cx = [dx[idx_l] * v_fraction ** (idx_l + 1) for idx_l, l in enumerate(lx)]
 Mx = [sum(Cx[idx_l:]) for idx_l, l in enumerate(lx)]
 Rx = [sum(Mx[idx_l:]) for idx_l, l in enumerate(lx)]
 
