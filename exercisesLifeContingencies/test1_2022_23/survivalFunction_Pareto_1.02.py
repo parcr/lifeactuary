@@ -78,7 +78,7 @@ force_of_mortality_lst = [mu(t) for t in x_s]
 fig, axes = plt.subplots()
 plt.plot(x_s, np.log(force_of_mortality_lst), label=f'Mortality Force({0}, {120})')
 plt.xlabel(r'$x$')
-plt.ylabel(r'$\mu_{x}$')
+plt.ylabel(r'$\ln{(mu_{x})}$')
 plt.title(r'Force of Mortality')
 plt.grid(visible=True, which='both', axis='both', color='grey', linestyle='-', linewidth=.1)
 plt.legend()
