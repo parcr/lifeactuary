@@ -39,10 +39,10 @@ period2_0 = 10
 period2_1 = 20
 
 ages = np.linspace(start=20, stop=80, num=int((80 - 20) / 10 + 1))
-cap1 = capital1 * np.power(1 + interest_rate / 100, period1_1)
-cap2 = capital2 * np.power(1 + interest_rate / 100, period2_1)
+cap1 = capital1/np.power(1 + interest_rate / 100, period1_1)
+cap2 = capital2/np.power(1 + interest_rate / 100, period2_1)
 
-dict_liability = {'table': [], 'x': [], 'tpx': [], 'premium1': [], 'n_tqx': [], 'premium2': [],
+dict_liability = {'table': [], 'x': [], 'tqx': [], 'premium1': [], 'n_tqx': [], 'premium2': [],
                   'premium': [], 'var1': [], 'var2': [], 'cov': [], 'var': []}
 for id_ct, ct in enumerate(ct_lst):
     for id_x, x in enumerate(ages):
@@ -52,7 +52,7 @@ for id_ct, ct in enumerate(ct_lst):
         premium2 = cap2 * prob2
         dict_liability['table'].append(table_names[id_ct])
         dict_liability['x'].append(x)
-        dict_liability['tpx'].append(prob1)
+        dict_liability['tqx'].append(prob1)
         dict_liability['premium1'].append(premium1)
         dict_liability['n_tqx'].append(prob2)
         dict_liability['premium2'].append(premium2)
