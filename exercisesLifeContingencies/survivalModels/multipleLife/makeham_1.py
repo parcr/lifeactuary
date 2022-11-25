@@ -59,6 +59,7 @@ def q_xy_muy(x, y, t):
 
 tqxy_2_b = q_xy_muy(x=x, y=y, t=t)
 print(f'tqxy_2_b= {tqxy_2_b}')
+print('test solution:', tqxy_2-tqxy_2_b)
 print()
 
 '''
