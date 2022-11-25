@@ -13,7 +13,9 @@ t = 10
 tpx = mml.S(x=x, t=t)
 tpy = mml.S(x=y, t=t)
 tpxy = tpx * tpy
+print(f'a) The probability that ({x}) and ({y}) are both alive after {t} years')
 print(f'tpx= {tpx}', f'tpy= {tpy}', f'tpxy= {tpxy}')
+print()
 
 '''
 '''
@@ -32,15 +34,17 @@ def q_xy_mux(x, y, t):
 
 
 tqxy_1 = q_xy_mux(x=x, y=y, t=t)
+print(f'b) The probability that ({x}) dies within {t} years and ({y}) is still alive.')
 print(f'tqxy_1= {tqxy_1}')
+print()
 
 '''
 \qx[10]{30:40}[2]
 '''
 tqx = 1 - mml.S(x=x, t=t)
 tqxy_2 = tqx - tqxy_1
+print(f'c) The probability that ({x}) dies within {t} years and ({y}) is already death.')
 print(f'tqx={tqx}', f'tqxy_2= {tqxy_2}')
-
 
 def S_xy_muy(x, y, t):
     return mml.S(x, t) * (1 - mml.S(y, t)) * mml.mu(x + t)
@@ -55,6 +59,7 @@ def q_xy_muy(x, y, t):
 
 tqxy_2_b = q_xy_muy(x=x, y=y, t=t)
 print(f'tqxy_2_b= {tqxy_2_b}')
+print()
 
 '''
 $\px[10]{\overline{30:40}}$
