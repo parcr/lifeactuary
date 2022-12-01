@@ -46,11 +46,14 @@ prob = ct.nqx(x=x, n=int(arg))
 print(f'The probability of paying less than {int(arg) + 1} is equal to {prob}.')
 
 # Compute the variance
+print('\nCompute the Variance')
 i2 = (1 + interest_rate / 100) ** 2 - 1
 interest_rate2 = i2 * 100
 v2 = 1 / (1 + interest_rate2 / 100)
 d2 = 1 - v2
 ct2 = commutation_table.CommutationFunctions(i=interest_rate2, g=0, mt=mt_lst[table_idx].table_qx)
+print(f'i2={np.round(i2*100,7)}%')
+
 
 expect_value_Kx = 1 - d * ct.aax(x=x, m=1)
 expect_value_Kx2 = 1 - d2 * ct2.aax(x=x, m=1)

@@ -50,5 +50,5 @@ renda_def = ct.t_naax(x=x, n=temp, m=1, defer=defer)
 renda_def_frac = ct.t_naax(x=x, n=temp, m=m, defer=defer)
 
 print(f'renda_def=', renda_def)
-print(f'renda frac=', renda_def_frac)
+print(f'renda_def_frac=', renda_def_frac)
 print(f'capital frac=', renda_def_frac * capital)
