@@ -47,7 +47,7 @@ for idx, lt in enumerate(lt_min_lxy_lst):
 plt.xlabel(r'$x$')
 plt.ylabel(r'${e}_{x}+1/2$')
 plt.title('Complete Expectation of Life')
-plt.grid(b=True, which='both', axis='both', color='grey', linestyle='-', linewidth=.1)
+plt.grid(b='visible', which='both', axis='both', color='grey', linestyle='-', linewidth=.1)
 plt.legend()
 plt.savefig(this_py + '_joint_life' + '.eps', format='eps', dpi=3600)
 plt.show()
@@ -60,11 +60,10 @@ for idx, lt in enumerate(lt_max_lxy_lst):
 plt.xlabel(r'$x$')
 plt.ylabel(r'${e}_{x}+1/2$')
 plt.title('Complete Expectation of Life')
-plt.grid(b=True, which='both', axis='both', color='grey', linestyle='-', linewidth=.1)
+plt.grid(b='visible', which='both', axis='both', color='grey', linestyle='-', linewidth=.1)
 plt.legend()
 plt.savefig(this_py + '_last_survivor' + '.eps', format='eps', dpi=3600)
 plt.show()
-
 
 '''
 Some results
