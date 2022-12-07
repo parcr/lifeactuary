@@ -19,16 +19,18 @@ term_annuity = 5
 pureEndow = [ct.nEx(x=x, n=term) for ct in ct_lst]
 tad = [ct.naax(x=x, n=term_annuity, m=1) for ct in ct_lst]  # temporary annuity due
 
-print()
+print('Pure Endowment')
 for idx, ct in enumerate(ct_lst):
     print("\\textbf{" + table_names[idx] + ":} " + f'{round(capital * pureEndow[idx], 5):,}')
-for idx, ct in enumerate(ct_lst):
-    print("\\textbf{" + table_names[idx] + ":} " + f'{round(capital * pureEndow[idx] / tad[idx], 5):,}')
 
 # show the annuities
 print('\nannuities')
 for idx, ct in enumerate(ct_lst):
     print("\\textbf{" + table_names[idx] + ":} " + f'{round(tad[idx], 5):,}')
+
+print('Pure Endowment Leveled Premium')
+for idx, ct in enumerate(ct_lst):
+    print("\\textbf{" + table_names[idx] + ":} " + f'{round(capital * pureEndow[idx] / tad[idx], 5):,}')
 
 '''Premiums Refund'''
 print('\nSingle Net Risk Premium Refund at End of the Year of Death')
@@ -40,7 +42,7 @@ for idx, ct in enumerate(ct_lst):
     print("\\textbf{" + table_names[idx] + ":} " +
           f'{round(termLifeInsurance[idx], 5):,}')
 
-print('\nSingle Net Premium Refund Cost at End of the Year of Death')
+print('\nSingle Net Premium Refund at End of the Year of Death')
 for idx, ct in enumerate(ct_lst):
     print("\\textbf{" + table_names[idx] + ":} " +
           f'{round(capital * pureEndow[idx] / (1 - termLifeInsurance[idx]), 5):,}')
@@ -58,7 +60,7 @@ for idx, ct in enumerate(ct_lst):
     print("\\textbf{" + table_names[idx] + ":} " +
           f'{round(capital * pureEndow_refund_eot[idx], 5):,}')
 
-print('Refund Cost at End of the the Term')
+print('Refund Cost at End of the Term')
 for idx, ct in enumerate(ct_lst):
     print("\\textbf{" + table_names[idx] + ":} " +
           f'{round(capital * (pureEndow_refund_eot[idx] - pureEndow[idx]), 5):,}')
@@ -66,14 +68,23 @@ for idx, ct in enumerate(ct_lst):
 '''
 Refund of Leveled Premiums
 '''
-
-print('\nLeveled Net Risk Premium Refund at End of the Year of Death')
+print()
 tli_increasing = [ct.nIAx(x=x, n=term_annuity) for ct in ct_lst]
 tli_deferred = [ct.t_nAx(x=x, n=term - term_annuity, defer=term_annuity) for ct in ct_lst]
+print('Term Life Insurance Increasing')
+for idx, ct in enumerate(ct_lst):
+    print("\\textbf{" + table_names[idx] + ":} " +
+          f'{round(capital * tli_increasing[idx], 5):,}')
+print('Deferred Term Life Insurance Increasing')
+for idx, ct in enumerate(ct_lst):
+    print("\\textbf{" + table_names[idx] + ":} " +
+          f'{round(capital * tli_deferred[idx], 5):,}')
+
 pureEndow_leveled_refund = [
     pureEndow[idx_ct] / (tad[idx_ct] - tli_increasing[idx_ct] - term_annuity * tli_deferred[idx_ct])
     for idx_ct, ct in enumerate(ct_lst)]
 
+print('\nLeveled Net Risk Premium Refund at End of the Year of Death')
 for idx, ct in enumerate(ct_lst):
     print("\\textbf{" + table_names[idx] + ":} " +
           f'{round(capital * pureEndow_leveled_refund[idx], 5):,}')

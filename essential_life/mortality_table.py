@@ -13,7 +13,7 @@ class MortalityTable:
 
     def __init__(self, data_type='q', mt=None, perc=100, last_q=1):
         '''
-        Initializes the MortalityTable class so we can construct a mortality table with the usual fields.
+        Initializes the MortalityTable class, so we can construct a mortality table with the usual fields.
         :param data_type: Should be "l" for lx, "p" for px and "q" for qx.
         :param mt: Should be "l" for lx, "p" for px and "q" for qx.
         :param perc: The percentage of qx to use, e.g., you should use 50 for 50%.
@@ -124,7 +124,7 @@ class MortalityTable:
         return df
 
     def lx_udd(self, t):
-        if t > self.w:
+        if t > self.w+1:
             return 0.
         if t < 0:
             return np.nan
@@ -136,7 +136,7 @@ class MortalityTable:
             return self.__lx[int_t] * (1 - frac_t) + self.__lx[int_t + 1] * frac_t
 
     def lx_cfm(self, t):
-        if t > self.w:
+        if t > self.w+1:
             return 0.
         if t < 0:
             return np.nan
@@ -148,7 +148,7 @@ class MortalityTable:
             return self.__lx[int_t] * np.power(self.__lx[int_t + 1] / self.__lx[int_t], frac_t)
 
     def lx_bal(self, t):
-        if t > self.w:
+        if t > self.w+1:
             return 0.
         if t < 0:
             return np.nan
@@ -165,7 +165,7 @@ class MortalityTable:
             return np.nan
         if x < 0:
             return np.nan
-        if x > self.w:
+        if x > self.w+1:
             return 0
         if method == 'udd':
             return self.lx_udd(x)
@@ -187,7 +187,7 @@ class MortalityTable:
             return np.nan
         if x < 0:
             return np.nan
-        if x > self.w:
+        if x > self.w+1:
             return 0
         if int(x) != x:
             return np.nan
@@ -218,7 +218,7 @@ class MortalityTable:
             return np.nan
         if n <= 0:
             return .0
-        if x + n > self.w:
+        if x + n > self.w+1:
             return self.__qx[-1]
         l_x = self.get_lx_method(x, method)
         l_x_t = self.get_lx_method(x + n, method)
@@ -239,7 +239,7 @@ class MortalityTable:
             return np.nan
         if n <= 0:
             return 1.
-        if x + n > self.w:
+        if x + n > self.w+1:
             return self.__px[-1]
         l_x = self.get_lx_method(x, method)
         l_x_t = self.get_lx_method(x + n, method)
