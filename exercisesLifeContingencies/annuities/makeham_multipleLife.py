@@ -1,5 +1,4 @@
 from exercisesLifeContingencies.survivalModels.someMortalityLaws import makeham_mortality_functions
-import scipy.integrate
 
 mml = makeham_mortality_functions.Makeham(a=0.0001, b=0.00030, c=1.075)
 
