@@ -72,3 +72,23 @@ Some results
 print(lt_lst[0].ex[0], lt_min_lxy_lst[0].ex[0], lt_max_lxy_lst[0].ex[0])
 print(lt_lst[1].ex[0], lt_min_lxy_lst[1].ex[0], lt_max_lxy_lst[1].ex[0])
 print(lt_lst[2].ex[0], lt_min_lxy_lst[2].ex[0], lt_max_lxy_lst[2].ex[0])
+
+'''
+print the tables
+'''
+
+if False:
+    for idx, lt in enumerate(lt_lst):
+        name = parse_table_name(mt_lst[idx].name)
+        lt.df_life_table().to_excel(excel_writer=name + '.xlsx', sheet_name=name,
+                                    index=False, freeze_panes=(1, 1))
+        lt_min_lxy_lst[idx].df_life_table().to_excel(excel_writer=name + '_min' + '.xlsx', sheet_name=name,
+                                                     index=False, freeze_panes=(1, 1))
+        lt_max_lxy_lst[idx].df_life_table().to_excel(excel_writer=name + '_max' + '.xlsx', sheet_name=name,
+                                                     index=False, freeze_panes=(1, 1))
+
+'''
+print for some ages
+'''
+set_of_ages = [0, 10, 20, 40, 60, 80, 100]
+#todo
