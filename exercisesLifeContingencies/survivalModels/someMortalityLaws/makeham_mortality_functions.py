@@ -137,7 +137,7 @@ class Makeham:
         if terms == np.inf:
             ts = np.linspace(start=start, stop=stop, num=num)
         else:
-            ts = ts = np.linspace(start=start, stop=stop - 1 / fraction, num=num)
+            ts = np.linspace(start=start, stop=stop - 1 / fraction, num=num)
         px = [tpx(x=age_first_instalment, t=u) for u in ts]
         qx = [tqx(x=age_first_instalment + u, t=1 / fraction) for u in ts]
         vx = [v ** (u + 1 / fraction) for u in ts]
