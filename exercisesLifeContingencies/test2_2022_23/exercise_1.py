@@ -6,12 +6,12 @@ import matplotlib.pyplot as plt
 import os
 import sys
 
-"""Considering \textbf{Makehams law of mortality} with $A=0.0025,B=2.5E-6$ and $c=1.07$ with a rate of interest of 
+"""
+Considering \textbf{Makehams law of mortality} with $A=0.0025,B=2.5E-6$ and $c=1.07$ with a rate of interest of 
 $3.5\%$/annum, determine: 
 """
 
 this_py = os.path.split(sys.argv[0])[-1][:-3]
-# mml = makeham_mortality_functions.Makeham(a=0.00022, b=2.7E-6, c=1.124)
 mml = makeham_mortality_functions.Makeham(a=0.0025, b=2.5E-6, c=1.07)
 
 e0 = mml.moments_Tx()
@@ -20,6 +20,9 @@ print('e0=', e0)
 w = 125
 interest_rate = 3.5
 interest_rate_2 = ((1 + interest_rate / 100) ** 2 - 1) * 100
+x = 45
+v = 1 / (1 + interest_rate / 100)
+v2 = 1 / (1 + interest_rate_2 / 100)
 
 '''
 Compute Life Table
