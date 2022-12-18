@@ -1,14 +1,19 @@
 '''
 \item
 \label{exer.Makehams_lifeInsurance1_compare}
-Considering \textbf{Makehams law of mortality} with $A=0.00018,B=1.9E-6$ and $c=1.124$, with $w=115$ and a rate of interest of $2.5\%$/annum, determine:
+Considering \textbf{Makehams law of mortality} with $A=0.00018,B=1.9E-6$ and $c=1.124$, with $w=115$ and a rate of
+interest of $2.5\%$/annum, determine:
 
 \begin{enumerate}
-\item The single risk premium for a Pure Endowment purchased by a life aged 45, if $250\:000$\euro\ are payable on reaching 60 years old.
+\item The single risk premium for a Pure Endowment purchased by a life aged 45, if $250\:000$\euro\ are payable
+on reaching 60 years old.
 
-\item The 10 years leveled risk premiums for a Whole Life Insurance purchased by a life aged 50, paying $250\:000$\euro\ at the moment of death.
+\item The 10 years leveled risk premiums for a Whole Life Insurance purchased by a life aged 50,
+paying $250\:000$\euro\ at the moment of death.
 
-\item The 10 years monthly leveled risk premiums for an Endowment Insurance purchased by a life aged 50 if the payment in the event of death happens at the final of semester of the death with capital underwritten $100\:000$\euro.
+\item The 10 years monthly leveled risk premiums for an Endowment Insurance purchased by a life
+aged 50 if the payment in the event of death happens at the final of semester of the death with capital underwritten
+$100\:000$\euro.
 \end{enumerate}
 '''
 
@@ -21,7 +26,6 @@ import os
 import sys
 
 this_py = os.path.split(sys.argv[0])[-1][:-3]
-# mml = makeham_mortality_functions.Makeham(a=0.00022, b=2.7E-6, c=1.124)
 mml = makeham_mortality_functions.Makeham(a=0.0003, b=1.0E-6, c=1.09)
 
 e0 = mml.moments_Tx()

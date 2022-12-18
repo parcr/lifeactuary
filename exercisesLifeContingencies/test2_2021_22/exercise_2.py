@@ -1,10 +1,13 @@
 '''
-\item Consider a \textbf{man} aged 25 years old that purchases an Endowment with term at 65 years old. Considering $3\%$/annum as rate of interest and justifying all calculus, please determine:
+\item Consider a \textbf{man} aged 25 years old that purchases an Endowment with term at 65 years old.
+Considering $3\%$/annum as rate of interest and justifying all calculus, please determine:
 
 \begin{enumerate}
-\item For a capital of $1\:000\:000$\euro, the single risk premium if in case of death the capital is paid at the moment of death.
+\item For a capital of $1\:000\:000$\euro, the single risk premium if in case of death the capital is paid at the
+moment of death.
 
-\item For a capital of $1\:000\:000$\euro, the single risk premium if in case of death the capital is paid at the moment of death but considering that the cover is deferred until the age of 30, keeping the same term.
+\item For a capital of $1\:000\:000$\euro, the single risk premium if in case of death the capital is paid at the
+moment of death but considering that the cover is deferred until the age of 30, keeping the same term.
 \end{enumerate}
 '''
 import os
