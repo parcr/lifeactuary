@@ -4,7 +4,8 @@ import sys
 from essential_life import mortality_table, commutation_table, read_soa_table_xml as rst
 
 """
-\item Consider a \textbf{woman} aged 40 years old that purchases an Endowment with term at 65 years old. Considering $2.4\%$/annum as the rate of interest and justifying all calculus, please determine:
+\item Consider a \textbf{woman} aged 40 years old that purchases an Endowment with term at 65 years old. 
+Considering $2.4\%$/annum as the rate of interest and justifying all calculus, please determine:
 
 \begin{enumerate}
 \item For a capital of $150\:000$\euro, the single risk premium if in case of death the capital is paid 

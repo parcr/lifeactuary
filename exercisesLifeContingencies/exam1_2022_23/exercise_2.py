@@ -103,11 +103,14 @@ annuity_defer = 10
 fraction_annuity = 12
 capital_annuity_monthly = 1000
 term_annuity = np.inf
-annuity_w = 125+75
+annuity_w = 125
 tad = mml.annuity(x=x_annuity, interest_rate=interest_rate, age_first_instalment=x_annuity + annuity_defer,
                   terms=term_annuity, fraction=fraction_annuity, w=annuity_w)
+tad_ = mml.ax(x=x_annuity + annuity_defer, interest_rate=interest_rate, n=np.inf)[0] * \
+       mml.nEx(x=x_annuity, interest_rate=interest_rate, defer=annuity_defer)
 
 print('\n1c')
 
 print(f'Term Annuity Due (closing table at {annuity_w}): {tad}')
-print(f'Leveled Premium={round(tad * capital_annuity_monthly*fraction_annuity, 5)}')
+print(f'Term Annuity Due Continuously: {tad_}')
+print(f'Leveled Premium={round(tad * capital_annuity_monthly * fraction_annuity, 5)}')
