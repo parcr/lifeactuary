@@ -52,6 +52,17 @@ def A_xy1(x, y, t):
     return scipy.integrate.quad(S, 0, t)[0]
 
 
+def A_TxTy2(x, y, t):
+    return mml.S(x, t) * mml.S(y, t)* mml.mu(y + t)
+
+
+def A_xy2(x, y, t):
+    def S(t):
+        return A_TxTy2(x, y, t) * np.power(v, t)
+
+    return scipy.integrate.quad(S, 0, t)[0]
+
+
 def q_xy1(x, y, t):
     def S(t):
         return A_TxTy1(x, y, t)
@@ -64,11 +75,15 @@ def q_xy1(x, y, t):
 """
 
 tli_xy1 = A_xy1(x, y, 200)
+tli_xy2 = A_xy2(x, y, 200)
 print('A_xy1:', tli_xy1)
 print('A_xy1 capital:', round(tli_xy1 * capital, 5))
+print('A_xy2:', tli_xy2)
+print('A_xy2 capital:', round(tli_xy2 * capital, 5))
 
 """
 \item  {\tiny (2)} The probability that there is no claim.
 """
 prob_xy1 = q_xy1(x, y, 200)
 print('q_xy1:', round(prob_xy1 * 100, 5), '%', sep='')
+print('q_xy2:', round((1-prob_xy1) * 100, 5), '%', sep='')

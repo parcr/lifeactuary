@@ -12,7 +12,7 @@ the moment of death but considering that the cover is deferred until the age of 
 '''
 import os
 import sys
-
+import numpy as np
 from essential_life import mortality_table, commutation_table, read_soa_table_xml as rst
 
 this_py = os.path.split(sys.argv[0])[-1][:-3]
@@ -39,18 +39,22 @@ capital = 100000
 print('\n2a')
 for idx, lt in enumerate(lt_lst):
     pure_endowment = ct_lst[idx].nEx(x=x, n=term)
-    term_life_insurance_ = ct_lst[idx].nAx_(x=x, n=term)
     term_life_insurance = ct_lst[idx].nAx(x=x, n=term)
+    term_life_insurance_ = ct_lst[idx].nAx_(x=x, n=term)
+    term_life_insurance__ = term_life_insurance * interest_rate / 100 / np.log(1 + interest_rate / 100)
     endowment = ct_lst[idx].nAEx_(x=x, n=term)
+    endowment__ = term_life_insurance__ + pure_endowment
     print(f'Term Life Insurance:')
     print(f'{table_names[idx]}: {term_life_insurance}')
     print(f'{table_names[idx]}: {term_life_insurance_}')
+    print(f'{table_names[idx]}: {term_life_insurance__}')
     print(f'Pure Endowment:')
     print(f'{table_names[idx]}: {pure_endowment}')
     print(f'Endowment:')
-    print(f'test={term_life_insurance_+pure_endowment-endowment}')
+    print(f'test={term_life_insurance_ + pure_endowment - endowment}')
     print(f'{table_names[idx]}: {endowment}')
-    print(f'{table_names[idx]}: {round(endowment * capital,5)}')
+    print(f'{table_names[idx]}: {round(endowment * capital, 5)}')
+    print(f'{table_names[idx]}: {round(endowment__ * capital, 5)}')
     print()
 
 """
@@ -62,13 +66,13 @@ print('\n2b')
 x = 45
 defer = 10
 term = 20
-capital = 1000000
+capital = 100000
 
 for idx, lt in enumerate(lt_lst):
     deferment_factor = ct_lst[idx].nEx(x=x, n=defer)
     pure_endowment = ct_lst[idx].nEx(x=x + defer, n=term)
-    term_life_insurance_ = ct_lst[idx].nAx_(x=x+defer, n=term)
-    term_life_insurance = ct_lst[idx].nAx(x=x+defer, n=term)
+    term_life_insurance_ = ct_lst[idx].nAx_(x=x + defer, n=term)
+    term_life_insurance = ct_lst[idx].nAx(x=x + defer, n=term)
     endowment = ct_lst[idx].t_nAEx_(x=x, n=term, defer=defer)
 
     print(f'Deferment Factor for {table_names[idx]}: {deferment_factor}')
@@ -76,6 +80,6 @@ for idx, lt in enumerate(lt_lst):
     print(f'Term Life Insurance mod for {table_names[idx]}: {term_life_insurance_}')
     print(f'Pure Endowment {table_names[idx]}: {pure_endowment}')
     print(f'Endowment {table_names[idx]}: {endowment}')
-    print(f'Endowment mod {table_names[idx]}: {round(endowment * capital,5)}')
+    print(f'Endowment mod {table_names[idx]}: {round(endowment * capital, 5)}')
     print('test=', deferment_factor * (term_life_insurance_ + pure_endowment) - endowment)
     print()
