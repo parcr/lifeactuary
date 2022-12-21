@@ -46,16 +46,20 @@ x_wli = 55
 
 wli_eoy = ct.Ax(x_wli)  # payment at the end of year
 wli_eoy_capital = wli_eoy * capital_wli
-wli = ct.Ax_(x_wli)  # payment at the moment of death
-wli_capital = ct.Ax_(x_wli) * capital_wli  # payment at the moment of death
+wli = ct.Ax_(x_wli)  # approximation to payment at the moment of death
+wli_capital = ct.Ax_(x_wli) * capital_wli  # approximation to payment at the moment of death
+wli_ = mml.Ax(x=x_wli, interest_rate=interest_rate, n=np.inf)
+wli_capital_ = wli_ * capital_wli
 
 print('\n1a')
 print(f'D_{x_wli}={ct.Dx[x_wli]}')
 print(f'M_{x_wli}={ct.Mx[x_wli]}')
 print('whole life insurance (end of the year)=', round(ct.Mx[x_wli] / ct.Dx[x_wli] * capital_wli, 5))
 print('whole life insurance (end of the year)=', round(wli_eoy_capital, 5))
-print('whole life insurance (moment of death)=', round(wli, 10))
-print('whole life insurance (moment of death)=', round(wli_capital, 5))
+print('whole life insurance (approximation moment of death)=', round(wli, 10))
+print('whole life insurance (approximation moment of death)=', round(wli_capital, 5))
+print('whole life insurance (moment of death)=', round(wli_, 10))
+print('whole life insurance (approximation moment of death)=', round(wli_capital_, 5))
 
 """
 \item {\tiny (2)} The risk premiums for an Endowment purchased by a life aged 50 with a term of 15 years and capital 
@@ -68,13 +72,15 @@ x_endow = 50
 term_endow = 15
 m_endow = 4
 
-tli_ = ct.nAx_(x=x_endow, n=term_endow)
+# tli_ = ct.nAx_(x=x_endow, n=term_endow)
+tli_ = mml.Ax(x=x_endow, interest_rate=interest_rate, n=term_endow)
 pure_endow = ct.nEx(x=x_endow, n=term_endow)
 endow_mod = tli_ + pure_endow
+endow_mod_capital = endow_mod*capital_endow
 endow_mod2 = ct.nAEx_(x=x_endow, n=term_endow)
-endow_mod2_capital = endow_mod2 * capital_endow
-print(f'{tli_}+{pure_endow}={endow_mod}={endow_mod2}')
-print(f'endow_mod2_capital: {round(endow_mod2_capital, 5)}')
+endow_mod2_capital = endow_mod * capital_endow
+print(f'{tli_}+{pure_endow}={endow_mod}')
+print(f'endow_mod2_capital: {round(endow_mod_capital, 5)}')
 
 # when the claim in case of death happens at the end of the quarter
 tli_quarter = mml.life_insurance(x=x_endow, interest_rate=interest_rate, age_first_instalment=x_endow,
@@ -96,4 +102,5 @@ fraction_annuity = 12
 tad = mml.annuity(x=x_endow, interest_rate=interest_rate, age_first_instalment=x_endow,
                   terms=term_annuity, fraction=fraction_annuity)
 print(f'Term Annuity Due={tad}')
-print(f'Leveled Premium={round(endow_eoq_capital/tad/fraction_annuity,5)}')
+print(f'Term Annuity Duex{fraction_annuity}={tad*fraction_annuity}')
+print(f'Leveled Premium={round(endow_eoq_capital / tad / fraction_annuity, 5)}')
