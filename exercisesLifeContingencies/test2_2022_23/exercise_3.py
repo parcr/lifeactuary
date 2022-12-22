@@ -88,16 +88,31 @@ equal_amortizations_df.to_excel(excel_writer='equal_amortizations' + '.xlsx',
                                 sheet_name='equal_amortizations',
                                 index=False, freeze_panes=(1, 1))
 
+index_table = 2
+
+premium_leveled = equal_instalments_dict['premium_leveled'][index_table]
+
+print('\na)')
+
+print(f'annuity certain:', equal_instalments_dict['annuity_certain'][index_table])
+print(f'annuity:', equal_instalments_dict['annuity'][index_table])
+print(f'premium:', equal_instalments_dict['premium'][index_table])
+print(f'annuity_level:', equal_instalments_dict['annuity_level'][index_table])
+print(f'premium leveled:', premium_leveled)
+
 '''
 \item The loss for the insurer the lady dies immediately after paying the $10^{th}$ instalment.
 '''
-annuity_terms = 19
-annuities_certain_m = ac.an(terms=annuity_terms)
-annuities_certain_n_m = ac.aan(terms=terms - annuity_terms)
+annuity_terms = 20
+annuities_certain_m = ac.aan(terms=annuity_terms)
+annuities_certain_n_m = ac.aan(terms=terms - annuity_terms + 1)
 
 loan_balance = capital / ac_certain * annuities_certain_n_m
-premiums_paid = equal_instalments_dict['premium_leveled'][1] * annuities_certain_m * (
-            1 + interest_rate / 100) ** (annuity_terms+1)
-print('loan balance=', round(loan_balance,5))
-print('premiums paid=', round(premiums_paid,5))
-print('Loss=', round(loan_balance - premiums_paid,5))
+premiums_paid = premium_leveled * annuities_certain_m * (1 + interest_rate / 100) ** annuity_terms
+
+print('\nb)')
+print(f'annuity certain {annuity_terms} terms: {annuities_certain_m}')
+print(f'annuity certain {terms - annuity_terms + 1} terms: {annuities_certain_n_m}')
+print('loan balance=', round(loan_balance, 5))
+print('premiums paid=', round(premiums_paid, 5))
+print('Loss=', round(loan_balance - premiums_paid, 5))
