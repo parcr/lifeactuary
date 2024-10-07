@@ -21,7 +21,7 @@ class MortalityTable:
         """
         if data_type not in ('l', 'q', 'p'):
             return
-        if not mt:
+        if mt is None:
             return
         self.__data_type = data_type
         self.__methods = ('udd', 'cfm', 'bal')
@@ -40,6 +40,7 @@ class MortalityTable:
         radical = 100000.
         pperc = perc / 100.
         mt = np.array(mt[1:])
+        mt=mt[~pd.isnull(mt)]
         if data_type == 'l':
             if mt[-1] > 0:
                 mt = np.append(mt, 0)
