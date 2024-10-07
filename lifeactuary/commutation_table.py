@@ -2,24 +2,25 @@ __author__ = "PedroCR"
 
 import numpy as np
 import pandas as pd
-from lifeactuary.mortality_table import MortalityTable
+from lifeActuary.mortality_table import MortalityTable
 
 
 class CommutationFunctions(MortalityTable):
-    '''
+    """
     Instantiates, for a specific mortality table and interest rate, all the usual commutation functions:
     Dx, Nx, Sx, Cx, Mx, Rx.
 
-    :param i: interest rate, in percentage. Use 5 for 5%
-    :param g: rate of growing (in percentage), for capitals evolving geometrically
-    :param data_type: Use 'l' for lx, 'p' for px and 'q' for qx.
-    :param mt: the mortality table, in array format, according to the data_type defined
-    :param perc: The percentage of qx to use, e.g., use 50 for 50%
-    :param app_cont: Use 'True' for continuous approach (deaths occur, in average, in the middle of the year and payments are
-        due in the moment of death) or 'False' for considering that death payments are due in the end of the year
+    :param i: interest rate, in percentage. Use 5 for 5% :param g: rate of growing (in percentage), for capitals
+    evolving geometrically :param data_type: Use 'l' for lx, 'p' for px and 'q' for qx.
+    param mt: the mortality.
+    table, in array format, according to the data_type defined.
+    param perc: The percentage of qx to use, e.g., use 50 for 50%.
+    param app_cont: Use 'True' for continuous approach (deaths occur, in average, in the middle of
+    the year and payments are due in the moment of death) or 'False' for considering that death payments are due in
+    the end of the year
 
     :return: the commutation symbols Dx, Nx, Sx, Cx, Mx, Rx.
-    '''
+    """
 
     def __init__(self, i=None, g=0, data_type='q', mt=None, perc=100, app_cont=False):
         MortalityTable.__init__(self, data_type, mt, perc)
@@ -50,11 +51,11 @@ class CommutationFunctions(MortalityTable):
     # getters and setters
     @property
     def i(self):
-        return self.__i*100
+        return self.__i * 100
 
     @property
     def g(self):
-        return self.__g*100
+        return self.__g * 100
 
     @property
     def v(self):
@@ -95,7 +96,6 @@ class CommutationFunctions(MortalityTable):
     @property
     def Rx(self):
         return self.__Rx
-
 
     def df_commutation_table(self):
         data = {'Dx': self.__Dx, 'Nx': self.__Nx, 'Sx': self.__Sx, 'Cx': self.__Cx, 'Mx': self.__Mx, 'Rx': self.__Rx}
@@ -302,7 +302,7 @@ class CommutationFunctions(MortalityTable):
     # Annuities Increasing and Decreasing Arithmetically
 
     def t_nIax(self, x, n, m=1, defer=0, first_amount=1, increase_amount=1):
-        '''
+        """
         Returns the actuarial present value of an immediate n term life annuity, deferred $t$ periods,
         with payments evolving in arithmetic progression. Payments of 1/m are made m times per year at the end of the periods.
         First amount and Increase amount may be different.
@@ -316,7 +316,7 @@ class CommutationFunctions(MortalityTable):
         :param increase_amount: amount of the increase amount
 
         :return: Expected Present Value (EPV) for payments of 1/m
-        '''
+        """
 
         if first_amount + (n - 1) * increase_amount < 0:
             return np.nan
@@ -330,7 +330,7 @@ class CommutationFunctions(MortalityTable):
         return term1 + sum(list_increases)
 
     def t_nIaax(self, x, n, m=1, defer=0, first_amount=1, increase_amount=1):
-        '''
+        """
         Returns the actuarial present value of an immediate n term life annuity, deferred t periods,
         with payments evolving in arithmetic progression. Payments of 1/m are made m times per year at the beginning
         of the periods.
@@ -345,7 +345,7 @@ class CommutationFunctions(MortalityTable):
         :param increase_amount: amount of the increase amount
 
         :return: Expected Present Value (EPV) for payments of 1/m
-        '''
+        """
 
         if first_amount + (n - 1) * increase_amount < 0:
             return np.nan
@@ -353,14 +353,14 @@ class CommutationFunctions(MortalityTable):
             return .0
 
         term1 = first_amount * self.t_naax(x=x, n=n, m=m, defer=defer)
-        list_increases = [increase_amount * self.t_nax(x=x + defer, n=n-j, m=m, defer=defer + j - 1)
+        list_increases = [increase_amount * self.t_nax(x=x + defer, n=n - j, m=m, defer=defer + j - 1)
                           for j in range(1, n)]
 
-        return term1+sum(list_increases)
+        return term1 + sum(list_increases)
 
     # Present Value of a series of cash-flows
     def present_value(self, probs, age, spot_rates, capital):
-        '''
+        """
         Computes the expected present value of a cash-flows, that can be contingent on some probabilities.
         Payments are considered at the end of the period.
 
@@ -370,7 +370,7 @@ class CommutationFunctions(MortalityTable):
         :param capital: vector of cash-flow amounts
 
         :return: the expected present value of a cash-flow, that can be contingent on some probabilities.
-        '''
+        """
         if len(spot_rates) != len(capital):
             return np.nan
         probs_ = None
@@ -380,13 +380,18 @@ class CommutationFunctions(MortalityTable):
             else:
                 probs_ = [self.npx(age, n + 1) for n in range(len(capital))]
 
+        if isinstance(probs, list):
+            if len(probs) == len(spot_rates):
+                probs_ = probs
+            else:
+                return np.nan
+
         if isinstance(probs, (float, int)):
             probs_ = [probs] * len(capital)
         discount = 1 + np.array(spot_rates) / 100.
         discount = np.cumprod(1 / discount)
 
         return sum([p * capital[idx_p] * discount[idx_p] for idx_p, p in enumerate(probs_)])
-
 
     ### Life Insurances
 
@@ -664,7 +669,7 @@ class CommutationFunctions(MortalityTable):
         if x < 0:
             return np.nan
         if x > self.w:
-            return self.__v ** 0.5 # it will die before year's end, because already attained age>w
+            return self.__v ** 0.5  # it will die before year's end, because already attained age>w
         D_x = self.__Dx[x]
         if self.__app_cont:
             R_x = self.__Rx[x]
@@ -716,7 +721,7 @@ class CommutationFunctions(MortalityTable):
         if n < 0:
             return np.nan
         if x > self.w:
-            return self.__v ** 0.5 # it will die before year's end, because already attained age>w
+            return self.__v ** 0.5  # it will die before year's end, because already attained age>w
         D_x = self.__Dx[x]
         if self.__app_cont:
             M_x_n = self.__Mx[x + n]
@@ -731,8 +736,8 @@ class CommutationFunctions(MortalityTable):
 
     ## Variable Capitals increasing/decreasing arithmetically
 
-    def nIArx(self, x, n, defer=0, first_amount=1, increase_amount=1):
-        '''
+    def t_nIArx(self, x, n, defer=0, first_amount=1, increase_amount=1):
+        """
         Expected Present Value (EPV) of a Term Life Insurance that pays (first_amount + k*increase_amount), at the end of
         the year if death occurs between ages x+k and x+k+1, for k=0,..., n-1.
         Allows the computation of EPV for decreasing capitals.
@@ -745,20 +750,19 @@ class CommutationFunctions(MortalityTable):
 
         :return: net single premium of a Term Life Insurance with capitals increasing arithmetically, with first capital
         equal to the rate of progression (the increase amount). The payment is made at the end of the year of death.
-        '''
+        """
 
         if first_amount + (n - 1) * increase_amount < 0:
             return np.nan
 
         term1 = first_amount * self.t_nAx(x=x, n=n, defer=defer)
-        list_increases = [increase_amount * self.t_nAx(x=x + defer, n=n - j, defer=defer + j)
+        list_increases = [increase_amount * self.t_nAx(x=x, n=n - j, defer=defer + j)
                           for j in range(1, n)]
 
         return term1 + sum(list_increases)
 
-
-    def nIArx_(self, x, n, defer=0, first_amount=1, increase_amount=1):
-        '''
+    def t_nIArx_(self, x, n, defer=0, first_amount=1, increase_amount=1):
+        """
         Expected Present Value (EPV) of a Term Life Insurance that pays (first_amount + k*increase_amount), at the moment of death,
         if death occurs between ages x+k and x+k+1, for k=0,..., n-1.
         Allows the computation of EPV for decreasing capitals.
@@ -771,20 +775,13 @@ class CommutationFunctions(MortalityTable):
 
         :return: net single premium of a Term Life Insurance with capitals increasing arithmetically, with first capital
         equal to the rate of progression (the increase amount). The payment is made at the moment of death.
-        '''
+        """
 
         if first_amount + (n - 1) * increase_amount < 0:
             return np.nan
 
         term1 = first_amount * self.t_nAx_(x=x, n=n, defer=defer)
-        list_increases = [increase_amount * self.t_nAx_(x=x + defer, n=n - j, defer=defer + j)
+        list_increases = [increase_amount * self.t_nAx_(x=x, n=n - j, defer=defer + j)
                           for j in range(1, n)]
 
         return term1 + sum(list_increases)
-
-
-
-
-
-
-
