@@ -10,13 +10,14 @@ import matplotlib.pyplot as plt
 """ interest rate """
 interest_rate = 4 #2.5
 
+'''
 """ read the tables """
 table_names = ['TV7377', 'GRF95', 'GRM95']
 mt_lst = [rst.SoaTable('../soa_tables/' + name + '.xml') for name in table_names]
 
 lt_lst = [mortality_table.MortalityTable(mt=mt.table_qx) for mt in mt_lst]
 ct_lst = [commutation_table.CommutationFunctions(i=interest_rate, g=0, mt=mt.table_qx) for mt in mt_lst]
-
+'''
 
 """ reads manually imported mortality table """
 table_manual_qx = pd.read_excel ('../soa_tables/' + 'tables_manual.xlsx', sheet_name ='qx')
