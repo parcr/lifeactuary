@@ -26,8 +26,7 @@ class MortalityTable:
         self.__data_type = data_type
         self.__methods = ('udd', 'cfm', 'bal')
         mt_=np.array(mt)
-        mt_ = mt_[~pd.isnull(mt_)]
-        self.__mt = mt_
+        self.__mt = mt_[~pd.isnull(mt_)]
         self.__x0 = np.int32(mt[0])
         self.__last_q = last_q
         self.__w = 0

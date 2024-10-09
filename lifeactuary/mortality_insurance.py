@@ -1,5 +1,6 @@
 __author__ = "PedroCR"
 
+import math
 import numpy as np
 from lifeActuary import annuities
 
@@ -553,3 +554,43 @@ def t_nIAErx_(mt, x, n, defer=0, i=None, first_amount=1, inc=1., method='udd'):
     return IA_x(mt=mt, x=x, x_first=x + 1 + defer, x_last=x + n + defer, i=i, first=first_amount, inc=inc, method=method) * \
         np.sqrt(1 + i / 100) + annuities.nEx(mt=mt, x=x, i=i, g=0, n=n + defer, method=method)*(first_amount+(n-1)*inc)
 
+
+    ''' Generic Moments '''
+
+def t_nAx_mom(mt, x, n, defer=0, i=None, g=.0, method='udd', mom=1):
+    """
+    Returns the Moment for the Present Value of a deferred term life insurance, that pays 1,
+    at the end of the year of death.
+    :param mt: table for life x
+    :param x: age at the beginning of the contract
+    :param n: period of the contract
+    :param defer: deferment period
+    :param i: technical interest rate (flat rate) in percentage, e.g., 2 for 2%
+    :param g: growth rate (flat rate) in percentage, e.g., 2 for 2%
+    :param method: the method to approximate the fractional periods
+
+    :return: Moment of order "mom" Deferred Term Life Insurance (end of year of death).
+    """
+    i_mom=((1+i/100)**mom-1)*100
+    return A_x(mt=mt, x=x, x_first=x + 1 + defer, x_last=x + n + defer, i=i_mom, g=g, method=method)
+
+def t_naax_mom(mt, x, n, defer=0, i=None, g=.0, method='udd', mom=1):
+    """
+    Returns the Moment for the Present Value of a deferred term annuity due, that pays 1.
+    :param mt: table for life x
+    :param x: age at the beginning of the contract
+    :param n: period of the contract
+    :param defer: deferment period
+    :param i: technical interest rate (flat rate) in percentage, e.g., 2 for 2%
+    :param g: growth rate (flat rate) in percentage, e.g., 2 for 2%
+    :param method: the method to approximate the fractional periods
+
+    :return: Moment of order "mom" Deferred Term Annuity Due.
+    """
+    v=1/(1+i/100)
+    sum_terms=[]
+    for h in range(mom+1):
+        c=(math.comb(mom, h)*v**(defer*h)*
+           t_nAx_mom(mt=mt, x=x, n=n, defer=defer, i=i, g=g, method=method, mom=mom-h)*(-1)**(mom-h))
+        sum_terms.append(c)
+    return np.sum(sum_terms)
