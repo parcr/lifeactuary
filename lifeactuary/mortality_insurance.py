@@ -85,7 +85,7 @@ def t_Ax(mt, x, defer=0, i=None, g=.0, method='udd'):
 def t_Ax_(mt, x, defer=0, i=None, g=.0, method='udd'):
     """
     Returns the Expected Present Value of a deferred whole life insurance, that pays 1 at the moment of death.
-    :param mt: table for life x
+    :param mt: Table for life x
     :param x: age at the beginning of the contract
     :param defer: deferment period
     :param i: technical interest rate (flat rate) in percentage, e.g., 2 for 2%
@@ -241,7 +241,7 @@ def t_nAEx_(mt, x, n, defer=0, i=None, g=.0, method='udd'):
 
 def IA_x(mt, x, x_first, x_last, i=None, first=1., inc=1., method='udd'):
     """
-    Returns the Expected Present Value of a Term Life Insurance , that pays 1+k, at the end of year, if
+    Returns the Expected Present Value of a Term Life Insurance, that pays 1+k, at the end of year, if
     death occurs between ages x+k and x+k+1, for k=0, 1, ...
     The capital of the first year equals the rate of the progression.
     :param mt: table for life x
@@ -275,9 +275,9 @@ def IA_x(mt, x, x_first, x_last, i=None, first=1., inc=1., method='udd'):
 
 def IAx(mt, x, i=None, inc=1., method='udd'):
     """
-    Returns the Expected Present Value of a Whole Life Insurance , that pays 1+k, at the end of year of death, if
-    death occurs between ages x+k and x+k+1, for k=0, 1,...
-    The capital of the first year equals the rate of the progression.
+    Returns the Expected Present Value of a Whole Life Insurance, that pays 1+k, at the end of year of death, if
+    death occurs between ages x+k and x+k+1, for k=0, 1, ...
+    The capital of the first year equals the rate of progression.
     :param mt: table for life x
     :param x: age at the beginning of the contract
     :param i: technical interest rate (flat rate) in percentage, e.g., 2 for 2%
@@ -293,7 +293,7 @@ def IAx(mt, x, i=None, inc=1., method='udd'):
 def IAx_(mt, x, i=None, inc=1., method='udd'):
     """
     Returns the Expected Present Value of a Whole Life Insurance , that pays 1+k, at the moment of death, if
-    death occurs between ages x+k and x+k+1, for k=0, 1,...
+    death occurs between ages x+k and x+k+1, for k=0, 1, ...
     The capital of the first year equals the rate of the progression.
     :param mt: table for life x
     :param x: age at the beginning of the contract
@@ -364,7 +364,7 @@ def nIAx(mt, x, n, i=None, inc=1., method='udd'):
 
 def nIAx_(mt, x, n, i=None, inc=1., method='udd'):
     """
-    Returns the Expected Present Value of a Term Life Insurance , that pays 1+k, at the moment of death, if
+    Returns the Expected Present Value of a Term Life Insurance, that pays 1+k, at the moment of death, if
     death occurs between ages x+k and x+k+1, for k=0, 1,..., n-1
     The capital of the first year equals the rate of the progression.
     :param mt: table for life x
@@ -383,7 +383,7 @@ def nIAx_(mt, x, n, i=None, inc=1., method='udd'):
 
 def t_nIAx(mt, x, n, defer=0, i=None, inc=1., method='udd'):
     """
-    Returns the Expected Present Value of a Term Life Insurance , that pays 1+k, at the end of the year of death, if
+    Returns the Expected Present Value of a Term Life Insurance, that pays 1+k, at the end of the year of death, if
     death occurs between ages x+k and x+k+1, for k=0, 1,..., n-1
     The capital of the first year equals the rate of the progression.
     :param mt: table for life x
@@ -555,7 +555,7 @@ def t_nIAErx_(mt, x, n, defer=0, i=None, first_amount=1, inc=1., method='udd'):
         np.sqrt(1 + i / 100) + annuities.nEx(mt=mt, x=x, i=i, g=0, n=n + defer, method=method)*(first_amount+(n-1)*inc)
 
 
-    ''' Generic Moments '''
+''' Generic Moments '''
 
 def t_nAx_mom(mt, x, n, defer=0, i=None, g=.0, method='udd', mom=1):
     """
@@ -577,7 +577,7 @@ def t_nAx_mom(mt, x, n, defer=0, i=None, g=.0, method='udd', mom=1):
 def t_naax_mom(mt, x, n, defer=0, i=None, g=.0, method='udd', mom=1):
     """
     Returns the Moment for the Present Value of a deferred term annuity due, that pays 1.
-    :param mt: table for life x
+    :param mt: Table for life x
     :param x: age at the beginning of the contract
     :param n: period of the contract
     :param defer: deferment period

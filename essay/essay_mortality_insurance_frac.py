@@ -40,6 +40,6 @@ b=ct.t_nqx(x=45, t=20, n=10, method='udd')
 print(a, ' and ', b)
 
 # Expected Value for t_nAx_mom but frac
-a=mif.A_x(mt=ct, x=45, x_first=45+10, x_last=45+10+20, i=4, g=.0, m=4, method='udd')
-b=.0
+a=mif.A_x(mt=ct, x=45, x_first=45+21, x_last=45+20+10, i=4, g=.0, m=1, method='udd')
+b=mi.t_nAx_mom(mt=ct, x=45, n=10, defer=20, i=4, g=0, method='udd', mom=1)
 print(a, ' and ', b)
