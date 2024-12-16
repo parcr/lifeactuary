@@ -40,6 +40,12 @@ b=ct.t_nqx(x=45, t=20, n=10, method='udd')
 print(a, ' and ', b)
 
 # Expected Value for t_nAx_mom but frac
-a=mif.A_x(mt=ct, x=45, x_first=45+21, x_last=45+20+10, i=4, g=.0, m=1, method='udd')
-b=mi.t_nAx_mom(mt=ct, x=45, n=10, defer=20, i=4, g=0, method='udd', mom=1)
-print(a, ' and ', b)
+a1=mi.A_x(mt=ct, x=45, x_first=45+21, x_last=45+20+10, i=4, g=.0, method='udd')
+a1_=mi.A_x(mt=ct, x=45, x_first=45+21, x_last=45+20+10, i=4, g=.0, method='udd')*(1+interest_rate/100)**.5
+a2=mif.A_x(mt=ct, x=45, x_first=45+21, x_last=45+20+10, i=4, g=.0, m=1, method='udd')
+b2=mi.t_nAx_mom(mt=ct, x=45, n=10, defer=20, i=4, g=0, method='udd', mom=1)
+print(a1, ' and ', a1_, ' and ', a2, ' and ', b2)
+
+# todo: Test this stuff. Does not work when m>1
+a_frac2=mif.A_x(mt=ct, x=45, x_first=45+21, x_last=45+20+10, i=4, g=.0, m=2, method='udd')
+print(a_frac2)

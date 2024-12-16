@@ -1,8 +1,7 @@
 __author__ = "PedroCR"
 
-import math
 import numpy as np
-from lifeActuary import annuities
+
 
 
 def A_x(mt, x, x_first, x_last, i=None, g=.0, m=1, method='udd'):
@@ -14,6 +13,7 @@ def A_x(mt, x, x_first, x_last, i=None, g=.0, m=1, method='udd'):
     :param x_last: age of final payment
     :param i: technical interest rate (flat rate) in percentage, e.g., 2 for 2%
     :param g: growth rate (flat rate) in percentage, e.g., 2 for 2%
+    :param m: frequency of payments per unit of interest rate quoted
     :param method: the method to approximate the fractional ages (udd, cfm, bal)
 
     :return: Expected Present Value (EPV)
