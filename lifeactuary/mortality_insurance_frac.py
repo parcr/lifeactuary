@@ -3,7 +3,6 @@ __author__ = "PedroCR"
 import numpy as np
 
 
-
 def A_x(mt, x, x_first, x_last, i=None, g=.0, m=1, method='udd'):
     """
     Returns the Expected Present Value (EPV) of a Life Insurance that pays 1 at the end of the year of death.
@@ -30,18 +29,19 @@ def A_x(mt, x, x_first, x_last, i=None, g=.0, m=1, method='udd'):
     v = float((1 + g) / (1 + i))
 
     # the due transformations for multiples of m
-    x_first_ = int(x_first)+int((x_first-int(x_first))*m)/m
-    x_last_ = int(x_last)+int((x_last-int(x_last))*m)/m
-    x_ = int(x)+int((x-int(x))*m)/m
+    x_first_ = int(x_first) + int((x_first - int(x_first)) * m) / m
+    x_last_ = int(x_last) + int((x_last - int(x_last)) * m) / m
+    x_ = int(x) + int((x - int(x)) * m) / m
 
     # i_m=(1+i)**(1/m)-1
     # g_m=(1+g)**(1/m)-1
     # v_m = float((1 + g_m) / (1 + i_m))
 
-    number_of_payments = int((x_last_ - x_first_)*m+ 1)
+    number_of_payments = int((x_last_ - x_first_) * m + 1)
     if number_of_payments < 1: return .0
     payments_instants = np.linspace(x_first_ - x_, x_last_ - x, number_of_payments)
-    instalments = [mt.npx(x, n=t - 1/m, method=method) * mt.nqx(x + t/m - 1/m, n=1/m, method=method) * np.power(v, t)
-                   for t in payments_instants]
+    instalments = [
+        mt.npx(x, n=t - 1 / m, method=method) * mt.nqx(x + t - 1 / m, n=1 / m, method=method) * np.power(v, t)
+        for t in payments_instants]
     instalments = np.array(instalments) / np.power(1 + g, payments_instants[0])
     return np.sum(instalments)
