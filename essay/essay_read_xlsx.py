@@ -1,3 +1,13 @@
+__author__ = "PedroCR"
+import os
+import sys
+
+# Add project root to path so we can import modules
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(script_dir, '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 import pandas as pd
 
 from lifeActuary import mortality_table, commutation_table
@@ -17,8 +27,8 @@ ct_lst = [commutation_table.CommutationFunctions(i=interest_rate, g=0, mt=mt.tab
 '''
 
 """ reads manually imported mortality table """
-table_manual_qx = pd.read_excel ('../soa_tables/' + 'tables_manual.xlsx', sheet_name ='qx')
-table_manual_lx = pd.read_excel ('../soa_tables/' + 'tables_manual.xlsx', sheet_name ='lx')
+table_manual_qx = pd.read_excel(os.path.join(project_root, 'soa_tables', 'tables_manual.xlsx'), sheet_name='qx')
+table_manual_lx = pd.read_excel(os.path.join(project_root, 'soa_tables', 'tables_manual.xlsx'), sheet_name='lx')
 
 new_table_names = ['S2PMA', 'S2PFA']
 new_lt_lst = [mortality_table.MortalityTable(mt=table_manual_lx[n], data_type='l') for n in new_table_names]

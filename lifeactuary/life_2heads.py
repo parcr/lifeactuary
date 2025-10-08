@@ -4,7 +4,6 @@ import numpy as np
 import logging
 from lifeActuary import mortality_table as mt
 from lifeActuary import mortality_table_2heads as mt2h
-from lifeActuary import commutation_table as ct
 from lifeActuary import mortality_insurance as mi
 
 all_status = {'joint-life', 'last-survivor'}

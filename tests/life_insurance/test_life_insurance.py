@@ -1,5 +1,10 @@
 __author__ = "PedroCR"
-
+import os
+import sys
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(script_dir, '..', '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 import pytest
 from lifeActuary import mortality_table as mt, commutation_table, commutation_table_frac, annuities, mortality_insurance
 from soa_tables import read_soa_table_xml as rst
@@ -7,8 +12,8 @@ from soa_tables import read_soa_table_xml as rst
 # lt_tv7377 = mortality_table.MortalityTable(mt=TV7377)
 # lt_grf95 = mortality_table.MortalityTable(mt=GRF95)
 
-soa_TV7377 = rst.SoaTable('../../soa_tables/TV7377.xml')
-soa_GRF95 = rst.SoaTable('../../soa_tables/GRF95.xml')
+soa_TV7377 = rst.SoaTable(os.path.join(project_root, 'soa_tables', 'TV7377.xml'))
+soa_GRF95 = rst.SoaTable(os.path.join(project_root, 'soa_tables', 'GRF95.xml'))
 grf95 = mt.MortalityTable(mt=soa_GRF95.table_qx)
 tv7377 = mt.MortalityTable(mt=soa_TV7377.table_qx)
 

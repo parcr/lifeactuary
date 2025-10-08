@@ -1,5 +1,14 @@
-from soa_tables import read_soa_table_xml as rst
+__author__ = "PedroCR"
+import os
+import sys
 
+# Add project root to path so we can import modules
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(script_dir, '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+from soa_tables import read_soa_table_xml as rst
 import pandas as pd
 import numpy as np
 
@@ -7,9 +16,10 @@ from lifeActuary.commutation_table_frac import CommutationFunctionsFrac
 
 # reads soa table
 #soa = rst.SoaTable('../soa_tables/' + 'TV7377' + '.xml')
-soa = rst.SoaTable('../soa_tables/' + 'GRF95' + '.xml')
-table_manual_qx = pd.read_excel('../soa_tables/' + 'tables_manual' + '.xlsx', sheet_name='qx')
-table_manual_lx = pd.read_excel('../soa_tables/' + 'tables_manual' + '.xlsx', sheet_name='lx')
+# reads soa table
+soa = rst.SoaTable(os.path.join(project_root, 'soa_tables', 'GRF95.xml'))
+table_manual_qx = pd.read_excel(os.path.join(project_root, 'soa_tables', 'tables_manual.xlsx'), sheet_name='qx')
+table_manual_lx = pd.read_excel(os.path.join(project_root, 'soa_tables', 'tables_manual.xlsx'), sheet_name='lx')
 
 # creates mortality table from 1x of soa table
 ''' Commutation Table '''

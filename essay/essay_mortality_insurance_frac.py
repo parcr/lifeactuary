@@ -1,3 +1,13 @@
+__author__ = "PedroCR"
+import os
+import sys
+
+# Add project root to path so we can import modules
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(script_dir, '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 import pandas as pd
 from lifeActuary import mortality_insurance as mi
 from lifeActuary import mortality_insurance_frac as mif
@@ -10,7 +20,7 @@ interest_rate = 4  # 2.5
 
 """ read the tables """
 table_names = ['TV7377', 'GRF95', 'GRM95']
-mt_lst = [rst.SoaTable('../soa_tables/' + name + '.xml') for name in table_names]
+mt_lst = [rst.SoaTable(os.path.join(project_root, 'soa_tables', name + '.xml')) for name in table_names]
 
 lt_lst = [mortality_table.MortalityTable(mt=mt.table_qx) for mt in mt_lst]
 ct_lst = [commutation_table.CommutationFunctions(i=interest_rate, g=0, mt=mt.table_qx) for mt in mt_lst]

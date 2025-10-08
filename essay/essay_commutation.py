@@ -1,12 +1,21 @@
+__author__ = "PedroCR"
+import os
+import sys
+
+# Add project root to path so we can import modules
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(script_dir, '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 from soa_tables import read_soa_table_xml as rst
 from lifeActuary import mortality_table, commutation_table
 import pandas as pd
 
 # reads soa table
-soa = rst.SoaTable('../soa_tables/' + 'TV7377' + '.xml')
-table_manual_qx = pd.read_excel('../soa_tables/' + 'tables_manual' + '.xlsx', sheet_name='qx')
-table_manual_lx = pd.read_excel('../soa_tables/' + 'tables_manual' + '.xlsx', sheet_name='lx')
-
+soa = rst.SoaTable(os.path.join(project_root, 'soa_tables', 'TV7377.xml'))
+table_manual_qx = pd.read_excel(os.path.join(project_root, 'soa_tables', 'tables_manual.xlsx'), sheet_name='qx')
+table_manual_lx = pd.read_excel(os.path.join(project_root, 'soa_tables', 'tables_manual.xlsx'), sheet_name='lx')
 
 # creates mortality table from 1x of soa table
 tv7377 = mortality_table.MortalityTable(data_type='q', mt=soa.table_qx, perc=100, last_q=1)

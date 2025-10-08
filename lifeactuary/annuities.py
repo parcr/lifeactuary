@@ -53,7 +53,7 @@ def ax(mt, x, i=None, g=0, m=1, method='udd'):
     """
     if x + 1 / m > mt.w: return 0
 
-    return annuity_x(mt=mt, x=x, x_first=x + 1 / m, x_last=mt.w, i=i, g=g, m=m, method=method)
+    return annuity_x(mt=mt, x=x, x_first=x + 1 / m, x_last=mt.w+1, i=i, g=g, m=m, method=method)
 
 
 def aax(mt, x, i=None, g=0, m=1, method='udd'):
@@ -72,7 +72,7 @@ def aax(mt, x, i=None, g=0, m=1, method='udd'):
     """
     if x > mt.w: return 1
 
-    return annuity_x(mt=mt, x=x, x_first=x, x_last=mt.w, i=i, g=g, m=m, method=method)
+    return annuity_x(mt=mt, x=x, x_first=x, x_last=mt.w+1, i=i, g=g, m=m, method=method)
 
 
 def t_ax(mt, x, i=None, g=0, m=1, defer=0, method='udd'):
@@ -92,7 +92,7 @@ def t_ax(mt, x, i=None, g=0, m=1, defer=0, method='udd'):
     """
     if x + 1 / m + defer > mt.w: return 0
 
-    return annuity_x(mt=mt, x=x, x_first=x + 1 / m + defer, x_last=mt.w, i=i, g=g, m=m, method=method)
+    return annuity_x(mt=mt, x=x, x_first=x + 1 / m + defer, x_last=mt.w+1, i=i, g=g, m=m, method=method)
 
 
 def t_aax(mt, x, i=None, g=0, m=1, defer=0, method='udd'):
@@ -112,7 +112,7 @@ def t_aax(mt, x, i=None, g=0, m=1, defer=0, method='udd'):
     """
     if x + defer > mt.w: return 0
 
-    return annuity_x(mt=mt, x=x, x_first=x + defer, x_last=mt.w, i=i, g=g, m=m, method=method)
+    return annuity_x(mt=mt, x=x, x_first=x + defer, x_last=mt.w+1, i=i, g=g, m=m, method=method)
 
 # Temporary Life Annuities
 
