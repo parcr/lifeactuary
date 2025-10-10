@@ -3,5 +3,13 @@
         "tests"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "python.terminal.activateEnvironment": true,
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "[windows]": {
+        "python.defaultInterpreterPath": "C:/Users/pedro/anaconda3/envs/odds/python.exe"
+    },
+    "[osx]": {
+        "python.defaultInterpreterPath": "/Users/pedrocortereal/opt/anaconda3/envs/odds/bin/python"
+    }
 }

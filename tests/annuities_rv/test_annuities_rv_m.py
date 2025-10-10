@@ -23,7 +23,7 @@ def test_ax():
     i = 2
     g = 0
     m = 12
-    x = 45*0+125
+    x = 45*0+125*0+160*0
     method = 'udd'
     cf_grf95 = commutation_table.CommutationFunctions(i=i, g=g, mt=soa_GRF95.table_qx)
     cf_tv7377 = commutation_table.CommutationFunctions(i=i, g=g, mt=soa_TV7377.table_qx)
@@ -65,7 +65,7 @@ def test_t_ax():
     i = 2
     g = 0
     m = 12
-    x = 45
+    x = 45+125*0+160*0+120*0
     defer = 5
     method = 'udd'
     cf_grf95 = commutation_table.CommutationFunctions(i=i, g=g, mt=soa_GRF95.table_qx)
@@ -104,7 +104,7 @@ def test_nax():
     i = 2
     g = 0
     m = 12
-    x = 45
+    x = 45+125*0+160*0
     n = 5
     method = 'udd'
     cf_grf95 = commutation_table.CommutationFunctions(i=i, g=g, mt=soa_GRF95.table_qx)
@@ -142,7 +142,7 @@ def test_t_nax():
     i = 2
     g = 0
     m = 12
-    x = 45
+    x = 45+125*0+160*0
     defer = 10
     n = 5
     method = 'udd'
@@ -182,8 +182,8 @@ def test_t_nax():
 def test_aax():
     i = 2
     g = 0
-    m = 1
-    x = 45
+    m = 12
+    x = 45+125*0+160*0
     method = 'udd'
     cf_grf95 = commutation_table.CommutationFunctions(i=i, g=g, mt=soa_GRF95.table_qx)
     cf_tv7377 = commutation_table.CommutationFunctions(i=i, g=g, mt=soa_TV7377.table_qx)
@@ -203,6 +203,8 @@ def test_aax():
     i2 = ((1 + i / 100) ** 2-1)*100
     v_grow= (1 + g / 100)
     payments_moments=list(np.arange(n1, n2, step))
+    if n1==0 and not payments_moments: # due case with no payments
+        payments_moments=[0]
     payments=[v_grow ** i for i in payments_moments]
     moment=1
 
@@ -219,8 +221,8 @@ def test_aax():
 def test_t_aax():
     i = 2
     g = 0
-    m = 1
-    x = 45
+    m = 12
+    x = 45+125*0+160*0
     defer = 5
     method = 'udd'
     cf_grf95 = commutation_table.CommutationFunctions(i=i, g=g, mt=soa_GRF95.table_qx)
@@ -241,6 +243,8 @@ def test_t_aax():
     i2 = ((1 + i / 100) ** 2-1)*100
     v_grow= (1 + g / 100)
     payments_moments=list(np.arange(n1, n2, step))
+    if n1==0 and not payments_moments: # due case with no payments
+        payments_moments=[0]
     payments=[v_grow ** i for i in payments_moments]
     moment=1
 
@@ -259,9 +263,9 @@ def test_t_aax():
 def test_naax():
     i = 2
     g = 0
-    m = 1
+    m = 12
     # this works with almost all ages and fails with some other, e.g. fails with 116
-    x = 55
+    x = 55+125*0+160*0
     n = 5
     method = 'udd'
     cf_grf95 = commutation_table.CommutationFunctions(i=i, g=g, mt=soa_GRF95.table_qx)
@@ -284,6 +288,8 @@ def test_naax():
     i2 = ((1 + i / 100) ** 2-1)*100
     v_grow= (1 + g / 100)
     payments_moments=list(np.arange(n1, n2, step))
+    if n1==0 and not payments_moments: # due case with no payments
+        payments_moments=[0]
     payments=[v_grow ** i for i in payments_moments]
     moment=1
 
@@ -300,8 +306,8 @@ def test_naax():
 def test_t_naax():
     i = 2
     g = 0
-    m = 1
-    x = 55
+    m = 12
+    x = 55+125*0+160*0
     defer = 10
     n = 5
     method = 'udd'
@@ -325,6 +331,8 @@ def test_t_naax():
     i2 = ((1 + i / 100) ** 2-1)*100
     v_grow= (1 + g / 100)
     payments_moments=list(np.arange(n1, n2, step))
+    if n1==0 and not payments_moments: # due case with no payments
+        payments_moments=[0]
     payments=[v_grow ** i for i in payments_moments]
     moment=1
 

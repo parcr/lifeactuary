@@ -70,7 +70,7 @@ def aax(mt, x, i=None, g=0, m=1, method='udd'):
 
     :return: Expected Present Value (EPV) for payments of 1/m
     """
-    if x > mt.w: return 1
+    if x > mt.w: return 1/m
 
     return annuity_x(mt=mt, x=x, x_first=x, x_last=mt.w+1, i=i, g=g, m=m, method=method)
 
@@ -151,7 +151,7 @@ def naax(mt, x, n, i=None, g=0, m=1, method='udd'):
 
     :return: Expected Present Value (EPV) for payments of 1/m
     """
-    if x > mt.w: return 1
+    if x > mt.w: return 1/m
 
     return annuity_x(mt=mt, x=x, x_first=x, x_last=x + n - 1 / m, i=i, g=g, m=m, method=method)
 

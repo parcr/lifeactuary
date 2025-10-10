@@ -63,9 +63,9 @@ def gen_axn(
             "payments_moments and payments must have the same length")
     
     # the case x is larger than the maximum age in the mortality table
-    if x >= mort_table.w:
+    if x >= mort_table.w+1:
         if 0 in payments_moments:
-            return 1.
+            return payments[0]
         else:
             return 0.
     
@@ -77,6 +77,10 @@ def gen_axn(
     if len(payments_moments) > idx_m:
         payments_moments = payments_moments[0:idx_m]
         payments = payments[0:idx_m]
+
+    # handle edge case where there are no payments
+    if len(payments) == 0:
+        return 0.    
 
     an = [gen_an(interest_rate, payments_moments[0:(i + 1)], payments[0:(i + 1)])
           for i, _ in enumerate(payments_moments)]
