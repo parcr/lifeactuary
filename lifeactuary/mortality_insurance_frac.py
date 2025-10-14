@@ -20,6 +20,8 @@ def A_x(mt, x, x_first, x_last, i=None, g=.0, m=1, method='udd'):
     if x_first < x: return np.nan
     if x_last < x_first == x: return np.nan
     if x == x_first == x_last: return 0
+    if x_last>mt.w+1: 
+        x_last=max(x_first+1, mt.w+1)
 
     if int(m) != m: return np.nan
     if m > 356 * 24: return np.nan
@@ -29,9 +31,16 @@ def A_x(mt, x, x_first, x_last, i=None, g=.0, m=1, method='udd'):
     v = float((1 + g) / (1 + i))
 
     # the due transformations for multiples of m
-    x_first_ = int(x_first) + int((x_first - int(x_first)) * m) / m
-    x_last_ = int(x_last) + int((x_last - int(x_last)) * m) / m
-    x_ = int(x) + int((x - int(x)) * m) / m
+    # x_first_ = int(x_first) + int((x_first - int(x_first)) * m) / m
+    # x_last_ = int(x_last) + int((x_last - int(x_last)) * m) / m
+    # x_ = int(x) + int((x - int(x)) * m) / m
+    x_first_ = np.floor(x_first * m) / m
+    x_last_ = np.floor(x_last * m) / m
+    x_ = np.floor(x * m) / m
+
+    x_first_ = x_first
+    x_last_ = x_last
+    x_ = x
 
     # i_m=(1+i)**(1/m)-1
     # g_m=(1+g)**(1/m)-1
@@ -39,9 +48,18 @@ def A_x(mt, x, x_first, x_last, i=None, g=.0, m=1, method='udd'):
 
     number_of_payments = int((x_last_ - x_first_) * m + 1)
     if number_of_payments < 1: return .0
-    payments_instants = np.linspace(x_first_ - x_, x_last_ - x, number_of_payments)
+    # payments_instants = np.linspace(x_first_ - x_, x_last_ - x, number_of_payments)
+    payments_instants = np.arange(x_first_ - x_, x_last_ - x + 1/m, 1/m)
+    step=1/m
+    payments_instants_step= np.round(payments_instants - step,10)
+    probs_surv = [mt.npx(x, n=t, method=method) for t in payments_instants_step]
+    probs_death= [mt.nqx(x + t, n=step, method=method) for t in payments_instants_step]
+
+    instalments_=[probs_surv[idx] * probs_death[idx] * np.power(v, t)
+        for idx, t in enumerate(payments_instants)]
+
     instalments = [
         mt.npx(x, n=t - 1 / m, method=method) * mt.nqx(x + t - 1 / m, n=1 / m, method=method) * np.power(v, t)
         for t in payments_instants]
-    instalments = np.array(instalments) / np.power(1 + g, payments_instants[0])
-    return np.sum(instalments)
+    instalments = np.array(instalments_) / np.power(1 + g, payments_instants[0])
+    return np.sum(instalments_)

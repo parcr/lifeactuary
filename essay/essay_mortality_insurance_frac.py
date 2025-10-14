@@ -26,8 +26,8 @@ lt_lst = [mortality_table.MortalityTable(mt=mt.table_qx) for mt in mt_lst]
 ct_lst = [commutation_table.CommutationFunctions(i=interest_rate, g=0, mt=mt.table_qx) for mt in mt_lst]
 
 """ reads manually imported mortality table """
-table_manual_qx = pd.read_excel('../soa_tables/' + 'tables_manual.xlsx', sheet_name='qx')
-table_manual_lx = pd.read_excel('../soa_tables/' + 'tables_manual.xlsx', sheet_name='lx')
+table_manual_qx = pd.read_excel(os.path.join(project_root, 'soa_tables', 'tables_manual.xlsx'), sheet_name='qx')
+table_manual_lx = pd.read_excel(os.path.join(project_root, 'soa_tables', 'tables_manual.xlsx'), sheet_name='lx')
 
 new_table_names = ['S2PMA', 'S2PFA']
 new_lt_lst = [mortality_table.MortalityTable(mt=table_manual_lx[n], data_type='l') for n in new_table_names]
@@ -61,7 +61,7 @@ b2 = mi.t_nAx_mom(mt=ct, x=45, n=10, defer=20, i=4, g=0, method='udd', mom=1)
 print(a1, ' and ', a1_c, ' and ', a2, ' and ', b2, ' and', a1_)
 
 
-m = 2
+m = 12
 a_frac2 = mif.A_x(mt=ct, x=45, x_first=45 + 20 + 1 / m, x_last=45 + 20 + 10, i=4, g=.0,
                   m=m, method='udd')
 print(a_frac2)
