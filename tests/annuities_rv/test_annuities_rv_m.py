@@ -19,11 +19,56 @@ soa_GRF95 = rst.SoaTable(os.path.join(project_root, 'soa_tables', 'GRF95.xml'))
 mt_GRF95 = mt.MortalityTable(mt=soa_GRF95.table_qx)
 mt_TV7377 = mt.MortalityTable(mt=soa_TV7377.table_qx)
 
+
+def func_test_ax(x, defer, n, i, g, m, method, due=False):
+    cf_grf95 = commutation_table.CommutationFunctions(i=i, g=g, mt=soa_GRF95.table_qx)
+    cf_tv7377 = commutation_table.CommutationFunctions(i=i, g=g, mt=soa_TV7377.table_qx)
+
+    if m==1 and int(x)==x and due:
+        a_grf_2 = cf_grf95.t_naax(x=x, n=n, m=m, defer=defer)
+        a_tv_2 = cf_tv7377.t_naax(x=x, n=n, m=m, defer=defer)
+    if m==1 and int(x)==x and not due:
+        a_grf_2 = cf_grf95.t_nax(x=x, n=n, m=m, defer=defer)
+        a_tv_2 = cf_tv7377.t_nax(x=x, n=n, m=m, defer=defer)
+
+    a_grf = annuities.t_nax(mt=mt_GRF95, x=x, n=n, i=i, g=g, m=m, defer=defer, method=method)
+    a_tv = annuities.t_nax(mt=mt_TV7377, x=x, n=n, i=i, g=g, m=m, defer=defer, method=method)
+
+    if m==1 and int(x)==x:
+        assert a_grf == pytest.approx(a_grf_2, rel=1e-16)
+        assert a_tv == pytest.approx(a_tv_2, rel=1e-16)
+
+    # probabilist approach
+    step=1/m
+    n1=defer+(not due)*step
+    n2=defer+n+(not due)*step
+
+    v= 1 / (1 + i / 100)
+    d = (1-v)
+    i2 = ((1 + i / 100) ** 2-1)*100
+    v_grow= (1 + g / 100)
+    payments_moments=list(np.arange(n1, n2, step))
+    if n1==0 and not payments_moments: # due case with no payments
+        payments_moments=[0]
+    payments=[v_grow ** i for i in payments_moments]
+    moment=1
+
+    a_grf_prob = annuities_rv.gen_axn(mort_table=mt_GRF95, interest_rate=i, payments_moments=payments_moments, payments=payments, x=x, moment=moment, method=method)
+    a_grf_prob*=step
+    a_tv_prob = annuities_rv.gen_axn(mort_table=mt_TV7377, interest_rate=i, payments_moments=payments_moments, payments=payments, x=x, moment=moment, method=method)
+    a_tv_prob*=step
+
+    # check with probabilistic approach
+    assert a_grf == pytest.approx(a_grf_prob, rel=1e-16)
+    assert a_tv == pytest.approx(a_tv_prob, rel=1e-16)
+
+
+
 def test_ax():
     i = 2
     g = 0
     m = 12
-    x = 45*0+125*0+160*0
+    x = 45*0+125*0+160
     method = 'udd'
     cf_grf95 = commutation_table.CommutationFunctions(i=i, g=g, mt=soa_GRF95.table_qx)
     cf_tv7377 = commutation_table.CommutationFunctions(i=i, g=g, mt=soa_TV7377.table_qx)
@@ -33,8 +78,9 @@ def test_ax():
     a_grf_2 = cf_grf95.ax(x=x, m=m)
     a_tv_2 = cf_tv7377.ax(x=x, m=m)
 
-    # assert a_grf == pytest.approx(a_grf_2, rel=1e-16)
-    # assert a_tv == pytest.approx(cf_tv_2, rel=1e-16)
+    if m==1 and int(x)==x:
+        assert a_grf == pytest.approx(a_grf_2, rel=1e-16)
+        assert a_tv == pytest.approx(a_tv_2, rel=1e-16)
 
     # probabilist approach
     n1=1/m
@@ -60,12 +106,22 @@ def test_ax():
     assert a_grf == pytest.approx(a_grf_prob, rel=1e-16)
     assert a_tv == pytest.approx(a_tv_prob, rel=1e-16)
 
+m=12
+def test_ax_1(x=45, defer=0, n=500, i=2, g=0, m=m, method='udd'):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_ax_2(x=125, defer=0, n=500, i=2, g=0, m=m, method='udd'):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_ax_3(x=160, defer=0, n=500, i=2, g=0, m=m, method='udd'):
+    func_test_ax(x, defer, n, i, g, m, method)                 
+
 
 def test_t_ax():
     i = 2
     g = 0
     m = 12
-    x = 45+125*0+160*0+120*0
+    x = 45*0+125+160*0+120*0
     defer = 5
     method = 'udd'
     cf_grf95 = commutation_table.CommutationFunctions(i=i, g=g, mt=soa_GRF95.table_qx)
@@ -74,8 +130,10 @@ def test_t_ax():
     a_grf = annuities.t_ax(mt=mt_GRF95, x=x, i=i, g=g, m=m, defer=defer, method=method)
     a_tv = annuities.t_ax(mt=mt_TV7377, x=x, i=i, g=g, m=m, defer=defer, method=method)
 
-    # assert a_grf == pytest.approx(cf_grf95.t_ax(x=x, m=m, defer=defer), rel=1e-16)
-    # assert a_tv == pytest.approx(cf_tv7377.t_ax(x=x, m=m, defer=defer), rel=1e-16)
+    
+    if m==1 and int(x)==x:
+        assert a_grf == pytest.approx(cf_grf95.t_ax(x=x, m=m, defer=defer), rel=1e-16)
+        assert a_tv == pytest.approx(cf_tv7377.t_ax(x=x, m=m, defer=defer), rel=1e-16)
 
     # probabilist approach
     n1=defer+1/m
@@ -97,6 +155,17 @@ def test_t_ax():
     # check with probabilistic approach
     assert a_grf == pytest.approx(a_grf_prob, rel=1e-16)
     assert a_tv == pytest.approx(a_tv_prob, rel=1e-16)
+
+
+m=12
+def test_t_ax_1(x=45, defer=5, n=500, i=2, g=0, m=m, method='udd'):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_t_ax_2(x=125, defer=5, n=500, i=2, g=0, m=m, method='udd'):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_t_ax_3(x=160, defer=5, n=500, i=2, g=0, m=m, method='udd'):
+    func_test_ax(x, defer, n, i, g, m, method)
 
 
 
@@ -136,6 +205,17 @@ def test_nax():
     # check with probabilistic approach
     assert a_grf == pytest.approx(a_grf_prob, rel=1e-16)
     assert a_tv == pytest.approx(a_tv_prob, rel=1e-16)
+
+m=12
+def test_nax_1(x=45, defer=0, n=20, i=2, g=0, m=m, method='udd'):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_nax_2(x=125, defer=0, n=20, i=2, g=0, m=m, method='udd'):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_nax_3(x=160, defer=0, n=20, i=2, g=0, m=m, method='udd'):
+    func_test_ax(x, defer, n, i, g, m, method)
+
 
 
 def test_t_nax():
@@ -178,6 +258,16 @@ def test_t_nax():
     assert a_grf == pytest.approx(a_grf_prob, rel=1e-16)
     assert a_tv == pytest.approx(a_tv_prob, rel=1e-16)
 
+m=12
+def test_t_nax_1(x=45, defer=5, n=20, i=2, g=0, m=m, method='udd'):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_t_nax_2(x=125, defer=5, n=20, i=2, g=0, m=m, method='udd'):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_t_nax_3(x=160, defer=5, n=20, i=2, g=0, m=m, method='udd'):
+    func_test_ax(x, defer, n, i, g, m, method)  
+
 
 def test_aax():
     i = 2
@@ -216,6 +306,17 @@ def test_aax():
     # check with probabilistic approach
     assert a_grf == pytest.approx(a_grf_prob, rel=1e-16)
     assert a_tv == pytest.approx(a_tv_prob, rel=1e-16)
+
+
+m=12
+def test_aax_1(x=45, defer=0, n=500, i=2, g=0, m=m, method='udd', due=1):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_aax_2(x=125, defer=0, n=500, i=2, g=0, m=m, method='udd', due=1):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_aax_3(x=160, defer=0, n=500, i=2, g=0, m=m, method='udd', due=1):
+    func_test_ax(x, defer, n, i, g, m, method)  
 
 
 def test_t_aax():
@@ -258,6 +359,15 @@ def test_t_aax():
     assert a_tv == pytest.approx(a_tv_prob, rel=1e-16)
 
 
+m=12
+def test_t_aax_1(x=45, defer=5, n=500, i=2, g=0, m=m, method='udd', due=1):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_t_aax_2(x=125, defer=5, n=500, i=2, g=0, m=m, method='udd', due=1):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_t_aax_3(x=160, defer=5, n=500, i=2, g=0, m=m, method='udd', due=1):
+    func_test_ax(x, defer, n, i, g, m, method)
 
 
 def test_naax():
@@ -303,6 +413,18 @@ def test_naax():
     assert a_tv == pytest.approx(a_tv_prob, rel=1e-16)
 
 
+m=12
+def test_naax_1(x=45, defer=0, n=20, i=2, g=0, m=m, method='udd', due=1):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_naax_2(x=125, defer=0, n=20, i=2, g=0, m=m, method='udd', due=1):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_naax_3(x=160, defer=0, n=20, i=2, g=0, m=m, method='udd', due=1):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+
+
 def test_t_naax():
     i = 2
     g = 0
@@ -344,3 +466,13 @@ def test_t_naax():
     # check with probabilistic approach
     assert a_grf == pytest.approx(a_grf_prob, rel=1e-16)
     assert a_tv == pytest.approx(a_tv_prob, rel=1e-16)
+
+m=12
+def test_t_naax_1(x=45, defer=5, n=20, i=2, g=0, m=m, method='udd', due=1):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_t_naax_2(x=125, defer=5, n=20, i=2, g=0, m=m, method='udd', due=1):
+    func_test_ax(x, defer, n, i, g, m, method)
+
+def test_t_naax_3(x=160, defer=5, n=20, i=2, g=0, m=m, method='udd', due=1):
+    func_test_ax(x, defer, n, i, g, m, method)  

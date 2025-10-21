@@ -193,7 +193,8 @@ def t_naax(mt, x, n, i=None, g=0, m=1, defer=0, method='udd'):
 
     :return: Expected Present Value (EPV) for payments of 1/m
     """
-    if x + defer > mt.w: return 0
+    if defer==0 and x > mt.w+1: return 1/m
+    if defer>0 and x > mt.w+1: return .0
 
     return annuity_x(mt=mt, x=x, x_first=x + defer, x_last=x + n + defer - 1 / m, i=i, g=g, m=m, method=method)
 
