@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="PedroCR" /><link rel="canonical" href="https://your-site-url.github.io/lifeactuary/about/release-notes/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Release Notes - lifeActuary Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Release Notes";
+        var mkdocs_page_input_path = "about/release-notes.md";
+        var mkdocs_page_url = "/lifeactuary/about/release-notes/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> lifeActuary Documentation
+        </a>
+        <div class="version">
+          {'provider': 'mike'}
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/tutorials/">Tutorials</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_table/">Mortality Tables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities/">Life Annuities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities_certain/">Annuities Certain</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities_rv/">Annuities Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_insurance/">Life Insurance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_insurance_frac/">Life Insurance (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_rv/">Mortality Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/commutation_table/">Commutation Tables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/commutation_table_frac/">Commutation Tables (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/life_2heads/">Two Lives Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_table_2heads/">Two Lives Mortality Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/soa_tables/">SOA Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Release Notes</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#version-132-current">Version 1.3.2 (Current)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#major-changes">Major Changes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#bug-fixes-and-improvements">Bug Fixes and Improvements</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#new-features">New Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#compatibility">Compatibility</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-121">Version 1.2.1</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#features-added">Features Added</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#files-added">Files Added</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-120">Version 1.2.0</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#major-features">Major Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#api-changes">API Changes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-100">Version 1.0.0</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#initial-release">Initial Release</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#core-modules">Core Modules</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#upgrade-guide">Upgrade Guide</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrading-from-12x-to-132">Upgrading from 1.2.x to 1.3.2</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#new-direct-calculation-methods">New Direct Calculation Methods</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#enhanced-two-life-support">Enhanced Two-Life Support</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#corrected-functions">Corrected Functions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#upgrading-from-10x-to-132">Upgrading from 1.0.x to 1.3.2</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#known-issues">Known Issues</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#current-limitations">Current Limitations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#workarounds">Workarounds</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deprecation-notices">Deprecation Notices</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#functions-to-be-deprecated">Functions to be Deprecated</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#future-changes">Future Changes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#migration-examples">Migration Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example-1-migrating-annuity-calculations">Example 1: Migrating Annuity Calculations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-2-adding-two-life-functionality">Example 2: Adding Two-Life Functionality</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#bug-reports-and-support">Bug Reports and Support</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#reporting-issues">Reporting Issues</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#getting-help">Getting Help</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contributing">Contributing</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../license/">License</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">lifeActuary Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">About</li>
+      <li class="breadcrumb-item active">Release Notes</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/parcr/lifeactuary/edit/master/docs/about/release-notes.md">Edit on parcr/lifeactuary</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h1>
+<h2 id="version-132-current">Version 1.3.2 (Current)<a class="headerlink" href="#version-132-current" title="Permanent link">&para;</a></h2>
+<h3 id="major-changes">Major Changes<a class="headerlink" href="#major-changes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>Enhanced Life Annuity Functions</strong>: All life annuity functions now operate without requiring commutation table computation, providing more direct and efficient calculations.</p>
+</li>
+<li>
+<p><strong>New Mortality Insurance Class</strong>: Developed a new <code>mortality_insurance.py</code> module where functions for evaluating life insurance contracts are available without the need to compute the commutation table.</p>
+</li>
+<li>
+<p><strong>Two-Life Functionality</strong>: New class for evaluating annuities and life insurance for groups of two individuals, supporting both joint-life and last-survivor methods.</p>
+</li>
+</ul>
+<h3 id="bug-fixes-and-improvements">Bug Fixes and Improvements<a class="headerlink" href="#bug-fixes-and-improvements" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Present Value Function</strong>: Small correction to the <code>present_value</code> function</li>
+<li><strong>Commutation Table Functions</strong>: Large correction to the functions <code>t_nIArx</code> and <code>t_nIArx_</code> in <code>commutation_table.py</code></li>
+<li><strong>Integral Functions</strong>: Small correction to the function <code>get_integral_px_method</code> in the <code>mortality_table</code> class</li>
+<li><strong>Annuity Functions</strong>: Small correction to the function <code>annuity_x</code> in the <code>annuities</code> class</li>
+<li><strong>Fractional Calculations</strong>: Small correction to the <code>npx</code> and <code>nqx</code> functions in the <code>mortality_table</code> module when producing fractional commutation tables using the Balducci and Constant Mortality Force methods</li>
+</ul>
+<h3 id="new-features">New Features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Comprehensive test suite with extensive examples</li>
+<li>Enhanced documentation and user manual</li>
+<li>Support for SOA (Society of Actuaries) mortality tables</li>
+<li>Improved fractional age and payment frequency handling</li>
+</ul>
+<h3 id="compatibility">Compatibility<a class="headerlink" href="#compatibility" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Python &gt;= 3.6</li>
+<li>NumPy compatibility improvements</li>
+<li>Pandas integration enhancements</li>
+</ul>
+<h2 id="version-121">Version 1.2.1<a class="headerlink" href="#version-121" title="Permanent link">&para;</a></h2>
+<h3 id="features-added">Features Added<a class="headerlink" href="#features-added" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>SOA Table Reader</strong>: Included the file <code>read_soa_table_xml.py</code> for reading Society of Actuaries mortality tables in XML format</li>
+<li>Enhanced support for standard actuarial mortality tables</li>
+</ul>
+<h3 id="files-added">Files Added<a class="headerlink" href="#files-added" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>soa_tables/read_soa_table_xml.py</code> - XML mortality table reader</li>
+<li>Additional SOA mortality tables in XML format</li>
+</ul>
+<h2 id="version-120">Version 1.2.0<a class="headerlink" href="#version-120" title="Permanent link">&para;</a></h2>
+<h3 id="major-features">Major Features<a class="headerlink" href="#major-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Fractional Commutation Tables</strong>: Support for fractional ages and payment frequencies</li>
+<li><strong>Enhanced Mortality Insurance</strong>: More comprehensive life insurance calculations</li>
+<li><strong>Improved Performance</strong>: Optimized calculation algorithms</li>
+<li><strong>Extended Examples</strong>: More practical examples and use cases</li>
+</ul>
+<h3 id="api-changes">API Changes<a class="headerlink" href="#api-changes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Enhanced <code>MortalityTable</code> class with better interpolation methods</li>
+<li>Extended annuity functions with more flexible parameters</li>
+<li>Improved two-life calculations</li>
+</ul>
+<h2 id="version-100">Version 1.0.0<a class="headerlink" href="#version-100" title="Permanent link">&para;</a></h2>
+<h3 id="initial-release">Initial Release<a class="headerlink" href="#initial-release" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Core Mortality Tables</strong>: Basic mortality table operations</li>
+<li><strong>Life Annuities</strong>: Immediate, deferred, and temporary annuities</li>
+<li><strong>Life Insurance</strong>: Basic life insurance calculations</li>
+<li><strong>Commutation Functions</strong>: Traditional actuarial commutation symbols</li>
+<li><strong>SOA Tables</strong>: Support for Society of Actuaries mortality tables</li>
+</ul>
+<h3 id="core-modules">Core Modules<a class="headerlink" href="#core-modules" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>mortality_table.py</code> - Basic mortality table functionality</li>
+<li><code>annuities.py</code> - Life annuity calculations</li>
+<li><code>mortality_insurance.py</code> - Life insurance calculations</li>
+<li><code>commutation_table.py</code> - Traditional commutation functions</li>
+</ul>
+<h2 id="upgrade-guide">Upgrade Guide<a class="headerlink" href="#upgrade-guide" title="Permanent link">&para;</a></h2>
+<h3 id="upgrading-from-12x-to-132">Upgrading from 1.2.x to 1.3.2<a class="headerlink" href="#upgrading-from-12x-to-132" title="Permanent link">&para;</a></h3>
+<p>The upgrade to version 1.3.2 is generally backward compatible, but there are some improvements you should be aware of:</p>
+<h4 id="new-direct-calculation-methods">New Direct Calculation Methods<a class="headerlink" href="#new-direct-calculation-methods" title="Permanent link">&para;</a></h4>
+<p><strong>Before (1.2.x):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Required commutation table for annuity calculations</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary.commutation_table</span><span class="w"> </span><span class="kn">import</span> <span class="n">CommutationFunctions</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">ct</span> <span class="o">=</span> <span class="n">CommutationFunctions</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">qx_values</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">annuity_value</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nx</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span> <span class="o">/</span> <span class="n">ct</span><span class="o">.</span><span class="n">Dx</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span>
+</code></pre></div></p>
+<p><strong>After (1.3.2):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Direct calculation without commutation table</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">annuities</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">annuity_value</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div></p>
+<h4 id="enhanced-two-life-support">Enhanced Two-Life Support<a class="headerlink" href="#enhanced-two-life-support" title="Permanent link">&para;</a></h4>
+<p><strong>New in 1.3.2:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">life_2heads</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Joint-life annuity</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">joint_annuity</span> <span class="o">=</span> <span class="n">life_2heads</span><span class="o">.</span><span class="n">ax_2heads</span><span class="p">(</span><span class="n">mt1</span><span class="p">,</span> <span class="n">mt2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">65</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">62</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># Last-survivor annuity</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">survivor_annuity</span> <span class="o">=</span> <span class="n">life_2heads</span><span class="o">.</span><span class="n">ax_2heads_ls</span><span class="p">(</span><span class="n">mt1</span><span class="p">,</span> <span class="n">mt2</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">65</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">62</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div></p>
+<h4 id="corrected-functions">Corrected Functions<a class="headerlink" href="#corrected-functions" title="Permanent link">&para;</a></h4>
+<p>If you were using the following functions, please verify your calculations:</p>
+<ul>
+<li><code>t_nIArx</code> and <code>t_nIArx_</code> in commutation tables</li>
+<li><code>present_value</code> function</li>
+<li><code>annuity_x</code> function</li>
+<li>Fractional calculations with Balducci and CFM methods</li>
+</ul>
+<h3 id="upgrading-from-10x-to-132">Upgrading from 1.0.x to 1.3.2<a class="headerlink" href="#upgrading-from-10x-to-132" title="Permanent link">&para;</a></h3>
+<p>This is a major upgrade with significant new functionality:</p>
+<ol>
+<li><strong>Update Import Statements</strong>: Some functions have moved to new modules</li>
+<li><strong>Review Calculations</strong>: Many calculations are now more accurate with bug fixes</li>
+<li><strong>Consider New Features</strong>: Take advantage of two-life calculations and enhanced fractional support</li>
+<li><strong>Update SOA Table Loading</strong>: Use the new XML reader for SOA tables</li>
+</ol>
+<h2 id="known-issues">Known Issues<a class="headerlink" href="#known-issues" title="Permanent link">&para;</a></h2>
+<h3 id="current-limitations">Current Limitations<a class="headerlink" href="#current-limitations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Memory Usage</strong>: Large mortality tables with fine fractional divisions can consume significant memory</li>
+<li><strong>Performance</strong>: Very high-frequency calculations (daily or more frequent) may be slow for large datasets</li>
+<li><strong>Dependence</strong>: Two-life calculations assume independence between lives (no correlation modeling)</li>
+</ul>
+<h3 id="workarounds">Workarounds<a class="headerlink" href="#workarounds" title="Permanent link">&para;</a></h3>
+<p><strong>Memory Issues:</strong>
+- Use appropriate fractional divisions (monthly instead of daily)
+- Consider chunking large calculations</p>
+<p><strong>Performance Issues:</strong>
+- Cache commutation tables for repeated calculations
+- Use vectorized operations where possible</p>
+<p><strong>Dependence Modeling:</strong>
+- Apply adjustment factors to independent calculations
+- Consider external copula models for advanced applications</p>
+<h2 id="deprecation-notices">Deprecation Notices<a class="headerlink" href="#deprecation-notices" title="Permanent link">&para;</a></h2>
+<h3 id="functions-to-be-deprecated">Functions to be Deprecated<a class="headerlink" href="#functions-to-be-deprecated" title="Permanent link">&para;</a></h3>
+<p>Currently, no functions are scheduled for deprecation, but users are encouraged to:</p>
+<ul>
+<li>Use direct calculation methods instead of commutation tables where possible</li>
+<li>Migrate to the new two-life functions for multiple-life scenarios</li>
+<li>Update to the latest SOA table reading methods</li>
+</ul>
+<h3 id="future-changes">Future Changes<a class="headerlink" href="#future-changes" title="Permanent link">&para;</a></h3>
+<p>Version 2.0 (tentative) may include:</p>
+<ul>
+<li><strong>Stochastic Mortality</strong>: Support for stochastic mortality models</li>
+<li><strong>Advanced Dependence</strong>: Built-in copula models for two-life calculations</li>
+<li><strong>Performance Optimization</strong>: Compiled extensions for computationally intensive operations</li>
+<li><strong>Extended SOA Support</strong>: Support for more recent SOA mortality table formats</li>
+</ul>
+<h2 id="migration-examples">Migration Examples<a class="headerlink" href="#migration-examples" title="Permanent link">&para;</a></h2>
+<h3 id="example-1-migrating-annuity-calculations">Example 1: Migrating Annuity Calculations<a class="headerlink" href="#example-1-migrating-annuity-calculations" title="Permanent link">&para;</a></h3>
+<p><strong>Old Method:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary.commutation_table</span><span class="w"> </span><span class="kn">import</span> <span class="n">CommutationFunctions</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">ct</span> <span class="o">=</span> <span class="n">CommutationFunctions</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">qx_values</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">whole_life</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nx</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span> <span class="o">/</span> <span class="n">ct</span><span class="o">.</span><span class="n">Dx</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">temp_20</span> <span class="o">=</span> <span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">Nx</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span> <span class="o">-</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nx</span><span class="p">[</span><span class="mi">50</span><span class="p">])</span> <span class="o">/</span> <span class="n">ct</span><span class="o">.</span><span class="n">Dx</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span>
+</code></pre></div></p>
+<p><strong>New Method:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">annuities</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary.mortality_table</span><span class="w"> </span><span class="kn">import</span> <span class="n">MortalityTable</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">mt</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">qx_values</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">whole_life</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">temp_20</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">axt</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="example-2-adding-two-life-functionality">Example 2: Adding Two-Life Functionality<a class="headerlink" href="#example-2-adding-two-life-functionality" title="Permanent link">&para;</a></h3>
+<p><strong>New Capability:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">life_2heads</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary.mortality_table</span><span class="w"> </span><span class="kn">import</span> <span class="n">MortalityTable</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Create tables for both lives</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">mt_male</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">male_qx</span><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">mt_female</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">female_qx</span><span class="p">)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># Joint-life calculations</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="n">joint_annuity</span> <span class="o">=</span> <span class="n">life_2heads</span><span class="o">.</span><span class="n">ax_2heads</span><span class="p">(</span><span class="n">mt_male</span><span class="p">,</span> <span class="n">mt_female</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">65</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">62</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="n">survivor_annuity</span> <span class="o">=</span> <span class="n">life_2heads</span><span class="o">.</span><span class="n">ax_2heads_ls</span><span class="p">(</span><span class="n">mt_male</span><span class="p">,</span> <span class="n">mt_female</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">65</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">62</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div></p>
+<h2 id="bug-reports-and-support">Bug Reports and Support<a class="headerlink" href="#bug-reports-and-support" title="Permanent link">&para;</a></h2>
+<h3 id="reporting-issues">Reporting Issues<a class="headerlink" href="#reporting-issues" title="Permanent link">&para;</a></h3>
+<p>If you encounter bugs or issues:</p>
+<ol>
+<li>Check the <a href="https://github.com/parcr/lifeactuary/issues">GitHub Issues</a> page</li>
+<li>Provide a minimal reproducible example</li>
+<li>Include your Python and package versions</li>
+<li>Describe expected vs. actual behavior</li>
+</ol>
+<h3 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Review this documentation and examples</li>
+<li>Check the GitHub repository for updates</li>
+<li>Review the manual (PDF) for detailed explanations</li>
+<li>Consider the essay examples for implementation patterns</li>
+</ul>
+<h3 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h3>
+<p>Contributions are welcome! Please:</p>
+<ol>
+<li>Fork the repository</li>
+<li>Create a feature branch</li>
+<li>Add tests for new functionality</li>
+<li>Submit a pull request with clear description</li>
+</ol>
+<p>The package continues to evolve based on user feedback and actuarial practice needs.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../examples/soa_tables/" class="btn btn-neutral float-left" title="SOA Tables"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../license/" class="btn btn-neutral float-right" title="License">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/parcr/lifeactuary" class="fa fa-code-fork" style="color: #fcfcfc"> parcr/lifeactuary</a>
+        </span>
+    
+    
+      <span><a href="../../examples/soa_tables/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../license/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

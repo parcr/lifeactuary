@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="PedroCR" /><link rel="canonical" href="https://your-site-url.github.io/lifeactuary/user-guide/installation/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Installation - lifeActuary Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Installation";
+        var mkdocs_page_input_path = "user-guide/installation.md";
+        var mkdocs_page_url = "/lifeactuary/user-guide/installation/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> lifeActuary Documentation
+        </a>
+        <div class="version">
+          {'provider': 'mike'}
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Installation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation-methods">Installation Methods</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#option-1-direct-download-recommended">Option 1: Direct Download (Recommended)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#option-2-git-clone">Option 2: Git Clone</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#option-3-using-setuppy-if-available">Option 3: Using setup.py (if available)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#virtual-environment-setup-recommended">Virtual Environment Setup (Recommended)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verification">Verification</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#soa-tables-download">SOA Tables Download</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ide-setup">IDE Setup</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#vs-code">VS Code</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#jupyter-notebook">Jupyter Notebook</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pycharm">PyCharm</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#common-issues">Common Issues</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#python-path-issues">Python Path Issues</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#version-compatibility">Version Compatibility</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#development-installation">Development Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tutorials/">Tutorials</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_table/">Mortality Tables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities/">Life Annuities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities_certain/">Annuities Certain</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities_rv/">Annuities Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_insurance/">Life Insurance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_insurance_frac/">Life Insurance (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_rv/">Mortality Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/commutation_table/">Commutation Tables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/commutation_table_frac/">Commutation Tables (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/life_2heads/">Two Lives Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_table_2heads/">Two Lives Mortality Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/soa_tables/">SOA Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/release-notes/">Release Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">lifeActuary Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">User Guide</li>
+      <li class="breadcrumb-item active">Installation</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/parcr/lifeactuary/edit/master/docs/user-guide/installation.md">Edit on parcr/lifeactuary</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<p>lifeActuary requires Python 3.6 or higher and the following dependencies:</p>
+<ul>
+<li><strong>NumPy</strong>: For numerical computations</li>
+<li><strong>Pandas</strong>: For data manipulation (used in some modules)</li>
+</ul>
+<h2 id="installation-methods">Installation Methods<a class="headerlink" href="#installation-methods" title="Permanent link">&para;</a></h2>
+<h3 id="option-1-direct-download-recommended">Option 1: Direct Download (Recommended)<a class="headerlink" href="#option-1-direct-download-recommended" title="Permanent link">&para;</a></h3>
+<p>Since lifeActuary is not currently available on PyPI, you can install it directly from the source:</p>
+<ol>
+<li>
+<p><strong>Download the source code</strong> from the <a href="https://github.com/parcr/lifeactuary">GitHub repository</a></p>
+</li>
+<li>
+<p><strong>Extract the files</strong> to your desired location</p>
+</li>
+<li>
+<p><strong>Install dependencies</strong>:
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>pandas
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Add to Python path</strong> or copy the <code>lifeActuary</code> folder to your project directory</p>
+</li>
+</ol>
+<h3 id="option-2-git-clone">Option 2: Git Clone<a class="headerlink" href="#option-2-git-clone" title="Permanent link">&para;</a></h3>
+<p>If you have Git installed:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Clone the repository</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/parcr/lifeactuary.git
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Navigate to the directory</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">cd</span><span class="w"> </span>lifeactuary
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Install dependencies</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>pandas
+</code></pre></div>
+<h3 id="option-3-using-setuppy-if-available">Option 3: Using setup.py (if available)<a class="headerlink" href="#option-3-using-setuppy-if-available" title="Permanent link">&para;</a></h3>
+<p>If a setup.py file is provided:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Download and extract the source</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># Navigate to the lifeactuary directory</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">cd</span><span class="w"> </span>lifeactuary
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># Install the package</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>python<span class="w"> </span>setup.py<span class="w"> </span>install
+</code></pre></div>
+<h2 id="virtual-environment-setup-recommended">Virtual Environment Setup (Recommended)<a class="headerlink" href="#virtual-environment-setup-recommended" title="Permanent link">&para;</a></h2>
+<p>For better dependency management, use a virtual environment:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Create virtual environment</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>lifeactuary_env
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Activate virtual environment</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># On Windows:</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>lifeactuary_env<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># On macOS/Linux:</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">source</span><span class="w"> </span>lifeactuary_env/bin/activate
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="c1"># Install dependencies</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>pandas
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="c1"># Add lifeActuary to the environment</span>
+</code></pre></div>
+<h2 id="verification">Verification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h2>
+<p>Test your installation by running:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Test basic import</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary.mortality_table</span><span class="w"> </span><span class="kn">import</span> <span class="n">MortalityTable</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">annuities</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lifeActuary successfully imported!&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Import error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># Test basic functionality</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">mt</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">result</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Test calculation result: </span><span class="si">{</span><span class="n">result</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="soa-tables-download">SOA Tables Download<a class="headerlink" href="#soa-tables-download" title="Permanent link">&para;</a></h2>
+<p>Don't forget to download the SOA (Society of Actuaries) mortality tables:</p>
+<ol>
+<li>Visit the <a href="https://github.com/parcr/lifeactuary">GitHub repository</a></li>
+<li>Download the <code>soa_tables</code> folder</li>
+<li>Place it in your working directory or note its path for later use</li>
+</ol>
+<p>The SOA tables include standard mortality tables like:
+- CSO (Commissioners Standard Ordinary) tables
+- GAM (Group Annuity Mortality) tables
+- Various international tables</p>
+<h2 id="ide-setup">IDE Setup<a class="headerlink" href="#ide-setup" title="Permanent link">&para;</a></h2>
+<h3 id="vs-code">VS Code<a class="headerlink" href="#vs-code" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Install the Python extension</li>
+<li>Set your Python interpreter to the one with lifeActuary installed</li>
+<li>Add the lifeActuary path to your workspace settings if needed</li>
+</ol>
+<h3 id="jupyter-notebook">Jupyter Notebook<a class="headerlink" href="#jupyter-notebook" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Add to your notebook path</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;/path/to/lifeactuary&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary.mortality_table</span><span class="w"> </span><span class="kn">import</span> <span class="n">MortalityTable</span>
+</code></pre></div>
+<h3 id="pycharm">PyCharm<a class="headerlink" href="#pycharm" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Add the lifeActuary directory to your project structure</li>
+<li>Mark the parent directory as a "Sources Root"</li>
+<li>Ensure numpy and pandas are installed in your project interpreter</li>
+</ol>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="common-issues">Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h3>
+<p><strong>ImportError: No module named 'lifeActuary'</strong>
+- Ensure the lifeActuary folder is in your Python path
+- Check that you're using the correct Python environment</p>
+<p><strong>ImportError: No module named 'numpy'</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pip<span class="w"> </span>install<span class="w"> </span>numpy
+</code></pre></div></p>
+<p><strong>ImportError: No module named 'pandas'</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pip<span class="w"> </span>install<span class="w"> </span>pandas
+</code></pre></div></p>
+<p><strong>Calculation results seem incorrect</strong>
+- Verify you're using the correct mortality table format
+- Check that interest rates are specified as percentages (5 for 5%, not 0.05)</p>
+<h3 id="python-path-issues">Python Path Issues<a class="headerlink" href="#python-path-issues" title="Permanent link">&para;</a></h3>
+<p>If you're having import issues, you can add the path programmatically:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Add lifeActuary to path</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">lifeactuary_path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/your/lifeactuary/directory&#39;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="k">if</span> <span class="n">lifeactuary_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lifeactuary_path</span><span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1"># Now import should work</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary.mortality_table</span><span class="w"> </span><span class="kn">import</span> <span class="n">MortalityTable</span>
+</code></pre></div>
+<h3 id="version-compatibility">Version Compatibility<a class="headerlink" href="#version-compatibility" title="Permanent link">&para;</a></h3>
+<p>lifeActuary has been tested with:
+- Python 3.6+
+- NumPy 1.15+
+- Pandas 0.24+</p>
+<p>If you encounter issues with newer versions, try:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Install specific versions</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.19.5<span class="w"> </span><span class="nv">pandas</span><span class="o">==</span><span class="m">1</span>.2.0
+</code></pre></div>
+<h2 id="development-installation">Development Installation<a class="headerlink" href="#development-installation" title="Permanent link">&para;</a></h2>
+<p>If you plan to modify or contribute to lifeActuary:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Clone the repository</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/parcr/lifeactuary.git
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nb">cd</span><span class="w"> </span>lifeactuary
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1"># Create development environment</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>dev_env
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="nb">source</span><span class="w"> </span>dev_env/bin/activate<span class="w">  </span><span class="c1"># or dev_env\Scripts\activate on Windows</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="c1"># Install in development mode</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="c1"># Install additional development dependencies (if any)</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>pip<span class="w"> </span>install<span class="w"> </span>pytest<span class="w"> </span>pytest-cov<span class="w"> </span>sphinx
+</code></pre></div>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<p>Once installed, proceed to:
+1. <a href="../quick-start/">Quick Start Guide</a> - Learn basic usage
+2. <a href="../tutorials/">Tutorials</a> - Work through detailed examples
+3. <a href="../../api/mortality_table/">API Reference</a> - Explore all available functions</p>
+<h2 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h2>
+<p>If you encounter installation issues:</p>
+<ol>
+<li>Check the <a href="https://github.com/parcr/lifeactuary/issues">GitHub Issues</a></li>
+<li>Verify your Python and dependency versions</li>
+<li>Try the troubleshooting steps above</li>
+<li>Create a new issue with your error details and system information</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../.." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../quick-start/" class="btn btn-neutral float-right" title="Quick Start">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/parcr/lifeactuary" class="fa fa-code-fork" style="color: #fcfcfc"> parcr/lifeactuary</a>
+        </span>
+    
+    
+      <span><a href="../.." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../quick-start/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

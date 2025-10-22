@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="PedroCR" /><link rel="canonical" href="https://your-site-url.github.io/lifeactuary/user-guide/quick-start/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Quick Start - lifeActuary Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Quick Start";
+        var mkdocs_page_input_path = "user-guide/quick-start.md";
+        var mkdocs_page_url = "/lifeactuary/user-guide/quick-start/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> lifeActuary Documentation
+        </a>
+        <div class="version">
+          {'provider': 'mike'}
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Quick Start</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#basic-workflow">Basic Workflow</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#your-first-calculation">Your First Calculation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#working-with-mortality-tables">Working with Mortality Tables</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#creating-tables-from-different-input-types">Creating Tables from Different Input Types</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#basic-table-operations">Basic Table Operations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#common-actuarial-calculations">Common Actuarial Calculations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#life-annuities">Life Annuities</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#life-insurance">Life Insurance</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#realistic-example-retirement-planning">Realistic Example: Retirement Planning</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#working-with-two-lives">Working with Two Lives</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#using-soa-tables">Using SOA Tables</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#common-patterns-and-tips">Common Patterns and Tips</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#interest-rate-sensitivity-analysis">Interest Rate Sensitivity Analysis</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#age-sensitivity-analysis">Age Sensitivity Analysis</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#payment-frequency-comparison">Payment Frequency Comparison</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-handling-and-validation">Error Handling and Validation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-reference">Quick Reference</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#essential-imports">Essential Imports</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#key-functions">Key Functions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#remember">Remember</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tutorials/">Tutorials</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_table/">Mortality Tables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities/">Life Annuities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities_certain/">Annuities Certain</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities_rv/">Annuities Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_insurance/">Life Insurance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_insurance_frac/">Life Insurance (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_rv/">Mortality Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/commutation_table/">Commutation Tables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/commutation_table_frac/">Commutation Tables (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/life_2heads/">Two Lives Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_table_2heads/">Two Lives Mortality Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/soa_tables/">SOA Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/release-notes/">Release Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">lifeActuary Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">User Guide</li>
+      <li class="breadcrumb-item active">Quick Start</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/parcr/lifeactuary/edit/master/docs/user-guide/quick-start.md">Edit on parcr/lifeactuary</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="quick-start-guide">Quick Start Guide<a class="headerlink" href="#quick-start-guide" title="Permanent link">&para;</a></h1>
+<p>This guide will get you up and running with lifeActuary quickly. We'll cover the most common use cases and basic patterns.</p>
+<h2 id="basic-workflow">Basic Workflow<a class="headerlink" href="#basic-workflow" title="Permanent link">&para;</a></h2>
+<p>The typical workflow in lifeActuary follows these steps:</p>
+<ol>
+<li><strong>Create a mortality table</strong> from mortality rates</li>
+<li><strong>Calculate actuarial values</strong> using the table</li>
+<li><strong>Analyze results</strong> and perform comparisons</li>
+</ol>
+<h2 id="your-first-calculation">Your First Calculation<a class="headerlink" href="#your-first-calculation" title="Permanent link">&para;</a></h2>
+<p>Let's start with a simple example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary.mortality_table</span><span class="w"> </span><span class="kn">import</span> <span class="n">MortalityTable</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">annuities</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Step 1: Create a simple mortality table</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Ages 0-4 with mortality rates: 0%, 1%, 2%, 5%, 100%</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">mortality_rates</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">mt</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">mortality_rates</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Step 2: Calculate a life annuity</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># Immediate whole life annuity for someone age 1 at 5% interest</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">annuity_value</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Life annuity value: </span><span class="si">{</span><span class="n">annuity_value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="working-with-mortality-tables">Working with Mortality Tables<a class="headerlink" href="#working-with-mortality-tables" title="Permanent link">&para;</a></h2>
+<h3 id="creating-tables-from-different-input-types">Creating Tables from Different Input Types<a class="headerlink" href="#creating-tables-from-different-input-types" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># From mortality rates (qx)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">qx_data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">mt_q</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">qx_data</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># From number of survivors (lx)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">lx_data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">99900</span><span class="p">,</span> <span class="mi">99800</span><span class="p">,</span> <span class="mi">99500</span><span class="p">,</span> <span class="mi">99000</span><span class="p">,</span> <span class="mi">98000</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">mt_l</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">lx_data</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># From survival probabilities (px)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">px_data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">,</span> <span class="mf">0.998</span><span class="p">,</span> <span class="mf">0.995</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">mt_p</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">px_data</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="basic-table-operations">Basic Table Operations<a class="headerlink" href="#basic-table-operations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Access survival and mortality probabilities</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">prob_survive_1yr</span> <span class="o">=</span> <span class="n">mt_q</span><span class="o">.</span><span class="n">npx</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 1-year survival from age 30</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">prob_die_1yr</span> <span class="o">=</span> <span class="n">mt_q</span><span class="o">.</span><span class="n">nqx</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># 1-year mortality from age 30</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1-year survival probability: </span><span class="si">{</span><span class="n">prob_survive_1yr</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1-year mortality probability: </span><span class="si">{</span><span class="n">prob_die_1yr</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sum should be 1.0: </span><span class="si">{</span><span class="n">prob_survive_1yr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">prob_die_1yr</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="c1"># Life expectancy</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">life_expectancy</span> <span class="o">=</span> <span class="n">mt_q</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Life expectancy at age 30: </span><span class="si">{</span><span class="n">life_expectancy</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> years&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="common-actuarial-calculations">Common Actuarial Calculations<a class="headerlink" href="#common-actuarial-calculations" title="Permanent link">&para;</a></h2>
+<h3 id="life-annuities">Life Annuities<a class="headerlink" href="#life-annuities" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">annuities</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># Immediate whole life annuity</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">immediate_annuity</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt_q</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># 20-year temporary annuity</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">temporary_annuity</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">axt</span><span class="p">(</span><span class="n">mt_q</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># 10-year deferred annuity</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">deferred_annuity</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">nax</span><span class="p">(</span><span class="n">mt_q</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="c1"># Monthly payments (m=12)</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">monthly_annuity</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt_q</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Immediate annuity: </span><span class="si">{</span><span class="n">immediate_annuity</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;20-year temporary: </span><span class="si">{</span><span class="n">temporary_annuity</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;10-year deferred: </span><span class="si">{</span><span class="n">deferred_annuity</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Monthly payments: </span><span class="si">{</span><span class="n">monthly_annuity</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="life-insurance">Life Insurance<a class="headerlink" href="#life-insurance" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">mortality_insurance</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># Whole life insurance</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">whole_life</span> <span class="o">=</span> <span class="n">mortality_insurance</span><span class="o">.</span><span class="n">Ax</span><span class="p">(</span><span class="n">mt_q</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># 20-year term insurance</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">term_life</span> <span class="o">=</span> <span class="n">mortality_insurance</span><span class="o">.</span><span class="n">Axt</span><span class="p">(</span><span class="n">mt_q</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1"># 20-year endowment</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">endowment</span> <span class="o">=</span> <span class="n">mortality_insurance</span><span class="o">.</span><span class="n">Axt_end</span><span class="p">(</span><span class="n">mt_q</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Whole life insurance: </span><span class="si">{</span><span class="n">whole_life</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;20-year term: </span><span class="si">{</span><span class="n">term_life</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;20-year endowment: </span><span class="si">{</span><span class="n">endowment</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="c1"># Verify fundamental relationship: Ax + ax ≈ 1</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="n">total</span> <span class="o">=</span> <span class="n">whole_life</span> <span class="o">+</span> <span class="n">immediate_annuity</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ax + ax = </span><span class="si">{</span><span class="n">total</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> (should be ≈ 1.0)&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="realistic-example-retirement-planning">Realistic Example: Retirement Planning<a class="headerlink" href="#realistic-example-retirement-planning" title="Permanent link">&para;</a></h2>
+<p>Let's work through a practical retirement planning scenario:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Retirement planning for a 30-year-old</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">current_age</span> <span class="o">=</span> <span class="mi">30</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">retirement_age</span> <span class="o">=</span> <span class="mi">65</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">interest_rate</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># 4% annual return</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="c1"># Create a more realistic mortality table</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># This is a simplified version - in practice, use SOA tables</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="n">realistic_qx</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mf">0.001</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.08</span> <span class="o">**</span> <span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">20</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">81</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="n">mt_realistic</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">realistic_qx</span><span class="p">)</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="c1"># Survival to retirement</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="n">survival_to_retirement</span> <span class="o">=</span> <span class="n">mt_realistic</span><span class="o">.</span><span class="n">npx</span><span class="p">(</span><span class="n">current_age</span><span class="p">,</span> <span class="n">retirement_age</span> <span class="o">-</span> <span class="n">current_age</span><span class="p">)</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Probability of surviving to retirement: </span><span class="si">{</span><span class="n">survival_to_retirement</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="c1"># Life expectancy at retirement</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="n">retirement_life_expectancy</span> <span class="o">=</span> <span class="n">mt_realistic</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="n">retirement_age</span><span class="p">)</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Life expectancy at retirement: </span><span class="si">{</span><span class="n">retirement_life_expectancy</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> years&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="c1"># Retirement annuity value</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="n">retirement_annuity</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt_realistic</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">retirement_age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">interest_rate</span><span class="p">)</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;$1 retirement annuity value: </span><span class="si">{</span><span class="n">retirement_annuity</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="c1"># How much needed for $50,000 annual retirement income</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="n">target_income</span> <span class="o">=</span> <span class="mi">50000</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="n">required_capital</span> <span class="o">=</span> <span class="n">target_income</span> <span class="o">/</span> <span class="n">retirement_annuity</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Capital needed for $</span><span class="si">{</span><span class="n">target_income</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> annual income: $</span><span class="si">{</span><span class="n">required_capital</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="c1"># Required annual savings</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="n">years_to_retirement</span> <span class="o">=</span> <span class="n">retirement_age</span> <span class="o">-</span> <span class="n">current_age</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">annuities_certain</span>
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="n">savings_annuity</span> <span class="o">=</span> <span class="n">annuities_certain</span><span class="o">.</span><span class="n">future_value_annuity</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">years_to_retirement</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">interest_rate</span><span class="p">)</span>
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="n">annual_savings</span> <span class="o">=</span> <span class="n">required_capital</span> <span class="o">/</span> <span class="n">savings_annuity</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Required annual savings: $</span><span class="si">{</span><span class="n">annual_savings</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="working-with-two-lives">Working with Two Lives<a class="headerlink" href="#working-with-two-lives" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">life_2heads</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># Create mortality tables for husband and wife</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">mt_male</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">realistic_qx</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">mt_female</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="mf">0.8</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">realistic_qx</span><span class="p">])</span>  <span class="c1"># Lower female mortality</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">husband_age</span> <span class="o">=</span> <span class="mi">67</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">wife_age</span> <span class="o">=</span> <span class="mi">64</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="c1"># Joint life annuity (pays while both alive)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="n">joint_annuity</span> <span class="o">=</span> <span class="n">life_2heads</span><span class="o">.</span><span class="n">ax_2heads</span><span class="p">(</span><span class="n">mt_male</span><span class="p">,</span> <span class="n">mt_female</span><span class="p">,</span> <span class="n">husband_age</span><span class="p">,</span> <span class="n">wife_age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="c1"># Last survivor annuity (pays until both die)</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="n">survivor_annuity</span> <span class="o">=</span> <span class="n">life_2heads</span><span class="o">.</span><span class="n">ax_2heads_ls</span><span class="p">(</span><span class="n">mt_male</span><span class="p">,</span> <span class="n">mt_female</span><span class="p">,</span> <span class="n">husband_age</span><span class="p">,</span> <span class="n">wife_age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="c1"># Individual annuities</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="n">husband_annuity</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt_male</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">husband_age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="n">wife_annuity</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt_female</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">wife_age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Husband individual annuity: </span><span class="si">{</span><span class="n">husband_annuity</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wife individual annuity: </span><span class="si">{</span><span class="n">wife_annuity</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Joint life annuity: </span><span class="si">{</span><span class="n">joint_annuity</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Last survivor annuity: </span><span class="si">{</span><span class="n">survivor_annuity</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="c1"># Pension option comparison</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="n">pension_amount</span> <span class="o">=</span> <span class="mi">60000</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Pension Options for $</span><span class="si">{</span><span class="n">pension_amount</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> base benefit:&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Single life: $</span><span class="si">{</span><span class="n">pension_amount</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;50% joint survivor: $</span><span class="si">{</span><span class="n">pension_amount</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">joint_annuity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">husband_annuity</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;100% joint survivor: $</span><span class="si">{</span><span class="n">pension_amount</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">survivor_annuity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">husband_annuity</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="using-soa-tables">Using SOA Tables<a class="headerlink" href="#using-soa-tables" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Example of loading and using SOA mortality tables</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># (Assumes you have downloaded the soa_tables folder)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">soa_tables.read_soa_table_xml</span><span class="w"> </span><span class="kn">import</span> <span class="n">SoaTable</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># Load a standard mortality table</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="n">cso_table</span> <span class="o">=</span> <span class="n">SoaTable</span><span class="p">(</span><span class="s1">&#39;soa_tables/CSO_1941.xml&#39;</span><span class="p">)</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="n">mt_cso</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">cso_table</span><span class="o">.</span><span class="n">qx</span><span class="p">)</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    <span class="c1"># Use the professional table</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    <span class="n">annuity_cso</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt_cso</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CSO 1941 annuity value: </span><span class="si">{</span><span class="n">annuity_cso</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA tables not found. Download from GitHub repository.&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="common-patterns-and-tips">Common Patterns and Tips<a class="headerlink" href="#common-patterns-and-tips" title="Permanent link">&para;</a></h2>
+<h3 id="interest-rate-sensitivity-analysis">Interest Rate Sensitivity Analysis<a class="headerlink" href="#interest-rate-sensitivity-analysis" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Analyze how annuity values change with interest rates</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">rates</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">age</span> <span class="o">=</span> <span class="mi">65</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Interest Rate Sensitivity:&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rate | Annuity Value | % Change&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">35</span><span class="p">)</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">base_rate</span> <span class="o">=</span> <span class="mi">5</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="n">base_value</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt_realistic</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">base_rate</span><span class="p">)</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="k">for</span> <span class="n">rate</span> <span class="ow">in</span> <span class="n">rates</span><span class="p">:</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="n">value</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt_realistic</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">rate</span><span class="p">)</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>    <span class="n">pct_change</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span> <span class="o">/</span> <span class="n">base_value</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rate</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2">% | </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">11.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">pct_change</span><span class="si">:</span><span class="s2">7.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="age-sensitivity-analysis">Age Sensitivity Analysis<a class="headerlink" href="#age-sensitivity-analysis" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># How annuity values change by age</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">ages</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">rate</span> <span class="o">=</span> <span class="mi">5</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Age Sensitivity:&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Age | Annuity Value | Life Expectancy&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="k">for</span> <span class="n">age</span> <span class="ow">in</span> <span class="n">ages</span><span class="p">:</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;=</span> <span class="n">mt_realistic</span><span class="o">.</span><span class="n">w</span><span class="p">:</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>        <span class="n">value</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt_realistic</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">rate</span><span class="p">)</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>        <span class="n">life_exp</span> <span class="o">=</span> <span class="n">mt_realistic</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">age</span><span class="si">:</span><span class="s2">2d</span><span class="si">}</span><span class="s2">  | </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">11.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">life_exp</span><span class="si">:</span><span class="s2">13.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="payment-frequency-comparison">Payment Frequency Comparison<a class="headerlink" href="#payment-frequency-comparison" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Compare different payment frequencies</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">frequencies</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">52</span><span class="p">]</span>  <span class="c1"># Annual, semi-annual, quarterly, monthly, weekly</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">age</span> <span class="o">=</span> <span class="mi">65</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">rate</span> <span class="o">=</span> <span class="mi">5</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Payment Frequency Analysis:&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Frequency | Description | Annuity Value | vs Annual&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">55</span><span class="p">)</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="n">annual_value</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt_realistic</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">frequencies</span><span class="p">:</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>    <span class="n">value</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt_realistic</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">rate</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="p">)</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>    <span class="n">ratio</span> <span class="o">=</span> <span class="n">value</span> <span class="o">/</span> <span class="n">annual_value</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>    <span class="n">descriptions</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Annual&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Semi-annual&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;Quarterly&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">:</span> <span class="s2">&quot;Monthly&quot;</span><span class="p">,</span> <span class="mi">52</span><span class="p">:</span> <span class="s2">&quot;Weekly&quot;</span><span class="p">}</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">m</span><span class="si">:</span><span class="s2">8d</span><span class="si">}</span><span class="s2">  | </span><span class="si">{</span><span class="n">descriptions</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="si">:</span><span class="s2">11</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">11.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">ratio</span><span class="si">:</span><span class="s2">7.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="error-handling-and-validation">Error Handling and Validation<a class="headerlink" href="#error-handling-and-validation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Always validate your inputs</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">safe_annuity_calculation</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Safely calculate annuity with error checking&quot;&quot;&quot;</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>        <span class="c1"># Check age is within table range</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">mt</span><span class="o">.</span><span class="n">w</span><span class="p">:</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Age </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> outside table range [0, </span><span class="si">{</span><span class="n">mt</span><span class="o">.</span><span class="n">w</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>        <span class="c1"># Check interest rate is reasonable</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">:</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Interest rate </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">% seems unreasonable&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>        <span class="n">result</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>        <span class="c1"># Validate result</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>        <span class="k">if</span> <span class="n">result</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">result</span> <span class="o">&gt;</span> <span class="mi">50</span><span class="p">:</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Warning: Unusual annuity value </span><span class="si">{</span><span class="n">result</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>        <span class="k">return</span> <span class="n">result</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error calculating annuity: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>        <span class="k">return</span> <span class="kc">None</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="c1"># Example usage</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="n">value</span> <span class="o">=</span> <span class="n">safe_annuity_calculation</span><span class="p">(</span><span class="n">mt_realistic</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">65</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Safely calculated annuity: </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<p>Now that you understand the basics:</p>
+<ol>
+<li><strong>Explore the <a href="../tutorials/">Tutorials</a></strong> for more detailed examples</li>
+<li><strong>Check the <a href="../../api/mortality_table/">API Reference</a></strong> for complete function documentation</li>
+<li><strong>Try the <a href="../../examples/basic/">Examples</a></strong> for practical applications</li>
+<li><strong>Experiment</strong> with your own mortality tables and scenarios</li>
+</ol>
+<h2 id="quick-reference">Quick Reference<a class="headerlink" href="#quick-reference" title="Permanent link">&para;</a></h2>
+<h3 id="essential-imports">Essential Imports<a class="headerlink" href="#essential-imports" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary.mortality_table</span><span class="w"> </span><span class="kn">import</span> <span class="n">MortalityTable</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">annuities</span><span class="p">,</span> <span class="n">mortality_insurance</span><span class="p">,</span> <span class="n">life_2heads</span>
+</code></pre></div>
+<h3 id="key-functions">Key Functions<a class="headerlink" href="#key-functions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>MortalityTable()</code> - Create mortality tables</li>
+<li><code>annuities.ax()</code> - Immediate life annuity</li>
+<li><code>mortality_insurance.Ax()</code> - Whole life insurance</li>
+<li><code>mt.ex()</code> - Life expectancy</li>
+<li><code>mt.npx()</code> - Survival probability</li>
+</ul>
+<h3 id="remember">Remember<a class="headerlink" href="#remember" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Interest rates as percentages (5 for 5%, not 0.05)</li>
+<li>First parameter is always the mortality table</li>
+<li>Age parameters can be fractional</li>
+<li>Use <code>method='udd'</code> for uniform distribution of deaths (default)</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../installation/" class="btn btn-neutral float-left" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../tutorials/" class="btn btn-neutral float-right" title="Tutorials">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/parcr/lifeactuary" class="fa fa-code-fork" style="color: #fcfcfc"> parcr/lifeactuary</a>
+        </span>
+    
+    
+      <span><a href="../installation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../tutorials/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

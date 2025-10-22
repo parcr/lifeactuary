@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="PedroCR" /><link rel="canonical" href="https://your-site-url.github.io/lifeactuary/examples/soa_tables/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>SOA Tables - lifeActuary Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "SOA Tables";
+        var mkdocs_page_input_path = "examples/soa_tables.md";
+        var mkdocs_page_url = "/lifeactuary/examples/soa_tables/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> lifeActuary Documentation
+        </a>
+        <div class="version">
+          {'provider': 'mike'}
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/tutorials/">Tutorials</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_table/">Mortality Tables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities/">Life Annuities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities_certain/">Annuities Certain</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities_rv/">Annuities Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_insurance/">Life Insurance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_insurance_frac/">Life Insurance (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_rv/">Mortality Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/commutation_table/">Commutation Tables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/commutation_table_frac/">Commutation Tables (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/life_2heads/">Two Lives Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_table_2heads/">Two Lives Mortality Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../advanced/">Advanced Examples</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">SOA Tables</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#available-soa-tables">Available SOA Tables</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#us-tables">U.S. Tables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#group-tables">Group Tables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#international-tables">International Tables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#portuguese-tables">Portuguese Tables</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#loading-soa-tables">Loading SOA Tables</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#basic-loading">Basic Loading</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#loading-multiple-tables">Loading Multiple Tables</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#table-analysis-and-comparison">Table Analysis and Comparison</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#comparing-different-tables">Comparing Different Tables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#life-expectancy-analysis">Life Expectancy Analysis</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mortality-rate-patterns">Mortality Rate Patterns</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#practical-applications-with-soa-tables">Practical Applications with SOA Tables</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#insurance-premium-calculation">Insurance Premium Calculation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pension-annuity-pricing">Pension Annuity Pricing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#international-comparison">International Comparison</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#advanced-soa-table-features">Advanced SOA Table Features</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#gender-specific-analysis">Gender-Specific Analysis</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#table-validation">Table Validation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage-tips">Usage Tips</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/release-notes/">Release Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">lifeActuary Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Examples</li>
+      <li class="breadcrumb-item active">SOA Tables</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/parcr/lifeactuary/edit/master/docs/examples/soa_tables.md">Edit on parcr/lifeactuary</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="soa-tables">SOA Tables<a class="headerlink" href="#soa-tables" title="Permanent link">&para;</a></h1>
+<p>This page demonstrates how to work with Society of Actuaries (SOA) mortality tables in lifeActuary.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The SOA provides standard mortality tables used throughout the insurance industry. lifeActuary includes support for reading and using these tables through the XML format provided by the SOA.</p>
+<h2 id="available-soa-tables">Available SOA Tables<a class="headerlink" href="#available-soa-tables" title="Permanent link">&para;</a></h2>
+<p>The <code>soa_tables</code> folder includes several standard mortality tables:</p>
+<h3 id="us-tables">U.S. Tables<a class="headerlink" href="#us-tables" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>CSO_1941.xml</strong> - 1941 Commissioners Standard Ordinary</li>
+<li><strong>CSO_1958.xml</strong> - 1958 Commissioners Standard Ordinary  </li>
+<li><strong>CSO_1980.xml</strong> - 1980 Commissioners Standard Ordinary</li>
+</ul>
+<h3 id="group-tables">Group Tables<a class="headerlink" href="#group-tables" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>GAM71.xml</strong> - 1971 Group Annuity Mortality</li>
+<li><strong>GAM83.xml</strong> - 1983 Group Annuity Mortality</li>
+</ul>
+<h3 id="international-tables">International Tables<a class="headerlink" href="#international-tables" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>AF80.xml</strong> - French Assured Lives 1980</li>
+<li><strong>AM80.xml</strong> - French Assured Lives 1980 (Male)</li>
+<li><strong>GRF95.xml</strong> - German Population 1995 (Female)</li>
+<li><strong>GRM95.xml</strong> - German Population 1995 (Male)</li>
+</ul>
+<h3 id="portuguese-tables">Portuguese Tables<a class="headerlink" href="#portuguese-tables" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>197982PortugalMale.xml</strong> - Portugal 1979-82 Male</li>
+<li><strong>197982PortugalFemale.xml</strong> - Portugal 1979-82 Female</li>
+</ul>
+<h2 id="loading-soa-tables">Loading SOA Tables<a class="headerlink" href="#loading-soa-tables" title="Permanent link">&para;</a></h2>
+<h3 id="basic-loading">Basic Loading<a class="headerlink" href="#basic-loading" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">soa_tables.read_soa_table_xml</span><span class="w"> </span><span class="kn">import</span> <span class="n">SoaTable</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary.mortality_table</span><span class="w"> </span><span class="kn">import</span> <span class="n">MortalityTable</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Load a specific SOA table</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="c1"># Load CSO 1941 table</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">cso_1941</span> <span class="o">=</span> <span class="n">SoaTable</span><span class="p">(</span><span class="s1">&#39;soa_tables/CSO_1941.xml&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="c1"># Create lifeActuary mortality table</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">mt_cso</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">cso_1941</span><span class="o">.</span><span class="n">qx</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CSO 1941 Table Information:&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Description: </span><span class="si">{</span><span class="n">cso_1941</span><span class="o">.</span><span class="n">description</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Age range: </span><span class="si">{</span><span class="n">cso_1941</span><span class="o">.</span><span class="n">min_age</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">cso_1941</span><span class="o">.</span><span class="n">max_age</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of ages: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">cso_1941</span><span class="o">.</span><span class="n">qx</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA tables not found. Please download from GitHub repository.&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error loading table: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="loading-multiple-tables">Loading Multiple Tables<a class="headerlink" href="#loading-multiple-tables" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">load_all_soa_tables</span><span class="p">():</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Load all available SOA tables&quot;&quot;&quot;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">soa_tables</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">soa_folder</span> <span class="o">=</span> <span class="s1">&#39;soa_tables&#39;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">soa_folder</span><span class="p">):</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOA tables folder not found. Please download from GitHub.&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="k">return</span> <span class="p">{}</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="c1"># Get all XML files in the SOA tables folder</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="n">xml_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">soa_folder</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.xml&#39;</span><span class="p">)]</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>    <span class="k">for</span> <span class="n">xml_file</span> <span class="ow">in</span> <span class="n">xml_files</span><span class="p">:</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>            <span class="n">table_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">soa_folder</span><span class="p">,</span> <span class="n">xml_file</span><span class="p">)</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>            <span class="n">soa_table</span> <span class="o">=</span> <span class="n">SoaTable</span><span class="p">(</span><span class="n">table_path</span><span class="p">)</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>            <span class="n">mt</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">soa_table</span><span class="o">.</span><span class="n">qx</span><span class="p">)</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>            <span class="n">table_name</span> <span class="o">=</span> <span class="n">xml_file</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>            <span class="n">soa_tables</span><span class="p">[</span><span class="n">table_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>                <span class="s1">&#39;soa_table&#39;</span><span class="p">:</span> <span class="n">soa_table</span><span class="p">,</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>                <span class="s1">&#39;mortality_table&#39;</span><span class="p">:</span> <span class="n">mt</span><span class="p">,</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>                <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">soa_table</span><span class="o">.</span><span class="n">description</span><span class="p">,</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>                <span class="s1">&#39;age_range&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">soa_table</span><span class="o">.</span><span class="n">min_age</span><span class="p">,</span> <span class="n">soa_table</span><span class="o">.</span><span class="n">max_age</span><span class="p">)</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>            <span class="p">}</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded: </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to load </span><span class="si">{</span><span class="n">xml_file</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    <span class="k">return</span> <span class="n">soa_tables</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="c1"># Load all tables</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="n">all_tables</span> <span class="o">=</span> <span class="n">load_all_soa_tables</span><span class="p">()</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">all_tables</span><span class="p">)</span><span class="si">}</span><span class="s2"> SOA tables&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="table-analysis-and-comparison">Table Analysis and Comparison<a class="headerlink" href="#table-analysis-and-comparison" title="Permanent link">&para;</a></h2>
+<h3 id="comparing-different-tables">Comparing Different Tables<a class="headerlink" href="#comparing-different-tables" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">annuities</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">compare_soa_tables</span><span class="p">(</span><span class="n">tables_dict</span><span class="p">,</span> <span class="n">ages</span><span class="o">=</span><span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">]):</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare annuity values across different SOA tables&quot;&quot;&quot;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">tables_dict</span><span class="p">:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No tables loaded for comparison&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="k">return</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="n">interest_rate</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># 5% interest</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annuity Value Comparison (i=</span><span class="si">{</span><span class="n">interest_rate</span><span class="si">}</span><span class="s2">%):&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Age |&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>    <span class="c1"># Print table headers</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="n">table_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tables_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())[:</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># Limit to first 5 tables</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">table_names</span><span class="p">:</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="n">name</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}</span><span class="s2"> |&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>    <span class="nb">print</span><span class="p">()</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="mi">6</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">table_names</span><span class="p">)</span> <span class="o">*</span> <span class="mi">11</span><span class="p">))</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>    <span class="c1"># Calculate annuities for each age and table</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>    <span class="k">for</span> <span class="n">age</span> <span class="ow">in</span> <span class="n">ages</span><span class="p">:</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">age</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2"> |&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>        <span class="k">for</span> <span class="n">table_name</span> <span class="ow">in</span> <span class="n">table_names</span><span class="p">:</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>            <span class="n">mt</span> <span class="o">=</span> <span class="n">tables_dict</span><span class="p">[</span><span class="n">table_name</span><span class="p">][</span><span class="s1">&#39;mortality_table&#39;</span><span class="p">]</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>            <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;=</span> <span class="n">mt</span><span class="o">.</span><span class="n">w</span><span class="p">:</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>                <span class="n">annuity_value</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">interest_rate</span><span class="p">)</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="n">annuity_value</span><span class="si">:</span><span class="s2">8.3f</span><span class="si">}</span><span class="s2"> |&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="s1">&#39;N/A&#39;</span><span class="si">:</span><span class="s2">&gt;8</span><span class="si">}</span><span class="s2"> |&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>        <span class="nb">print</span><span class="p">()</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="c1"># Run comparison if tables are loaded</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="k">if</span> <span class="n">all_tables</span><span class="p">:</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>    <span class="n">compare_soa_tables</span><span class="p">(</span><span class="n">all_tables</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="life-expectancy-analysis">Life Expectancy Analysis<a class="headerlink" href="#life-expectancy-analysis" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">analyze_life_expectancy</span><span class="p">(</span><span class="n">tables_dict</span><span class="p">):</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyze life expectancy across different SOA tables&quot;&quot;&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">tables_dict</span><span class="p">:</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No tables loaded for analysis&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="k">return</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">ages_to_analyze</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">80</span><span class="p">]</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Life Expectancy Analysis:&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Table Name           | Age 0  | Age 20 | Age 40 | Age 60 | Age 80&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="k">for</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">table_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">tables_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())[:</span><span class="mi">10</span><span class="p">]:</span>  <span class="c1"># Limit output</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        <span class="n">mt</span> <span class="o">=</span> <span class="n">table_data</span><span class="p">[</span><span class="s1">&#39;mortality_table&#39;</span><span class="p">]</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">table_name</span><span class="p">[:</span><span class="mi">18</span><span class="p">]</span><span class="si">:</span><span class="s2">18</span><span class="si">}</span><span class="s2"> |&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="k">for</span> <span class="n">age</span> <span class="ow">in</span> <span class="n">ages_to_analyze</span><span class="p">:</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>            <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;=</span> <span class="n">mt</span><span class="o">.</span><span class="n">w</span><span class="p">:</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>                <span class="n">life_exp</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="n">life_exp</span><span class="si">:</span><span class="s2">6.1f</span><span class="si">}</span><span class="s2"> |&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="s1">&#39;N/A&#39;</span><span class="si">:</span><span class="s2">&gt;6</span><span class="si">}</span><span class="s2"> |&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>        <span class="nb">print</span><span class="p">()</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="c1"># Run life expectancy analysis</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="k">if</span> <span class="n">all_tables</span><span class="p">:</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>    <span class="n">analyze_life_expectancy</span><span class="p">(</span><span class="n">all_tables</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="mortality-rate-patterns">Mortality Rate Patterns<a class="headerlink" href="#mortality-rate-patterns" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">plot_mortality_patterns</span><span class="p">(</span><span class="n">tables_dict</span><span class="p">,</span> <span class="n">selected_tables</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Plot mortality rate patterns for selected tables&quot;&quot;&quot;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">tables_dict</span><span class="p">:</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No tables loaded for plotting&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="k">return</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="c1"># Select tables to plot</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="k">if</span> <span class="n">selected_tables</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>        <span class="n">selected_tables</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tables_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())[:</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># First 3 tables</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>    <span class="k">for</span> <span class="n">table_name</span> <span class="ow">in</span> <span class="n">selected_tables</span><span class="p">:</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>        <span class="k">if</span> <span class="n">table_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tables_dict</span><span class="p">:</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>            <span class="k">continue</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>        <span class="n">soa_table</span> <span class="o">=</span> <span class="n">tables_dict</span><span class="p">[</span><span class="n">table_name</span><span class="p">][</span><span class="s1">&#39;soa_table&#39;</span><span class="p">]</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>        <span class="c1"># Get ages and mortality rates</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>        <span class="n">ages</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">soa_table</span><span class="o">.</span><span class="n">min_age</span><span class="p">,</span> <span class="n">soa_table</span><span class="o">.</span><span class="n">max_age</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>        <span class="n">qx_values</span> <span class="o">=</span> <span class="n">soa_table</span><span class="o">.</span><span class="n">qx</span><span class="p">[</span><span class="n">soa_table</span><span class="o">.</span><span class="n">min_age</span><span class="p">:]</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>        <span class="c1"># Plot on log scale for better visualization</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>        <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">ages</span><span class="p">,</span> <span class="n">qx_values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">table_name</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Mortality Rate (qx)&#39;</span><span class="p">)</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Mortality Rate Patterns - SOA Tables&#39;</span><span class="p">)</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">0.0001</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="c1"># Example plotting (would work in Jupyter notebook)</span>
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a><span class="c1"># if all_tables:</span>
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="c1">#     plot_mortality_patterns(all_tables, [&#39;CSO_1941&#39;, &#39;GRM95&#39;, &#39;197982PortugalMale&#39;])</span>
+</code></pre></div>
+<h2 id="practical-applications-with-soa-tables">Practical Applications with SOA Tables<a class="headerlink" href="#practical-applications-with-soa-tables" title="Permanent link">&para;</a></h2>
+<h3 id="insurance-premium-calculation">Insurance Premium Calculation<a class="headerlink" href="#insurance-premium-calculation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">mortality_insurance</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_insurance_premium_soa</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">coverage_amount</span><span class="p">,</span> <span class="n">term_years</span><span class="p">):</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate insurance premium using SOA table&quot;&quot;&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="k">if</span> <span class="n">table_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_tables</span><span class="p">:</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Table </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> not available&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        <span class="k">return</span> <span class="kc">None</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">mt</span> <span class="o">=</span> <span class="n">all_tables</span><span class="p">[</span><span class="n">table_name</span><span class="p">][</span><span class="s1">&#39;mortality_table&#39;</span><span class="p">]</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="n">interest_rate</span> <span class="o">=</span> <span class="mi">4</span>  <span class="c1"># 4% interest assumption</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Insurance Premium Calculation - </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Age: </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">, Coverage: $</span><span class="si">{</span><span class="n">coverage_amount</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">, Term: </span><span class="si">{</span><span class="n">term_years</span><span class="si">}</span><span class="s2"> years&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    <span class="c1"># Calculate EPV of benefits</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>    <span class="k">if</span> <span class="n">term_years</span> <span class="o">==</span> <span class="s1">&#39;WL&#39;</span><span class="p">:</span>  <span class="c1"># Whole life</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>        <span class="n">insurance_epv</span> <span class="o">=</span> <span class="n">mortality_insurance</span><span class="o">.</span><span class="n">Ax</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">interest_rate</span><span class="p">)</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>        <span class="n">premium_annuity</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">interest_rate</span><span class="p">)</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>    <span class="k">else</span><span class="p">:</span>  <span class="c1"># Term insurance</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>        <span class="n">insurance_epv</span> <span class="o">=</span> <span class="n">mortality_insurance</span><span class="o">.</span><span class="n">Axt</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">term_years</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">interest_rate</span><span class="p">)</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>        <span class="n">premium_annuity</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">axt</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">term_years</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">interest_rate</span><span class="p">)</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>    <span class="c1"># Calculate net premium</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>    <span class="n">net_annual_premium</span> <span class="o">=</span> <span class="p">(</span><span class="n">coverage_amount</span> <span class="o">*</span> <span class="n">insurance_epv</span><span class="p">)</span> <span class="o">/</span> <span class="n">premium_annuity</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>    <span class="c1"># Add loadings</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>    <span class="n">expense_loading</span> <span class="o">=</span> <span class="mf">0.20</span>  <span class="c1"># 20% expense loading</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>    <span class="n">gross_annual_premium</span> <span class="o">=</span> <span class="n">net_annual_premium</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">expense_loading</span><span class="p">)</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Insurance EPV factor: </span><span class="si">{</span><span class="n">insurance_epv</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Premium annuity factor: </span><span class="si">{</span><span class="n">premium_annuity</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Net annual premium: $</span><span class="si">{</span><span class="n">net_annual_premium</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gross annual premium: $</span><span class="si">{</span><span class="n">gross_annual_premium</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Monthly premium: $</span><span class="si">{</span><span class="n">gross_annual_premium</span><span class="o">/</span><span class="mi">12</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>    <span class="k">return</span> <span class="n">gross_annual_premium</span>
+<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>
+<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a><span class="c1"># Example calculations</span>
+<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="k">if</span> <span class="n">all_tables</span> <span class="ow">and</span> <span class="s1">&#39;CSO_1941&#39;</span> <span class="ow">in</span> <span class="n">all_tables</span><span class="p">:</span>
+<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Example: Term Life Insurance Premium&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>    <span class="n">calculate_insurance_premium_soa</span><span class="p">(</span><span class="s1">&#39;CSO_1941&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">coverage_amount</span><span class="o">=</span><span class="mi">500000</span><span class="p">,</span> <span class="n">term_years</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="pension-annuity-pricing">Pension Annuity Pricing<a class="headerlink" href="#pension-annuity-pricing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">price_pension_annuity_soa</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">monthly_benefit</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Price a pension annuity using SOA table&quot;&quot;&quot;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">if</span> <span class="n">table_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_tables</span><span class="p">:</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Table </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> not available&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>        <span class="k">return</span> <span class="kc">None</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="n">mt</span> <span class="o">=</span> <span class="n">all_tables</span><span class="p">[</span><span class="n">table_name</span><span class="p">][</span><span class="s1">&#39;mortality_table&#39;</span><span class="p">]</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="n">interest_rate</span> <span class="o">=</span> <span class="mf">3.5</span>  <span class="c1"># Lower rate for annuities</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pension Annuity Pricing - </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Age: </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">, Monthly Benefit: $</span><span class="si">{</span><span class="n">monthly_benefit</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>    <span class="c1"># Calculate present value of monthly annuity</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>    <span class="n">annual_benefit</span> <span class="o">=</span> <span class="n">monthly_benefit</span> <span class="o">*</span> <span class="mi">12</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>    <span class="n">annuity_factor</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">interest_rate</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>    <span class="n">present_value</span> <span class="o">=</span> <span class="n">annual_benefit</span> <span class="o">*</span> <span class="n">annuity_factor</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annuity factor (monthly): </span><span class="si">{</span><span class="n">annuity_factor</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Present value: $</span><span class="si">{</span><span class="n">present_value</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Life expectancy: </span><span class="si">{</span><span class="n">mt</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="n">age</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> years&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>    <span class="c1"># Break-even analysis</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>    <span class="n">life_exp</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>    <span class="n">total_expected_payments</span> <span class="o">=</span> <span class="n">annual_benefit</span> <span class="o">*</span> <span class="n">life_exp</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected total payments: $</span><span class="si">{</span><span class="n">total_expected_payments</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Break-even years: </span><span class="si">{</span><span class="n">present_value</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">annual_benefit</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>    <span class="k">return</span> <span class="n">present_value</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a>
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="c1"># Example annuity pricing</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="k">if</span> <span class="n">all_tables</span> <span class="ow">and</span> <span class="s1">&#39;GRM95&#39;</span> <span class="ow">in</span> <span class="n">all_tables</span><span class="p">:</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Example: Immediate Annuity Pricing&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a>    <span class="n">price_pension_annuity_soa</span><span class="p">(</span><span class="s1">&#39;GRM95&#39;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">65</span><span class="p">,</span> <span class="n">monthly_benefit</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="international-comparison">International Comparison<a class="headerlink" href="#international-comparison" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">compare_international_tables</span><span class="p">():</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare mortality between different countries&quot;&quot;&quot;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">international_tables</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>        <span class="s1">&#39;US&#39;</span><span class="p">:</span> <span class="s1">&#39;CSO_1941&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>        <span class="s1">&#39;Germany_M&#39;</span><span class="p">:</span> <span class="s1">&#39;GRM95&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>        <span class="s1">&#39;Germany_F&#39;</span><span class="p">:</span> <span class="s1">&#39;GRF95&#39;</span><span class="p">,</span> 
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>        <span class="s1">&#39;Portugal_M&#39;</span><span class="p">:</span> <span class="s1">&#39;197982PortugalMale&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>        <span class="s1">&#39;Portugal_F&#39;</span><span class="p">:</span> <span class="s1">&#39;197982PortugalFemale&#39;</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="p">}</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    <span class="n">available_tables</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">international_tables</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> 
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>                       <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">all_tables</span><span class="p">}</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">available_tables</span><span class="p">:</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No international tables available for comparison&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>        <span class="k">return</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>    <span class="n">age</span> <span class="o">=</span> <span class="mi">65</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>    <span class="n">interest_rate</span> <span class="o">=</span> <span class="mi">4</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;International Mortality Comparison (Age </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Country/Gender    | Life Exp | Annuity Factor | Difference&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>    <span class="n">base_annuity</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>
+<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>    <span class="k">for</span> <span class="n">country</span><span class="p">,</span> <span class="n">table_name</span> <span class="ow">in</span> <span class="n">available_tables</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>        <span class="n">mt</span> <span class="o">=</span> <span class="n">all_tables</span><span class="p">[</span><span class="n">table_name</span><span class="p">][</span><span class="s1">&#39;mortality_table&#39;</span><span class="p">]</span>
+<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>
+<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>        <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;=</span> <span class="n">mt</span><span class="o">.</span><span class="n">w</span><span class="p">:</span>
+<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a>            <span class="n">life_exp</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>            <span class="n">annuity_factor</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">interest_rate</span><span class="p">)</span>
+<a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a>
+<a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a>            <span class="k">if</span> <span class="n">base_annuity</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a>                <span class="n">base_annuity</span> <span class="o">=</span> <span class="n">annuity_factor</span>
+<a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a>                <span class="n">difference</span> <span class="o">=</span> <span class="mf">0.0</span>
+<a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a>                <span class="n">difference</span> <span class="o">=</span> <span class="p">((</span><span class="n">annuity_factor</span> <span class="o">/</span> <span class="n">base_annuity</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+<a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a>
+<a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">country</span><span class="si">:</span><span class="s2">16</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">life_exp</span><span class="si">:</span><span class="s2">8.1f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">annuity_factor</span><span class="si">:</span><span class="s2">12.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">difference</span><span class="si">:</span><span class="s2">+8.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a>
+<a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a><span class="c1"># Run international comparison</span>
+<a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a><span class="k">if</span> <span class="n">all_tables</span><span class="p">:</span>
+<a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a>    <span class="n">compare_international_tables</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="advanced-soa-table-features">Advanced SOA Table Features<a class="headerlink" href="#advanced-soa-table-features" title="Permanent link">&para;</a></h2>
+<h3 id="gender-specific-analysis">Gender-Specific Analysis<a class="headerlink" href="#gender-specific-analysis" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">gender_mortality_analysis</span><span class="p">():</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyze gender differences in mortality&quot;&quot;&quot;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="n">male_tables</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">all_tables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> 
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>                   <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">indicator</span> <span class="ow">in</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">indicator</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;m80&#39;</span><span class="p">,</span> <span class="s1">&#39;grm&#39;</span><span class="p">])]</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">female_tables</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">all_tables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> 
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>                     <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">indicator</span> <span class="ow">in</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">indicator</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;female&#39;</span><span class="p">,</span> <span class="s1">&#39;f80&#39;</span><span class="p">,</span> <span class="s1">&#39;grf&#39;</span><span class="p">])]</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Gender Mortality Analysis:&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Age | Male LE | Female LE | Difference&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="n">ages</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">]</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    <span class="k">for</span> <span class="n">age</span> <span class="ow">in</span> <span class="n">ages</span><span class="p">:</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>        <span class="n">male_le_avg</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>        <span class="n">female_le_avg</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>        <span class="n">male_count</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>        <span class="n">female_count</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>        <span class="c1"># Calculate average life expectancy for males</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>        <span class="k">for</span> <span class="n">table_name</span> <span class="ow">in</span> <span class="n">male_tables</span><span class="p">:</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>            <span class="n">mt</span> <span class="o">=</span> <span class="n">all_tables</span><span class="p">[</span><span class="n">table_name</span><span class="p">][</span><span class="s1">&#39;mortality_table&#39;</span><span class="p">]</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>            <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;=</span> <span class="n">mt</span><span class="o">.</span><span class="n">w</span><span class="p">:</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>                <span class="n">male_le_avg</span> <span class="o">+=</span> <span class="n">mt</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>                <span class="n">male_count</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>        <span class="c1"># Calculate average life expectancy for females</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>        <span class="k">for</span> <span class="n">table_name</span> <span class="ow">in</span> <span class="n">female_tables</span><span class="p">:</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>            <span class="n">mt</span> <span class="o">=</span> <span class="n">all_tables</span><span class="p">[</span><span class="n">table_name</span><span class="p">][</span><span class="s1">&#39;mortality_table&#39;</span><span class="p">]</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>            <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;=</span> <span class="n">mt</span><span class="o">.</span><span class="n">w</span><span class="p">:</span>
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>                <span class="n">female_le_avg</span> <span class="o">+=</span> <span class="n">mt</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a>                <span class="n">female_count</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a>        <span class="k">if</span> <span class="n">male_count</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">female_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a>            <span class="n">male_le_avg</span> <span class="o">/=</span> <span class="n">male_count</span>
+<a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a>            <span class="n">female_le_avg</span> <span class="o">/=</span> <span class="n">female_count</span>
+<a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a>            <span class="n">difference</span> <span class="o">=</span> <span class="n">female_le_avg</span> <span class="o">-</span> <span class="n">male_le_avg</span>
+<a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a>
+<a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">age</span><span class="si">:</span><span class="s2">2d</span><span class="si">}</span><span class="s2">  | </span><span class="si">{</span><span class="n">male_le_avg</span><span class="si">:</span><span class="s2">7.1f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">female_le_avg</span><span class="si">:</span><span class="s2">9.1f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">difference</span><span class="si">:</span><span class="s2">+10.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a>
+<a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a><span class="c1"># Run gender analysis</span>
+<a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a><span class="k">if</span> <span class="n">all_tables</span><span class="p">:</span>
+<a id="__codelineno-8-44" name="__codelineno-8-44" href="#__codelineno-8-44"></a>    <span class="n">gender_mortality_analysis</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="table-validation">Table Validation<a class="headerlink" href="#table-validation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">validate_soa_table</span><span class="p">(</span><span class="n">table_name</span><span class="p">):</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate SOA table for consistency&quot;&quot;&quot;</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="k">if</span> <span class="n">table_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">all_tables</span><span class="p">:</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Table </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2"> not available&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>        <span class="k">return</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="n">soa_table</span> <span class="o">=</span> <span class="n">all_tables</span><span class="p">[</span><span class="n">table_name</span><span class="p">][</span><span class="s1">&#39;soa_table&#39;</span><span class="p">]</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    <span class="n">mt</span> <span class="o">=</span> <span class="n">all_tables</span><span class="p">[</span><span class="n">table_name</span><span class="p">][</span><span class="s1">&#39;mortality_table&#39;</span><span class="p">]</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Validation Report for </span><span class="si">{</span><span class="n">table_name</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>    <span class="c1"># Check mortality rates are reasonable</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>    <span class="n">max_qx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">soa_table</span><span class="o">.</span><span class="n">qx</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Exclude first and last</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>    <span class="n">min_qx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">q</span> <span class="k">for</span> <span class="n">q</span> <span class="ow">in</span> <span class="n">soa_table</span><span class="o">.</span><span class="n">qx</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">q</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mortality rate range: </span><span class="si">{</span><span class="n">min_qx</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">max_qx</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>    <span class="c1"># Check for decreasing mortality (shouldn&#39;t happen except infant mortality)</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>    <span class="n">decreasing_count</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">soa_table</span><span class="o">.</span><span class="n">qx</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>  <span class="c1"># Skip infant mortality</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>        <span class="k">if</span> <span class="n">soa_table</span><span class="o">.</span><span class="n">qx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">soa_table</span><span class="o">.</span><span class="n">qx</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>            <span class="n">decreasing_count</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Decreasing mortality instances: </span><span class="si">{</span><span class="n">decreasing_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>    <span class="c1"># Check life expectancy at birth vs age 65</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">mt</span><span class="o">.</span><span class="n">w</span> <span class="ow">and</span> <span class="mi">65</span> <span class="o">&lt;=</span> <span class="n">mt</span><span class="o">.</span><span class="n">w</span><span class="p">:</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>        <span class="n">le_birth</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>        <span class="n">le_65</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="mi">65</span><span class="p">)</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Life expectancy at birth: </span><span class="si">{</span><span class="n">le_birth</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Life expectancy at 65: </span><span class="si">{</span><span class="n">le_65</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a>
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>    <span class="c1"># Check final mortality rate</span>
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Terminal mortality rate: </span><span class="si">{</span><span class="n">soa_table</span><span class="o">.</span><span class="n">qx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a>
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Validation complete.&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a>
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="c1"># Validate a table</span>
+<a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a><span class="k">if</span> <span class="n">all_tables</span> <span class="ow">and</span> <span class="s1">&#39;CSO_1941&#39;</span> <span class="ow">in</span> <span class="n">all_tables</span><span class="p">:</span>
+<a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a>    <span class="n">validate_soa_table</span><span class="p">(</span><span class="s1">&#39;CSO_1941&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="usage-tips">Usage Tips<a class="headerlink" href="#usage-tips" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Download Required</strong>: SOA tables must be downloaded separately from the GitHub repository</li>
+<li><strong>File Format</strong>: Tables are in XML format and require the <code>read_soa_table_xml.py</code> module</li>
+<li><strong>Age Ranges</strong>: Different tables cover different age ranges - always check <code>min_age</code> and <code>max_age</code></li>
+<li><strong>Applications</strong>: Use appropriate tables for your specific application (population vs. insured lives)</li>
+<li><strong>Updates</strong>: SOA regularly updates tables - ensure you're using current versions for production work</li>
+<li><strong>Validation</strong>: Always validate table data before using in critical applications</li>
+</ol>
+<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Explore specific tables relevant to your application</li>
+<li>Compare results with published actuarial values</li>
+<li>Consider using multiple tables for sensitivity analysis</li>
+<li>Review SOA documentation for table construction methodology</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../advanced/" class="btn btn-neutral float-left" title="Advanced Examples"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../about/release-notes/" class="btn btn-neutral float-right" title="Release Notes">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/parcr/lifeactuary" class="fa fa-code-fork" style="color: #fcfcfc"> parcr/lifeactuary</a>
+        </span>
+    
+    
+      <span><a href="../advanced/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../about/release-notes/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

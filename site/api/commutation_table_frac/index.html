@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="PedroCR" /><link rel="canonical" href="https://your-site-url.github.io/lifeactuary/api/commutation_table_frac/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Commutation Tables (Fractional) - lifeActuary Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Commutation Tables (Fractional)";
+        var mkdocs_page_input_path = "api/commutation_table_frac.md";
+        var mkdocs_page_url = "/lifeactuary/api/commutation_table_frac/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> lifeActuary Documentation
+        </a>
+        <div class="version">
+          {'provider': 'mike'}
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/tutorials/">Tutorials</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../mortality_table/">Mortality Tables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../annuities/">Life Annuities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../annuities_certain/">Annuities Certain</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../annuities_rv/">Annuities Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mortality_insurance/">Life Insurance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mortality_insurance_frac/">Life Insurance (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mortality_rv/">Mortality Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commutation_table/">Commutation Tables</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Commutation Tables (Fractional)</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#lifeActuary.commutation_table_frac">commutation_table_frac</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac">CommutationFunctionsFrac</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Cx_frac">Cx_frac</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Dx_frac">Dx_frac</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Mx_frac">Mx_frac</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Nx_frac">Nx_frac</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Rx_frac">Rx_frac</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Sx_frac">Sx_frac</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.ages">ages</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.dx_frac">dx_frac</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.frac">frac</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.lx_frac">lx_frac</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.method">method</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.px_frac">px_frac</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.qx_frac">qx_frac</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.__repr__">__repr__</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.age_to_index">age_to_index</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.df_commutation_table_frac">df_commutation_table_frac</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#basic-fractional-commutation-functions">Basic Fractional Commutation Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#fractional-commutation-symbols">Fractional Commutation Symbols</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#class-commutationfunctionsfraci-g0-data_typeq-mtnone-perc100-fraction12">Class: CommutationFunctionsFrac(i, g=0, data_type='q', mt=None, perc=100, fraction=12)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#enhanced-precision-calculations">Enhanced Precision Calculations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fractional-age-applications">Fractional Age Applications</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#mid-year-policy-issues">Mid-Year Policy Issues</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#quarterly-premium-calculations">Quarterly Premium Calculations</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#advanced-fractional-calculations">Advanced Fractional Calculations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#variable-payment-timing">Variable Payment Timing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#continuous-payment-approximation">Continuous Payment Approximation</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#practical-applications">Practical Applications</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#universal-life-insurance">Universal Life Insurance</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pension-calculations-with-fractional-service">Pension Calculations with Fractional Service</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#group-insurance-with-staggered-entries">Group Insurance with Staggered Entries</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#computational-considerations">Computational Considerations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#memory-and-performance">Memory and Performance</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#accuracy-vs-performance-trade-offs">Accuracy vs. Performance Trade-offs</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#validation-and-testing">Validation and Testing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#consistency-checks">Consistency Checks</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interpolation-accuracy">Interpolation Accuracy</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage-tips">Usage Tips</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../life_2heads/">Two Lives Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mortality_table_2heads/">Two Lives Mortality Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/soa_tables/">SOA Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/release-notes/">Release Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">lifeActuary Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">API Reference</li>
+      <li class="breadcrumb-item active">Commutation Tables (Fractional)</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/parcr/lifeactuary/edit/master/docs/api/commutation_table_frac.md">Edit on parcr/lifeactuary</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="commutation-tables-fractional">Commutation Tables (Fractional)<a class="headerlink" href="#commutation-tables-fractional" title="Permanent link">&para;</a></h1>
+<p>Advanced commutation functions supporting fractional ages and payment frequencies.</p>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="lifeActuary.commutation_table_frac" class="doc doc-heading">
+            <code>lifeActuary.commutation_table_frac</code>
+
+
+<a href="#lifeActuary.commutation_table_frac" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">CommutationFunctionsFrac</span><span class="p">(</span><span class="n">i</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">data_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">perc</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">frac</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;udd&#39;</span><span class="p">)</span></code>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="lifeActuary.commutation_table.CommutationFunctions(i=None, g=0, data_type='q', mt=None, perc=100, app_cont=False) (lifeActuary.commutation_table.CommutationFunctions)" href="../commutation_table/#lifeActuary.commutation_table.CommutationFunctions">CommutationFunctions</a></code></p>
+
+
+        <p>Extension of CommutationFunctions to fractional ages.
+Instantiates, for a specific mortality table and interest rate, all the usual commutation functions:
+Dx, Nx, Sx, Cx, Mx, Rx, at fractional ages.</p>
+<p>:param i: Interest rate (annual effective).
+:param g: Growth rate (default 0).
+:param data_type: Type of mortality data ('q' by default).
+:param mt: Mortality table.
+:param perc: Percentage scaling for mortality rates.
+:param frac: Number of fractional intervals per year (e.g., 2 for semiannual).
+:param method: Interpolation method for fractional ages ('udd' by default).</p>
+
+        <p>Initialize fractional commutation functions.</p>
+<p>:param i: Interest rate.
+:param g: Growth rate.
+:param data_type: Mortality data type.
+:param mt: Mortality table.
+:param perc: Percentage scaling.
+:param frac: Number of fractional intervals per year.
+:param method: Interpolation method.</p>
+
+
+
+
+
+
+
+
+                  <details class="quote">
+                    <summary>Source code in <code>lifeActuary/commutation_table_frac.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span>
+<span class="normal"><a href="#__codelineno-0-35">35</a></span>
+<span class="normal"><a href="#__codelineno-0-36">36</a></span>
+<span class="normal"><a href="#__codelineno-0-37">37</a></span>
+<span class="normal"><a href="#__codelineno-0-38">38</a></span>
+<span class="normal"><a href="#__codelineno-0-39">39</a></span>
+<span class="normal"><a href="#__codelineno-0-40">40</a></span>
+<span class="normal"><a href="#__codelineno-0-41">41</a></span>
+<span class="normal"><a href="#__codelineno-0-42">42</a></span>
+<span class="normal"><a href="#__codelineno-0-43">43</a></span>
+<span class="normal"><a href="#__codelineno-0-44">44</a></span>
+<span class="normal"><a href="#__codelineno-0-45">45</a></span>
+<span class="normal"><a href="#__codelineno-0-46">46</a></span>
+<span class="normal"><a href="#__codelineno-0-47">47</a></span>
+<span class="normal"><a href="#__codelineno-0-48">48</a></span>
+<span class="normal"><a href="#__codelineno-0-49">49</a></span>
+<span class="normal"><a href="#__codelineno-0-50">50</a></span>
+<span class="normal"><a href="#__codelineno-0-51">51</a></span>
+<span class="normal"><a href="#__codelineno-0-52">52</a></span>
+<span class="normal"><a href="#__codelineno-0-53">53</a></span>
+<span class="normal"><a href="#__codelineno-0-54">54</a></span>
+<span class="normal"><a href="#__codelineno-0-55">55</a></span>
+<span class="normal"><a href="#__codelineno-0-56">56</a></span>
+<span class="normal"><a href="#__codelineno-0-57">57</a></span>
+<span class="normal"><a href="#__codelineno-0-58">58</a></span>
+<span class="normal"><a href="#__codelineno-0-59">59</a></span>
+<span class="normal"><a href="#__codelineno-0-60">60</a></span>
+<span class="normal"><a href="#__codelineno-0-61">61</a></span>
+<span class="normal"><a href="#__codelineno-0-62">62</a></span>
+<span class="normal"><a href="#__codelineno-0-63">63</a></span>
+<span class="normal"><a href="#__codelineno-0-64">64</a></span>
+<span class="normal"><a href="#__codelineno-0-65">65</a></span>
+<span class="normal"><a href="#__codelineno-0-66">66</a></span>
+<span class="normal"><a href="#__codelineno-0-67">67</a></span>
+<span class="normal"><a href="#__codelineno-0-68">68</a></span>
+<span class="normal"><a href="#__codelineno-0-69">69</a></span>
+<span class="normal"><a href="#__codelineno-0-70">70</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a>    <span class="n">i</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a>    <span class="n">g</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a>    <span class="n">data_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;q&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a>    <span class="n">mt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a>    <span class="n">perc</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a>    <span class="n">frac</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a>    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;udd&#39;</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="p">):</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">    Initialize fractional commutation functions.</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="sd">    :param i: Interest rate.</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="sd">    :param g: Growth rate.</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="sd">    :param data_type: Mortality data type.</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="sd">    :param mt: Mortality table.</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="sd">    :param perc: Percentage scaling.</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="sd">    :param frac: Number of fractional intervals per year.</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="sd">    :param method: Interpolation method.</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a>    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">data_type</span><span class="p">,</span> <span class="n">mt</span><span class="p">,</span> <span class="n">perc</span><span class="p">,</span> <span class="n">app_cont</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a>    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">methods</span><span class="p">:</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a>        <span class="k">return</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a>    <span class="k">if</span> <span class="n">frac</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frac</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a>        <span class="k">return</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">method</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__frac</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">frac</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__ages</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">frac</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a>    <span class="n">radical</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">100000.</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__lx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">npx</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__method</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ages</span><span class="p">])</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__lx_frac</span> <span class="o">*=</span> <span class="n">radical</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__px_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">npx</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">__frac</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__method</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ages</span><span class="p">])</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__qx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__px_frac</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__dx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lx_frac</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lx_frac</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__dx_frac</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__dx_frac</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>    <span class="c1"># Commutation Functions</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__Dx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lx_frac</span><span class="p">[:]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ages</span><span class="p">)</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__Nx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Dx_frac</span><span class="p">[</span><span class="n">x</span><span class="p">:])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ages</span><span class="p">))])</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__Sx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Nx_frac</span><span class="p">[</span><span class="n">x</span><span class="p">:])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ages</span><span class="p">))])</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__Cx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dx_frac</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ages</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">__frac</span><span class="p">)</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__Mx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Cx_frac</span><span class="p">[</span><span class="n">x</span><span class="p">:])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ages</span><span class="p">))])</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__Rx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__Mx_frac</span><span class="p">[</span><span class="n">x</span><span class="p">:])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ages</span><span class="p">))])</span>
+</code></pre></div></td></tr></table></div>
+                  </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Cx_frac" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">Cx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Cx_frac" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Array of Cx values at fractional ages.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Dx_frac" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">Dx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Dx_frac" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Array of Dx values at fractional ages.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Mx_frac" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">Mx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Mx_frac" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Array of Mx values at fractional ages.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Nx_frac" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">Nx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Nx_frac" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Array of Nx values at fractional ages.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Rx_frac" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">Rx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Rx_frac" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Array of Rx values at fractional ages.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Sx_frac" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">Sx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.Sx_frac" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Array of Sx values at fractional ages.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.ages" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ages</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.ages" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Array of fractional ages.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.dx_frac" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.dx_frac" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Array of dx values at fractional ages.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.frac" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">frac</span><span class="p">:</span> <span class="nb">int</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.frac" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Number of fractional intervals per year.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.lx_frac" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.lx_frac" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Array of lx values at fractional ages.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.method" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">method</span><span class="p">:</span> <span class="nb">str</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.method" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Interpolation method for fractional ages.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.px_frac" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">px_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.px_frac" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Array of px values at fractional ages.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.qx_frac" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">qx_frac</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.qx_frac" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Array of qx values at fractional ages.</p>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.__repr__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__repr__</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.__repr__" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>String representation of the object.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>lifeActuary/commutation_table_frac.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-72">72</a></span>
+<span class="normal"><a href="#__codelineno-0-73">73</a></span>
+<span class="normal"><a href="#__codelineno-0-74">74</a></span>
+<span class="normal"><a href="#__codelineno-0-75">75</a></span>
+<span class="normal"><a href="#__codelineno-0-76">76</a></span>
+<span class="normal"><a href="#__codelineno-0-77">77</a></span>
+<span class="normal"><a href="#__codelineno-0-78">78</a></span>
+<span class="normal"><a href="#__codelineno-0-79">79</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">    String representation of the object.</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>    <span class="k">return</span> <span class="p">(</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a>        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a>        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">data_type</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">mt</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">perc</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">frac</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2"> &quot;</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>    <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.age_to_index" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">age_to_index</span><span class="p">(</span><span class="n">age_int</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">age_frac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span></code>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.age_to_index" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the index for a specific age (integer part and fractional part)
+to use with the fractional commutation vectors.</p>
+<p>:param age_int: Integer part of age.
+:param age_frac: Fractional part of age (0 &lt;= age_frac &lt; 1).
+:return: Index in the fractional age arrays, or np.nan if invalid.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>lifeActuary/commutation_table_frac.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-212">212</a></span>
+<span class="normal"><a href="#__codelineno-0-213">213</a></span>
+<span class="normal"><a href="#__codelineno-0-214">214</a></span>
+<span class="normal"><a href="#__codelineno-0-215">215</a></span>
+<span class="normal"><a href="#__codelineno-0-216">216</a></span>
+<span class="normal"><a href="#__codelineno-0-217">217</a></span>
+<span class="normal"><a href="#__codelineno-0-218">218</a></span>
+<span class="normal"><a href="#__codelineno-0-219">219</a></span>
+<span class="normal"><a href="#__codelineno-0-220">220</a></span>
+<span class="normal"><a href="#__codelineno-0-221">221</a></span>
+<span class="normal"><a href="#__codelineno-0-222">222</a></span>
+<span class="normal"><a href="#__codelineno-0-223">223</a></span>
+<span class="normal"><a href="#__codelineno-0-224">224</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-212" name="__codelineno-0-212"></a><span class="k">def</span><span class="w"> </span><span class="nf">age_to_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age_int</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">age_frac</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">:</span>
+<a id="__codelineno-0-213" name="__codelineno-0-213"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-214" name="__codelineno-0-214"></a><span class="sd">    Get the index for a specific age (integer part and fractional part)</span>
+<a id="__codelineno-0-215" name="__codelineno-0-215"></a><span class="sd">    to use with the fractional commutation vectors.</span>
+<a id="__codelineno-0-216" name="__codelineno-0-216"></a>
+<a id="__codelineno-0-217" name="__codelineno-0-217"></a><span class="sd">    :param age_int: Integer part of age.</span>
+<a id="__codelineno-0-218" name="__codelineno-0-218"></a><span class="sd">    :param age_frac: Fractional part of age (0 &lt;= age_frac &lt; 1).</span>
+<a id="__codelineno-0-219" name="__codelineno-0-219"></a><span class="sd">    :return: Index in the fractional age arrays, or np.nan if invalid.</span>
+<a id="__codelineno-0-220" name="__codelineno-0-220"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-221" name="__codelineno-0-221"></a>    <span class="n">parts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">age_frac</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">frac</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-0-222" name="__codelineno-0-222"></a>    <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">==</span> <span class="n">parts</span> <span class="ow">and</span> <span class="n">age_int</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">age_int</span><span class="p">):</span>
+<a id="__codelineno-0-223" name="__codelineno-0-223"></a>        <span class="k">return</span> <span class="nb">int</span><span class="p">((</span><span class="n">age_int</span> <span class="o">+</span> <span class="n">age_frac</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__frac</span><span class="p">)</span>
+<a id="__codelineno-0-224" name="__codelineno-0-224"></a>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="lifeActuary.commutation_table_frac.CommutationFunctionsFrac.df_commutation_table_frac" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">df_commutation_table_frac</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span></code>
+
+<a href="#lifeActuary.commutation_table_frac.CommutationFunctionsFrac.df_commutation_table_frac" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns a pandas DataFrame containing the fractional commutation table.</p>
+<p>:return: DataFrame with columns for ages, lx, dx, qx, px, Dx, Nx, Sx, Cx, Mx, Rx.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>lifeActuary/commutation_table_frac.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-0-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-0-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-0-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-0-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-0-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-0-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-0-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-0-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-0-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-0-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span>
+<span class="normal"><a href="#__codelineno-0-102">102</a></span>
+<span class="normal"><a href="#__codelineno-0-103">103</a></span>
+<span class="normal"><a href="#__codelineno-0-104">104</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="k">def</span><span class="w"> </span><span class="nf">df_commutation_table_frac</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a><span class="sd">    Returns a pandas DataFrame containing the fractional commutation table.</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a><span class="sd">    :return: DataFrame with columns for ages, lx, dx, qx, px, Dx, Nx, Sx, Cx, Mx, Rx.</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a>    <span class="n">data1</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>        <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__ages</span><span class="p">,</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>        <span class="s1">&#39;lx&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lx_frac</span><span class="p">[:],</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>        <span class="s1">&#39;dx&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dx_frac</span><span class="p">,</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>        <span class="s1">&#39;qx&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__qx_frac</span><span class="p">,</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>        <span class="s1">&#39;px&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__px_frac</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>    <span class="p">}</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>    <span class="n">data2</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>        <span class="s1">&#39;Dx&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Dx_frac</span><span class="p">,</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a>        <span class="s1">&#39;Nx&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Nx_frac</span><span class="p">,</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a>        <span class="s1">&#39;Sx&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Sx_frac</span><span class="p">,</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a>        <span class="s1">&#39;Cx&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Cx_frac</span><span class="p">,</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a>        <span class="s1">&#39;Mx&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Mx_frac</span><span class="p">,</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a>        <span class="s1">&#39;Rx&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">__Rx_frac</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>    <span class="p">}</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a>    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">data1</span><span class="p">,</span> <span class="o">**</span><span class="n">data2</span><span class="p">}</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a>    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The commutation_table_frac module extends traditional commutation functions to handle fractional ages and fractional payment frequencies. This provides more precise calculations for real-world scenarios where ages and payment times are not restricted to integer values.</p>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Fractional Ages</strong>: Calculations for any fractional age (e.g., 30.5, 45.25)</li>
+<li><strong>Fractional Payments</strong>: Support for monthly, quarterly, and other payment frequencies</li>
+<li><strong>Enhanced Precision</strong>: More accurate calculations for intermediate time points</li>
+<li><strong>Continuous Limits</strong>: Approximations for continuous payment streams</li>
+</ul>
+<h2 id="basic-fractional-commutation-functions">Basic Fractional Commutation Functions<a class="headerlink" href="#basic-fractional-commutation-functions" title="Permanent link">&para;</a></h2>
+<h3 id="fractional-commutation-symbols">Fractional Commutation Symbols<a class="headerlink" href="#fractional-commutation-symbols" title="Permanent link">&para;</a></h3>
+<h4 id="class-commutationfunctionsfraci-g0-data_typeq-mtnone-perc100-fraction12">Class: <code>CommutationFunctionsFrac(i, g=0, data_type='q', mt=None, perc=100, fraction=12)</code><a class="headerlink" href="#class-commutationfunctionsfraci-g0-data_typeq-mtnone-perc100-fraction12" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary.commutation_table_frac</span><span class="w"> </span><span class="kn">import</span> <span class="n">CommutationFunctionsFrac</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Create fractional commutation table with monthly divisions</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">qx_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">ct_frac</span> <span class="o">=</span> <span class="n">CommutationFunctionsFrac</span><span class="p">(</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>          <span class="c1"># 5% annual interest</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">g</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>          <span class="c1"># No benefit growth</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> 
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">mt</span><span class="o">=</span><span class="n">qx_values</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">fraction</span><span class="o">=</span><span class="mi">12</span>   <span class="c1"># Monthly calculations</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># Access fractional commutation values</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;D_30: </span><span class="si">{</span><span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;D_30.5: </span><span class="si">{</span><span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="mf">30.5</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Mid-year value</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;N_30: </span><span class="si">{</span><span class="n">ct_frac</span><span class="o">.</span><span class="n">Nx</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;C_30.25: </span><span class="si">{</span><span class="n">ct_frac</span><span class="o">.</span><span class="n">Cx</span><span class="p">(</span><span class="mf">30.25</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Quarterly point</span>
+</code></pre></div>
+<h3 id="enhanced-precision-calculations">Enhanced Precision Calculations<a class="headerlink" href="#enhanced-precision-calculations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Compare standard vs. fractional precision</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary.commutation_table</span><span class="w"> </span><span class="kn">import</span> <span class="n">CommutationFunctions</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Standard annual commutation table</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">ct_annual</span> <span class="o">=</span> <span class="n">CommutationFunctions</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">qx_values</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Fractional commutation table</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">ct_monthly</span> <span class="o">=</span> <span class="n">CommutationFunctionsFrac</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">qx_values</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Compare annuity calculations</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">annual_annuity</span> <span class="o">=</span> <span class="n">ct_annual</span><span class="o">.</span><span class="n">Nx</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span> <span class="o">/</span> <span class="n">ct_annual</span><span class="o">.</span><span class="n">Dx</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">monthly_annuity</span> <span class="o">=</span> <span class="n">ct_monthly</span><span class="o">.</span><span class="n">Nx</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct_monthly</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annual calculation: </span><span class="si">{</span><span class="n">annual_annuity</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Monthly calculation: </span><span class="si">{</span><span class="n">monthly_annuity</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Difference: </span><span class="si">{</span><span class="n">monthly_annuity</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">annual_annuity</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="fractional-age-applications">Fractional Age Applications<a class="headerlink" href="#fractional-age-applications" title="Permanent link">&para;</a></h2>
+<h3 id="mid-year-policy-issues">Mid-Year Policy Issues<a class="headerlink" href="#mid-year-policy-issues" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Insurance issued at mid-year</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">issue_age</span> <span class="o">=</span> <span class="mf">35.5</span>  <span class="c1"># Age 35 and 6 months</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">term_years</span> <span class="o">=</span> <span class="mi">20</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># Calculate insurance values at fractional age</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">whole_life_frac</span> <span class="o">=</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Mx</span><span class="p">(</span><span class="n">issue_age</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="n">issue_age</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">term_insurance_frac</span> <span class="o">=</span> <span class="p">(</span><span class="n">ct_frac</span><span class="o">.</span><span class="n">Mx</span><span class="p">(</span><span class="n">issue_age</span><span class="p">)</span> <span class="o">-</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Mx</span><span class="p">(</span><span class="n">issue_age</span> <span class="o">+</span> <span class="n">term_years</span><span class="p">))</span> <span class="o">/</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="n">issue_age</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Whole life insurance at age </span><span class="si">{</span><span class="n">issue_age</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">whole_life_frac</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">term_years</span><span class="si">}</span><span class="s2">-year term at age </span><span class="si">{</span><span class="n">issue_age</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">term_insurance_frac</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1"># Compare with integer ages</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">whole_life_35</span> <span class="o">=</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Mx</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">whole_life_36</span> <span class="o">=</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Mx</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Whole life at age 35: </span><span class="si">{</span><span class="n">whole_life_35</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Whole life at age 36: </span><span class="si">{</span><span class="n">whole_life_36</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fractional interpolation accurate: </span><span class="si">{</span><span class="n">whole_life_35</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">whole_life_frac</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">whole_life_36</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="quarterly-premium-calculations">Quarterly Premium Calculations<a class="headerlink" href="#quarterly-premium-calculations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Calculate quarterly premiums</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">coverage_amount</span> <span class="o">=</span> <span class="mi">100000</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">quarterly_frequency</span> <span class="o">=</span> <span class="mi">4</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># EPV of quarterly-paid insurance</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">quarterly_insurance</span> <span class="o">=</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Mx</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">*</span> <span class="n">coverage_amount</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># EPV of quarterly premium annuity</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">quarterly_annuity</span> <span class="o">=</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Nx</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1"># Adjust for quarterly payment frequency</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">quarterly_premium</span> <span class="o">=</span> <span class="n">quarterly_insurance</span> <span class="o">/</span> <span class="p">(</span><span class="n">quarterly_annuity</span> <span class="o">/</span> <span class="n">quarterly_frequency</span><span class="p">)</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Quarterly premium: $</span><span class="si">{</span><span class="n">quarterly_premium</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annual equivalent: $</span><span class="si">{</span><span class="n">quarterly_premium</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">quarterly_frequency</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="advanced-fractional-calculations">Advanced Fractional Calculations<a class="headerlink" href="#advanced-fractional-calculations" title="Permanent link">&para;</a></h2>
+<h3 id="variable-payment-timing">Variable Payment Timing<a class="headerlink" href="#variable-payment-timing" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Calculate values for irregular payment timing</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">payment_times</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]</span>  <span class="c1"># Irregular schedule</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">custom_annuity_value</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">payment_times</span><span class="p">,</span> <span class="n">annual_benefit</span><span class="p">):</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Calculate annuity with custom payment timing&quot;&quot;&quot;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">total_pv</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">payment_times</span><span class="p">:</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>        <span class="k">if</span> <span class="n">x</span> <span class="o">+</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="n">ct</span><span class="o">.</span><span class="n">w</span><span class="p">:</span>  <span class="c1"># Within mortality table range</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>            <span class="n">survival_discount</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>            <span class="n">payment_pv</span> <span class="o">=</span> <span class="n">annual_benefit</span> <span class="o">*</span> <span class="n">survival_discount</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>            <span class="n">total_pv</span> <span class="o">+=</span> <span class="n">payment_pv</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="k">return</span> <span class="n">total_pv</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="n">custom_value</span> <span class="o">=</span> <span class="n">custom_annuity_value</span><span class="p">(</span><span class="n">ct_frac</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">payment_times</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Custom timing annuity value: $</span><span class="si">{</span><span class="n">custom_value</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="continuous-payment-approximation">Continuous Payment Approximation<a class="headerlink" href="#continuous-payment-approximation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Approximate continuous payments using fine divisions</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">fine_fraction</span> <span class="o">=</span> <span class="mi">365</span>  <span class="c1"># Daily calculations</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">ct_daily</span> <span class="o">=</span> <span class="n">CommutationFunctionsFrac</span><span class="p">(</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">qx_values</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="n">fine_fraction</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># Very frequent payment approximation</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="n">daily_annuity</span> <span class="o">=</span> <span class="n">ct_daily</span><span class="o">.</span><span class="n">Nx</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct_daily</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Daily payment approximation: </span><span class="si">{</span><span class="n">daily_annuity</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1"># Theoretical continuous limit</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="c1"># For comparison with analytical continuous formulas</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">annuities</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="n">discrete_annual</span> <span class="o">=</span> <span class="n">annuities</span><span class="o">.</span><span class="n">ax</span><span class="p">(</span><span class="n">ct_annual</span><span class="o">.</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annual discrete: </span><span class="si">{</span><span class="n">discrete_annual</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Daily approximation: </span><span class="si">{</span><span class="n">daily_annuity</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Continuous effect: </span><span class="si">{</span><span class="n">daily_annuity</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">discrete_annual</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="practical-applications">Practical Applications<a class="headerlink" href="#practical-applications" title="Permanent link">&para;</a></h2>
+<h3 id="universal-life-insurance">Universal Life Insurance<a class="headerlink" href="#universal-life-insurance" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Universal life with flexible premiums and fractional calculations</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">policy_age</span> <span class="o">=</span> <span class="mf">40.25</span>  <span class="c1"># Policy issued quarterly</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">target_premium</span> <span class="o">=</span> <span class="mi">2500</span>  <span class="c1"># Annual target</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">admin_frequency</span> <span class="o">=</span> <span class="mi">12</span>   <span class="c1"># Monthly administration</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1"># Cost of insurance calculation</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">monthly_coi_rate</span> <span class="o">=</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Cx</span><span class="p">(</span><span class="n">policy_age</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="n">policy_age</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">annual_coi_rate</span> <span class="o">=</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Mx</span><span class="p">(</span><span class="n">policy_age</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="n">policy_age</span><span class="p">)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Monthly COI rate: </span><span class="si">{</span><span class="n">monthly_coi_rate</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annual COI rate: </span><span class="si">{</span><span class="n">annual_coi_rate</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ratio: </span><span class="si">{</span><span class="n">monthly_coi_rate</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">annual_coi_rate</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="c1"># Premium allocation with monthly deductions</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="n">monthly_premium</span> <span class="o">=</span> <span class="n">target_premium</span> <span class="o">/</span> <span class="mi">12</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="n">monthly_cost</span> <span class="o">=</span> <span class="n">coverage_amount</span> <span class="o">*</span> <span class="n">monthly_coi_rate</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="n">net_to_account</span> <span class="o">=</span> <span class="n">monthly_premium</span> <span class="o">-</span> <span class="n">monthly_cost</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Monthly premium: $</span><span class="si">{</span><span class="n">monthly_premium</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Monthly cost: $</span><span class="si">{</span><span class="n">monthly_cost</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Net to account: $</span><span class="si">{</span><span class="n">net_to_account</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="pension-calculations-with-fractional-service">Pension Calculations with Fractional Service<a class="headerlink" href="#pension-calculations-with-fractional-service" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Pension calculation with fractional years of service</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">entry_age</span> <span class="o">=</span> <span class="mf">25.75</span>   <span class="c1"># Started mid-year</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">retirement_age</span> <span class="o">=</span> <span class="mi">65</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">service_years</span> <span class="o">=</span> <span class="n">retirement_age</span> <span class="o">-</span> <span class="n">entry_age</span>  <span class="c1"># Fractional service</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># Final average salary pension</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">final_salary</span> <span class="o">=</span> <span class="mi">75000</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">benefit_rate</span> <span class="o">=</span> <span class="mf">0.02</span>  <span class="c1"># 2% per year of service</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">annual_pension</span> <span class="o">=</span> <span class="n">final_salary</span> <span class="o">*</span> <span class="n">benefit_rate</span> <span class="o">*</span> <span class="n">service_years</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="c1"># Present value of pension</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="n">pension_annuity_factor</span> <span class="o">=</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Nx</span><span class="p">(</span><span class="n">retirement_age</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="n">entry_age</span><span class="p">)</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="n">pension_present_value</span> <span class="o">=</span> <span class="n">annual_pension</span> <span class="o">*</span> <span class="n">pension_annuity_factor</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Service years: </span><span class="si">{</span><span class="n">service_years</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annual pension: $</span><span class="si">{</span><span class="n">annual_pension</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Present value: $</span><span class="si">{</span><span class="n">pension_present_value</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="group-insurance-with-staggered-entries">Group Insurance with Staggered Entries<a class="headerlink" href="#group-insurance-with-staggered-entries" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Group insurance with members entering throughout the year</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">group_members</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="p">{</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mf">28.25</span><span class="p">,</span> <span class="s1">&#39;coverage&#39;</span><span class="p">:</span> <span class="mi">50000</span><span class="p">},</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="p">{</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mf">32.75</span><span class="p">,</span> <span class="s1">&#39;coverage&#39;</span><span class="p">:</span> <span class="mi">75000</span><span class="p">},</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="p">{</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mf">45.5</span><span class="p">,</span> <span class="s1">&#39;coverage&#39;</span><span class="p">:</span> <span class="mi">100000</span><span class="p">},</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="p">{</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mf">38.1</span><span class="p">,</span> <span class="s1">&#39;coverage&#39;</span><span class="p">:</span> <span class="mi">60000</span><span class="p">}</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">]</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">total_premium</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">group_members</span><span class="p">:</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="n">age</span> <span class="o">=</span> <span class="n">member</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="n">coverage</span> <span class="o">=</span> <span class="n">member</span><span class="p">[</span><span class="s1">&#39;coverage&#39;</span><span class="p">]</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>    <span class="c1"># Insurance premium using fractional age</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>    <span class="n">insurance_rate</span> <span class="o">=</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Mx</span><span class="p">(</span><span class="n">age</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>    <span class="n">member_premium</span> <span class="o">=</span> <span class="n">coverage</span> <span class="o">*</span> <span class="n">insurance_rate</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>    <span class="n">total_premium</span> <span class="o">+=</span> <span class="n">member_premium</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Age </span><span class="si">{</span><span class="n">age</span><span class="si">:</span><span class="s2">5.2f</span><span class="si">}</span><span class="s2">: $</span><span class="si">{</span><span class="n">member_premium</span><span class="si">:</span><span class="s2">8.2f</span><span class="si">}</span><span class="s2"> for $</span><span class="si">{</span><span class="n">coverage</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> coverage&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total group premium: $</span><span class="si">{</span><span class="n">total_premium</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="computational-considerations">Computational Considerations<a class="headerlink" href="#computational-considerations" title="Permanent link">&para;</a></h2>
+<h3 id="memory-and-performance">Memory and Performance<a class="headerlink" href="#memory-and-performance" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Compare computational requirements</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Timing comparison</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>    <span class="n">value</span> <span class="o">=</span> <span class="n">ct_annual</span><span class="o">.</span><span class="n">Nx</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span> <span class="o">/</span> <span class="n">ct_annual</span><span class="o">.</span><span class="n">Dx</span><span class="p">[</span><span class="mi">30</span><span class="p">]</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="n">annual_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    <span class="n">value</span> <span class="o">=</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Nx</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="n">fractional_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annual table: </span><span class="si">{</span><span class="n">annual_time</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fractional table: </span><span class="si">{</span><span class="n">fractional_time</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Speed ratio: </span><span class="si">{</span><span class="n">fractional_time</span><span class="o">/</span><span class="n">annual_time</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">x&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="accuracy-vs-performance-trade-offs">Accuracy vs. Performance Trade-offs<a class="headerlink" href="#accuracy-vs-performance-trade-offs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Compare different fractional divisions</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">fractions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">365</span><span class="p">]</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">test_age</span> <span class="o">=</span> <span class="mi">30</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy vs. Performance Analysis:&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fraction | Annuity Value | Computation&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="k">for</span> <span class="n">frac</span> <span class="ow">in</span> <span class="n">fractions</span><span class="p">:</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>    <span class="k">if</span> <span class="n">frac</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>        <span class="n">ct</span> <span class="o">=</span> <span class="n">CommutationFunctions</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">qx_values</span><span class="p">)</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>        <span class="n">value</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nx</span><span class="p">[</span><span class="n">test_age</span><span class="p">]</span> <span class="o">/</span> <span class="n">ct</span><span class="o">.</span><span class="n">Dx</span><span class="p">[</span><span class="n">test_age</span><span class="p">]</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>        <span class="n">ct</span> <span class="o">=</span> <span class="n">CommutationFunctionsFrac</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">qx_values</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="n">frac</span><span class="p">)</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>        <span class="n">value</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">Nx</span><span class="p">(</span><span class="n">test_age</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="n">test_age</span><span class="p">)</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">frac</span><span class="si">:</span><span class="s2">8d</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">13.6f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="s1">&#39;Fast&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">frac</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;Slow&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="validation-and-testing">Validation and Testing<a class="headerlink" href="#validation-and-testing" title="Permanent link">&para;</a></h2>
+<h3 id="consistency-checks">Consistency Checks<a class="headerlink" href="#consistency-checks" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># Verify consistency between annual and fractional methods</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">test_ages</span> <span class="o">=</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Consistency Verification:&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Age | Annual   | Fractional | Difference&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">45</span><span class="p">)</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">for</span> <span class="n">age</span> <span class="ow">in</span> <span class="n">test_ages</span><span class="p">:</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="k">if</span> <span class="n">age</span> <span class="o">&lt;=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">qx_values</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">w</span><span class="p">):</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>        <span class="n">annual_val</span> <span class="o">=</span> <span class="n">ct_annual</span><span class="o">.</span><span class="n">Nx</span><span class="p">[</span><span class="n">age</span><span class="p">]</span> <span class="o">/</span> <span class="n">ct_annual</span><span class="o">.</span><span class="n">Dx</span><span class="p">[</span><span class="n">age</span><span class="p">]</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>        <span class="n">frac_val</span> <span class="o">=</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Nx</span><span class="p">(</span><span class="n">age</span><span class="p">)</span> <span class="o">/</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>        <span class="n">diff</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">frac_val</span> <span class="o">-</span> <span class="n">annual_val</span><span class="p">)</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">age</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">annual_val</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">frac_val</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">diff</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="interpolation-accuracy">Interpolation Accuracy<a class="headerlink" href="#interpolation-accuracy" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Test interpolation accuracy at fractional ages</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">base_age</span> <span class="o">=</span> <span class="mi">35</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">frac_age</span> <span class="o">=</span> <span class="mf">35.5</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1"># Linear interpolation expectation</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="n">linear_approx</span> <span class="o">=</span> <span class="p">(</span><span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span> <span class="o">+</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="mi">36</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="n">actual_frac</span> <span class="o">=</span> <span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="mf">35.5</span><span class="p">)</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;D_35: </span><span class="si">{</span><span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;D_36: </span><span class="si">{</span><span class="n">ct_frac</span><span class="o">.</span><span class="n">Dx</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;D_35.5 (actual): </span><span class="si">{</span><span class="n">actual_frac</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;D_35.5 (linear): </span><span class="si">{</span><span class="n">linear_approx</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Interpolation accuracy: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">actual_frac</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">linear_approx</span><span class="p">)</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="usage-tips">Usage Tips<a class="headerlink" href="#usage-tips" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Fraction Selection</strong>: Use 12 for monthly, 4 for quarterly calculations</li>
+<li><strong>Performance</strong>: Higher fractions require more computation time</li>
+<li><strong>Accuracy</strong>: Fractional tables provide better interpolation than linear approximation  </li>
+<li><strong>Memory Usage</strong>: Fractional tables use more memory than annual tables</li>
+<li><strong>Applications</strong>: Essential for mid-year issues and flexible products</li>
+<li><strong>Validation</strong>: Always verify against annual calculations for integer ages</li>
+<li><strong>Precision</strong>: Use appropriate precision for the application (monthly often sufficient)</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../commutation_table/" class="btn btn-neutral float-left" title="Commutation Tables"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../life_2heads/" class="btn btn-neutral float-right" title="Two Lives Functions">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/parcr/lifeactuary" class="fa fa-code-fork" style="color: #fcfcfc"> parcr/lifeactuary</a>
+        </span>
+    
+    
+      <span><a href="../commutation_table/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../life_2heads/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

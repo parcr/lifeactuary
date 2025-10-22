@@ -1,0 +1,108 @@
+site_name: lifeActuary Documentation
+site_description: Python library for actuarial mathematics on life contingencies and financial mathematics
+site_author: PedroCR
+site_url: https://your-site-url.github.io/lifeactuary
+
+repo_name: parcr/lifeactuary
+repo_url: https://github.com/parcr/lifeactuary
+
+docs_dir: content
+site_dir: ../site
+
+nav:
+  - Home: index.md
+  - User Guide:
+    - Installation: user-guide/installation.md
+    - Quick Start: user-guide/quick-start.md
+    - Tutorials: user-guide/tutorials.md
+  - API Reference:
+    - Mortality Tables: api/mortality_table.md
+    - Life Annuities: api/annuities.md
+    - Annuities Certain: api/annuities_certain.md
+    - Annuities Random Variables: api/annuities_rv.md
+    - Life Insurance: api/mortality_insurance.md
+    - Life Insurance (Fractional): api/mortality_insurance_frac.md
+    - Mortality Random Variables: api/mortality_rv.md
+    - Commutation Tables: api/commutation_table.md
+    - Commutation Tables (Fractional): api/commutation_table_frac.md
+    - Two Lives Functions: api/life_2heads.md
+    - Two Lives Mortality Tables: api/mortality_table_2heads.md
+  - Examples:
+    - Basic Examples: examples/basic.md
+    - Advanced Examples: examples/advanced.md
+    - SOA Tables: examples/soa_tables.md
+  - About:
+    - Release Notes: about/release-notes.md
+    - License: about/license.md
+
+theme:
+  # name: material
+  name: readthedocs  # Material theme for better visual presentation
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [".."]
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+            show_root_toc_entry: false
+            merge_init_into_class: true
+            show_signature_annotations: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.arithmatex:
+      generic: true
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra:
+  version:
+    provider: mike
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/parcr/lifeactuary

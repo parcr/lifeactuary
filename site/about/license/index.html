@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="PedroCR" /><link rel="canonical" href="https://your-site-url.github.io/lifeactuary/about/license/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>License - lifeActuary Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "License";
+        var mkdocs_page_input_path = "about/license.md";
+        var mkdocs_page_url = "/lifeactuary/about/license/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> lifeActuary Documentation
+        </a>
+        <div class="version">
+          {'provider': 'mike'}
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/tutorials/">Tutorials</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_table/">Mortality Tables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities/">Life Annuities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities_certain/">Annuities Certain</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/annuities_rv/">Annuities Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_insurance/">Life Insurance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_insurance_frac/">Life Insurance (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_rv/">Mortality Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/commutation_table/">Commutation Tables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/commutation_table_frac/">Commutation Tables (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/life_2heads/">Two Lives Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../api/mortality_table_2heads/">Two Lives Mortality Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/soa_tables/">SOA Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../release-notes/">Release Notes</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">License</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#mit-license">MIT License</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#disclaimer">Disclaimer</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#actuarial-calculations-notice">Actuarial Calculations Notice</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#professional-use-warning">Professional Use Warning</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#validation-required">Validation Required</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mortality-table-accuracy">Mortality Table Accuracy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#interest-rate-and-economic-assumptions">Interest Rate and Economic Assumptions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#regulatory-compliance">Regulatory Compliance</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#third-party-dependencies">Third-Party Dependencies</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#numpy">NumPy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pandas">Pandas</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#contributions">Contributions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#contributor-responsibilities">Contributor Responsibilities</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-sources-and-acknowledgments">Data Sources and Acknowledgments</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#soa-mortality-tables">SOA Mortality Tables</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#academic-and-research-use">Academic and Research Use</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#support-and-maintenance">Support and Maintenance</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#no-warranty">No Warranty</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#community-support">Community Support</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#international-use">International Use</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#jurisdiction">Jurisdiction</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#currency-and-economic-context">Currency and Economic Context</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#version-and-updates">Version and Updates</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#license-application">License Application</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#license-changes">License Changes</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">lifeActuary Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">About</li>
+      <li class="breadcrumb-item active">License</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/parcr/lifeactuary/edit/master/docs/about/license.md">Edit on parcr/lifeactuary</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h1>
+<h2 id="mit-license">MIT License<a class="headerlink" href="#mit-license" title="Permanent link">&para;</a></h2>
+<p>Copyright (c) 2023 PedroCR</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+<h2 id="disclaimer">Disclaimer<a class="headerlink" href="#disclaimer" title="Permanent link">&para;</a></h2>
+<p><strong>IMPORTANT DISCLAIMER</strong></p>
+<p>This package and functions herein are provided as is, without any guarantee regarding the accuracy of calculations. The package is distributed using the MIT License and the authors disclaim any liability arising by any losses due to direct or indirect use of this package.</p>
+<h3 id="actuarial-calculations-notice">Actuarial Calculations Notice<a class="headerlink" href="#actuarial-calculations-notice" title="Permanent link">&para;</a></h3>
+<p>The calculations provided by this software are intended for:</p>
+<ul>
+<li>Educational purposes</li>
+<li>Research and development</li>
+<li>Preliminary analysis and planning</li>
+<li>Academic study of actuarial mathematics</li>
+</ul>
+<h3 id="professional-use-warning">Professional Use Warning<a class="headerlink" href="#professional-use-warning" title="Permanent link">&para;</a></h3>
+<p><strong>This software should not be used as the sole basis for:</strong></p>
+<ul>
+<li>Setting insurance premiums</li>
+<li>Determining pension liabilities</li>
+<li>Making investment decisions</li>
+<li>Regulatory reporting</li>
+<li>Final actuarial valuations</li>
+</ul>
+<h3 id="validation-required">Validation Required<a class="headerlink" href="#validation-required" title="Permanent link">&para;</a></h3>
+<p>Users are strongly encouraged to:</p>
+<ol>
+<li><strong>Validate Results</strong>: Compare calculations with established actuarial software</li>
+<li><strong>Professional Review</strong>: Have calculations reviewed by qualified actuaries</li>
+<li><strong>Multiple Methods</strong>: Use multiple calculation approaches for verification</li>
+<li><strong>Testing</strong>: Perform extensive testing before using in production environments</li>
+<li><strong>Documentation</strong>: Maintain detailed documentation of assumptions and methods</li>
+</ol>
+<h3 id="mortality-table-accuracy">Mortality Table Accuracy<a class="headerlink" href="#mortality-table-accuracy" title="Permanent link">&para;</a></h3>
+<p>While the package includes support for SOA (Society of Actuaries) mortality tables and other standard tables:</p>
+<ul>
+<li>Users are responsible for verifying table accuracy</li>
+<li>Tables may not reflect the most current mortality experience</li>
+<li>Appropriate mortality table selection is the user's responsibility</li>
+<li>Consider using updated tables for current applications</li>
+</ul>
+<h3 id="interest-rate-and-economic-assumptions">Interest Rate and Economic Assumptions<a class="headerlink" href="#interest-rate-and-economic-assumptions" title="Permanent link">&para;</a></h3>
+<p>The package performs calculations based on user-provided interest rates and economic assumptions:</p>
+<ul>
+<li>Users are responsible for selecting appropriate discount rates</li>
+<li>Economic assumptions should reflect current market conditions</li>
+<li>Consider stochastic approaches for comprehensive analysis</li>
+<li>Sensitivity testing is recommended</li>
+</ul>
+<h3 id="regulatory-compliance">Regulatory Compliance<a class="headerlink" href="#regulatory-compliance" title="Permanent link">&para;</a></h3>
+<p>This software does not guarantee compliance with:</p>
+<ul>
+<li>Insurance regulations</li>
+<li>Pension regulations</li>
+<li>Accounting standards (GAAP, IFRS, etc.)</li>
+<li>Actuarial standards of practice</li>
+<li>Statutory requirements</li>
+</ul>
+<p>Users must ensure their applications comply with applicable regulations and standards.</p>
+<h2 id="third-party-dependencies">Third-Party Dependencies<a class="headerlink" href="#third-party-dependencies" title="Permanent link">&para;</a></h2>
+<p>This software uses the following third-party libraries:</p>
+<h3 id="numpy">NumPy<a class="headerlink" href="#numpy" title="Permanent link">&para;</a></h3>
+<ul>
+<li>License: BSD License</li>
+<li>Copyright: NumPy Developers</li>
+<li>Used for: Numerical computations</li>
+</ul>
+<h3 id="pandas">Pandas<a class="headerlink" href="#pandas" title="Permanent link">&para;</a></h3>
+<ul>
+<li>License: BSD License  </li>
+<li>Copyright: Pandas Development Team</li>
+<li>Used for: Data manipulation</li>
+</ul>
+<p>These dependencies are subject to their own license terms and conditions.</p>
+<h2 id="contributions">Contributions<a class="headerlink" href="#contributions" title="Permanent link">&para;</a></h2>
+<p>By contributing to this project, contributors agree that their contributions will be licensed under the same MIT License that covers the project.</p>
+<h3 id="contributor-responsibilities">Contributor Responsibilities<a class="headerlink" href="#contributor-responsibilities" title="Permanent link">&para;</a></h3>
+<p>Contributors are expected to:</p>
+<ul>
+<li>Ensure code quality and testing</li>
+<li>Document their contributions appropriately</li>
+<li>Respect the existing code style and patterns</li>
+<li>Validate their contributions with appropriate test cases</li>
+</ul>
+<h2 id="data-sources-and-acknowledgments">Data Sources and Acknowledgments<a class="headerlink" href="#data-sources-and-acknowledgments" title="Permanent link">&para;</a></h2>
+<h3 id="soa-mortality-tables">SOA Mortality Tables<a class="headerlink" href="#soa-mortality-tables" title="Permanent link">&para;</a></h3>
+<p>The Society of Actuaries mortality tables included with this package are used with permission and acknowledgment to the SOA. Users should refer to the original SOA documentation for:</p>
+<ul>
+<li>Table construction methodology</li>
+<li>Appropriate use cases</li>
+<li>Limitations and assumptions</li>
+<li>Updates and revisions</li>
+</ul>
+<h3 id="academic-and-research-use">Academic and Research Use<a class="headerlink" href="#academic-and-research-use" title="Permanent link">&para;</a></h3>
+<p>This software may incorporate methodologies and algorithms from:</p>
+<ul>
+<li>Actuarial textbooks and academic papers</li>
+<li>Standard actuarial practice</li>
+<li>Published research in actuarial science</li>
+</ul>
+<p>Users are encouraged to cite appropriate sources when using this software in academic or research contexts.</p>
+<h2 id="support-and-maintenance">Support and Maintenance<a class="headerlink" href="#support-and-maintenance" title="Permanent link">&para;</a></h2>
+<h3 id="no-warranty">No Warranty<a class="headerlink" href="#no-warranty" title="Permanent link">&para;</a></h3>
+<p>The software is provided without warranty of any kind. The authors and contributors:</p>
+<ul>
+<li>Do not guarantee continued maintenance or support</li>
+<li>Are not responsible for fixing bugs or issues</li>
+<li>May not respond to support requests</li>
+<li>Do not guarantee compatibility with future versions</li>
+</ul>
+<h3 id="community-support">Community Support<a class="headerlink" href="#community-support" title="Permanent link">&para;</a></h3>
+<p>Support is primarily community-driven through:</p>
+<ul>
+<li>GitHub issues and discussions</li>
+<li>Community contributions and fixes</li>
+<li>Shared knowledge and examples</li>
+<li>Peer review and validation</li>
+</ul>
+<h2 id="international-use">International Use<a class="headerlink" href="#international-use" title="Permanent link">&para;</a></h2>
+<h3 id="jurisdiction">Jurisdiction<a class="headerlink" href="#jurisdiction" title="Permanent link">&para;</a></h3>
+<p>This license is governed by applicable copyright law. Users in different jurisdictions should:</p>
+<ul>
+<li>Verify compliance with local laws</li>
+<li>Understand their rights and responsibilities</li>
+<li>Consider local regulatory requirements</li>
+<li>Ensure appropriate professional oversight</li>
+</ul>
+<h3 id="currency-and-economic-context">Currency and Economic Context<a class="headerlink" href="#currency-and-economic-context" title="Permanent link">&para;</a></h3>
+<p>The software does not account for:</p>
+<ul>
+<li>Currency differences or conversions</li>
+<li>Country-specific economic conditions</li>
+<li>Local regulatory requirements</li>
+<li>Cultural or market-specific factors</li>
+</ul>
+<p>Users must adapt calculations to their specific context and requirements.</p>
+<h2 id="version-and-updates">Version and Updates<a class="headerlink" href="#version-and-updates" title="Permanent link">&para;</a></h2>
+<h3 id="license-application">License Application<a class="headerlink" href="#license-application" title="Permanent link">&para;</a></h3>
+<p>This license applies to:</p>
+<ul>
+<li>The current version of the software</li>
+<li>Future versions unless otherwise specified</li>
+<li>All associated documentation</li>
+<li>Example code and tutorials</li>
+</ul>
+<h3 id="license-changes">License Changes<a class="headerlink" href="#license-changes" title="Permanent link">&para;</a></h3>
+<p>The authors reserve the right to:</p>
+<ul>
+<li>Update license terms for future versions</li>
+<li>Apply different terms to specific components</li>
+<li>Grant additional permissions or restrictions</li>
+</ul>
+<p>Users should review license terms when updating to new versions.</p>
+<hr />
+<p><strong>By using this software, you acknowledge that you have read, understood, and agree to be bound by these license terms and disclaimers.</strong></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../release-notes/" class="btn btn-neutral float-left" title="Release Notes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/parcr/lifeactuary" class="fa fa-code-fork" style="color: #fcfcfc"> parcr/lifeactuary</a>
+        </span>
+    
+    
+      <span><a href="../release-notes/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

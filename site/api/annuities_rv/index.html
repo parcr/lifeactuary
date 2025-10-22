@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="PedroCR" /><link rel="canonical" href="https://your-site-url.github.io/lifeactuary/api/annuities_rv/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Annuities Random Variables - lifeActuary Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Annuities Random Variables";
+        var mkdocs_page_input_path = "api/annuities_rv.md";
+        var mkdocs_page_url = "/lifeactuary/api/annuities_rv/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> lifeActuary Documentation
+        </a>
+        <div class="version">
+          {'provider': 'mike'}
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/tutorials/">Tutorials</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../mortality_table/">Mortality Tables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../annuities/">Life Annuities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../annuities_certain/">Annuities Certain</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Annuities Random Variables</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#lifeActuary.annuities_rv">annuities_rv</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#lifeActuary.annuities_rv.gen_an">gen_an</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lifeActuary.annuities_rv.gen_axn">gen_axn</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-concepts">Key Concepts</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#actuarial-present-value-random-variable">Actuarial Present Value Random Variable</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#statistical-measures">Statistical Measures</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#basic-functions">Basic Functions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#whole-life-annuity-random-variable">Whole Life Annuity Random Variable</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#ax_n_rvmt-x-i-m1-methodudd">ax_n_rv(mt, x, i, m=1, method='udd')</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#temporary-annuity-random-variable">Temporary Annuity Random Variable</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#axt_n_rvmt-x-t-i-m1-methodudd">axt_n_rv(mt, x, t, i, m=1, method='udd')</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#detailed-distribution-analysis">Detailed Distribution Analysis</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#complete-distribution">Complete Distribution</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#annuity_distributionmt-x-i-tnone-m1-methodudd">annuity_distribution(mt, x, i, t=None, m=1, method='udd')</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#percentiles-and-risk-measures">Percentiles and Risk Measures</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#comparison-of-annuity-types">Comparison of Annuity Types</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#risk-comparison">Risk Comparison</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#impact-of-interest-rates">Impact of Interest Rates</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#monte-carlo-simulation">Monte Carlo Simulation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#simulation-verification">Simulation Verification</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#practical-applications">Practical Applications</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#pension-risk-management">Pension Risk Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reserve-requirements">Reserve Requirements</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mathematical-background">Mathematical Background</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#variance-formula">Variance Formula</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#relationship-to-insurance">Relationship to Insurance</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage-tips">Usage Tips</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mortality_insurance/">Life Insurance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mortality_insurance_frac/">Life Insurance (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mortality_rv/">Mortality Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commutation_table/">Commutation Tables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commutation_table_frac/">Commutation Tables (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../life_2heads/">Two Lives Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mortality_table_2heads/">Two Lives Mortality Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/soa_tables/">SOA Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/release-notes/">Release Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">lifeActuary Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">API Reference</li>
+      <li class="breadcrumb-item active">Annuities Random Variables</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/parcr/lifeactuary/edit/master/docs/api/annuities_rv.md">Edit on parcr/lifeactuary</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="annuities-random-variables">Annuities Random Variables<a class="headerlink" href="#annuities-random-variables" title="Permanent link">&para;</a></h1>
+<p>Statistical analysis of actuarial present value random variables for life annuities.</p>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="lifeActuary.annuities_rv" class="doc doc-heading">
+            <code>lifeActuary.annuities_rv</code>
+
+
+<a href="#lifeActuary.annuities_rv" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="lifeActuary.annuities_rv.gen_an" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">gen_an</span><span class="p">(</span><span class="n">interest_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">payments_moments</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">payments</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span></code>
+
+<a href="#lifeActuary.annuities_rv.gen_an" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Calculate the present value of an annuity certain given an interest rate and payment schedule.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>interest_rate</code></b>
+                  (<code><span title="float">float</span></code>, default:
+                      <code>0.0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Annual interest rate as a percentage (e.g., 5 for 5%).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>payments_moments</code></b>
+                  (<code><span title="list">list</span>[<span title="float">float</span>]</code>, default:
+                      <code>[0]</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Times (in years) when payments are made.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>payments</code></b>
+                  (<code><span title="list">list</span>[<span title="float">float</span>]</code>, default:
+                      <code>[1]</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Amounts of each payment.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>float</code></b>(                  <code><span title="float">float</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Present value of the annuity.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="quote">
+              <summary>Source code in <code>lifeActuary/annuities_rv.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">gen_an</span><span class="p">(</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="n">interest_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="n">payments_moments</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>    <span class="n">payments</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="sd">    Calculate the present value of an annuity certain given an interest rate and payment schedule.</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="sd">        interest_rate (float): Annual interest rate as a percentage (e.g., 5 for 5%).</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="sd">        payments_moments (list[float]): Times (in years) when payments are made.</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="sd">        payments (list[float]): Amounts of each payment.</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="sd">        float: Present value of the annuity.</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">payments_moments</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a>        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;payments_moments must be a list.&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">payments</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a>        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;payments must be a list.&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">payments_moments</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">payments</span><span class="p">):</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a>            <span class="s2">&quot;payments_moments and payments must have the same length.&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a>    <span class="n">int_rate</span> <span class="o">=</span> <span class="n">interest_rate</span> <span class="o">/</span> <span class="mf">100.0</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a>    <span class="n">an</span> <span class="o">=</span> <span class="p">[</span><span class="n">payments</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">int_rate</span><span class="p">)</span> <span class="o">**</span> <span class="n">moment</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a>          <span class="n">moment</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">payments_moments</span><span class="p">)]</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a>    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">an</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="lifeActuary.annuities_rv.gen_axn" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">gen_axn</span><span class="p">(</span><span class="n">mort_table</span><span class="p">:</span> <span class="n">mortality_table</span><span class="p">,</span> <span class="n">interest_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">payments_moments</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">payments</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">moment</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;udd&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span></code>
+
+<a href="#lifeActuary.annuities_rv.gen_axn" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Calculate the expected present value of an annuity contingent on survival, using a mortality table.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>mort_table</code></b>
+                  (<code><span title="lifeActuary.mortality_table">mortality_table</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Mortality table object with npx and nqx methods.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>interest_rate</code></b>
+                  (<code><span title="float">float</span></code>, default:
+                      <code>0.0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Annual interest rate as a percentage.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>payments_moments</code></b>
+                  (<code><span title="list">list</span>[<span title="float">float</span>]</code>, default:
+                      <code>[0]</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Times (in years) when payments are made.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>payments</code></b>
+                  (<code><span title="list">list</span>[<span title="float">float</span>]</code>, default:
+                      <code>[1]</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Amounts of each payment.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>x</code></b>
+                  (<code><span title="float">float</span></code>, default:
+                      <code>0.0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Age at start of annuity.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>moment</code></b>
+                  (<code><span title="float">float</span></code>, default:
+                      <code>1.0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Moment for calculation (typically 1 for mean).</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>float</code></b>(                  <code><span title="float">float</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Expected present value of the contingent annuity.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="quote">
+              <summary>Source code in <code>lifeActuary/annuities_rv.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-0-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-0-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-0-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-0-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-0-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-0-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-0-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-0-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-0-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-0-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-0-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-0-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-0-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-0-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-0-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-0-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-0-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-0-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-0-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-0-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-0-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-0-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-0-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-0-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-0-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-0-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-0-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-0-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-0-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-0-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-0-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-0-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-0-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-0-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-0-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-0-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-0-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-0-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-0-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-0-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-0-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-0-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-0-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-0-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-0-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-0-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-0-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-0-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-0-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-0-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-0-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-0-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="k">def</span><span class="w"> </span><span class="nf">gen_axn</span><span class="p">(</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a>    <span class="n">mort_table</span><span class="p">:</span> <span class="n">mortality_table</span><span class="p">,</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a>    <span class="n">interest_rate</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a>    <span class="n">payments_moments</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a>    <span class="n">payments</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a>    <span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a>    <span class="n">moment</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a>    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;udd&quot;</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="sd">    Calculate the expected present value of an annuity contingent on survival, using a mortality table.</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="sd">        mort_table (mortality_table): Mortality table object with npx and nqx methods.</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="sd">        interest_rate (float): Annual interest rate as a percentage.</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">        payments_moments (list[float]): Times (in years) when payments are made.</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="sd">        payments (list[float]): Amounts of each payment.</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">        x (float): Age at start of annuity.</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">        moment (float): Moment for calculation (typically 1 for mean).</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">        float: Expected present value of the contingent annuity.</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">payments_moments</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a>        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;payments_moments must be a list.&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">payments</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a>        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;payments must be a list.&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">payments_moments</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">payments</span><span class="p">):</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>            <span class="s2">&quot;payments_moments and payments must have the same length.&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="c1"># the case x is larger than the maximum age in the mortality table</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">mort_table</span><span class="o">.</span><span class="n">w</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>        <span class="k">if</span> <span class="mi">0</span> <span class="ow">in</span> <span class="n">payments_moments</span><span class="p">:</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>            <span class="k">return</span> <span class="n">payments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a>            <span class="k">return</span> <span class="mf">0.</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>    <span class="c1"># trim payments and moments to the maximum age in the mortality table</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a>    <span class="n">max_moment</span> <span class="o">=</span> <span class="n">mort_table</span><span class="o">.</span><span class="n">w</span> <span class="o">-</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="n">idx_m</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">payments_moments</span><span class="p">)</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a>                 <span class="k">if</span> <span class="n">m</span> <span class="o">&gt;</span> <span class="n">max_moment</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">payments_moments</span><span class="p">))</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">payments_moments</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">idx_m</span><span class="p">:</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a>        <span class="n">payments_moments</span> <span class="o">=</span> <span class="n">payments_moments</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">idx_m</span><span class="p">]</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>        <span class="n">payments</span> <span class="o">=</span> <span class="n">payments</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">idx_m</span><span class="p">]</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>    <span class="c1"># handle edge case where there are no payments</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">payments</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>        <span class="k">return</span> <span class="mf">0.</span>    
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a>    <span class="n">an</span> <span class="o">=</span> <span class="p">[</span><span class="n">gen_an</span><span class="p">(</span><span class="n">interest_rate</span><span class="p">,</span> <span class="n">payments_moments</span><span class="p">[</span><span class="mi">0</span><span class="p">:(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)],</span> <span class="n">payments</span><span class="p">[</span><span class="mi">0</span><span class="p">:(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)])</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a>          <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">payments_moments</span><span class="p">)]</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>    <span class="n">prob_surv</span> <span class="o">=</span> <span class="p">[</span><span class="n">mort_table</span><span class="o">.</span><span class="n">npx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">payments_moments</span><span class="p">]</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>    <span class="n">prob_surv_2</span> <span class="o">=</span> <span class="p">[</span><span class="n">prob_surv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">prob_surv</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>                   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prob_surv</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>    <span class="n">last_prob_surv</span> <span class="o">=</span> <span class="n">mort_table</span><span class="o">.</span><span class="n">npx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">payments_moments</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">method</span><span class="p">)</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>    <span class="n">prob_surv_2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">last_prob_surv</span><span class="p">)</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a>    <span class="n">first_prob_surv</span> <span class="o">=</span> <span class="n">mort_table</span><span class="o">.</span><span class="n">nqx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">payments_moments</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">method</span><span class="p">)</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a>    <span class="k">assert</span> <span class="nb">abs</span><span class="p">((</span><span class="nb">sum</span><span class="p">(</span><span class="n">prob_surv_2</span><span class="p">)</span> <span class="o">+</span> <span class="n">first_prob_surv</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">,</span> \
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a>        <span class="s2">&quot;Sum of survival probabilities should be 1 (within tolerance)&quot;</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a>    <span class="n">expected_liabilities</span> <span class="o">=</span> <span class="p">[</span><span class="n">an</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">**</span> <span class="n">moment</span> <span class="o">*</span> <span class="n">prob_surv_2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a>                            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">an</span><span class="p">))]</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a>    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">expected_liabilities</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The annuities_rv module provides tools for analyzing the random variable nature of actuarial present values. While actuarial functions typically return expected values, this module enables analysis of the full probability distribution of present values.</p>
+<h2 id="key-concepts">Key Concepts<a class="headerlink" href="#key-concepts" title="Permanent link">&para;</a></h2>
+<h3 id="actuarial-present-value-random-variable">Actuarial Present Value Random Variable<a class="headerlink" href="#actuarial-present-value-random-variable" title="Permanent link">&para;</a></h3>
+<p>The present value of a life annuity is a random variable because:
+- The number of payments depends on survival (random)
+- Each possible survival scenario has a different present value
+- The expected value is the traditional actuarial present value</p>
+<h3 id="statistical-measures">Statistical Measures<a class="headerlink" href="#statistical-measures" title="Permanent link">&para;</a></h3>
+<p>Key statistical measures for annuity random variables:
+- <strong>Mean</strong>: Expected present value (traditional actuarial value)
+- <strong>Variance</strong>: Measure of risk/uncertainty
+- <strong>Standard Deviation</strong>: Square root of variance
+- <strong>Distribution</strong>: Probability of each possible outcome</p>
+<h2 id="basic-functions">Basic Functions<a class="headerlink" href="#basic-functions" title="Permanent link">&para;</a></h2>
+<h3 id="whole-life-annuity-random-variable">Whole Life Annuity Random Variable<a class="headerlink" href="#whole-life-annuity-random-variable" title="Permanent link">&para;</a></h3>
+<h4 id="ax_n_rvmt-x-i-m1-methodudd"><code>ax_n_rv(mt, x, i, m=1, method='udd')</code><a class="headerlink" href="#ax_n_rvmt-x-i-m1-methodudd" title="Permanent link">&para;</a></h4>
+<p>Returns statistics for the present value random variable of a whole life annuity.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary.mortality_table</span><span class="w"> </span><span class="kn">import</span> <span class="n">MortalityTable</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">annuities_rv</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Create mortality table</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">mt</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Analyze whole life annuity random variable</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">rv_stats</span> <span class="o">=</span> <span class="n">annuities_rv</span><span class="o">.</span><span class="n">ax_n_rv</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean (expected PV): </span><span class="si">{</span><span class="n">rv_stats</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variance: </span><span class="si">{</span><span class="n">rv_stats</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Standard deviation: </span><span class="si">{</span><span class="n">rv_stats</span><span class="p">[</span><span class="s1">&#39;std_dev&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient of variation: </span><span class="si">{</span><span class="n">rv_stats</span><span class="p">[</span><span class="s1">&#39;cv&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="temporary-annuity-random-variable">Temporary Annuity Random Variable<a class="headerlink" href="#temporary-annuity-random-variable" title="Permanent link">&para;</a></h3>
+<h4 id="axt_n_rvmt-x-t-i-m1-methodudd"><code>axt_n_rv(mt, x, t, i, m=1, method='udd')</code><a class="headerlink" href="#axt_n_rvmt-x-t-i-m1-methodudd" title="Permanent link">&para;</a></h4>
+<p>Returns statistics for a temporary life annuity random variable.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 20-year temporary annuity random variable</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">temp_rv</span> <span class="o">=</span> <span class="n">annuities_rv</span><span class="o">.</span><span class="n">axt_n_rv</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;20-year temporary annuity:&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Mean: </span><span class="si">{</span><span class="n">temp_rv</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Std Dev: </span><span class="si">{</span><span class="n">temp_rv</span><span class="p">[</span><span class="s1">&#39;std_dev&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Risk (CV): </span><span class="si">{</span><span class="n">temp_rv</span><span class="p">[</span><span class="s1">&#39;cv&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="detailed-distribution-analysis">Detailed Distribution Analysis<a class="headerlink" href="#detailed-distribution-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="complete-distribution">Complete Distribution<a class="headerlink" href="#complete-distribution" title="Permanent link">&para;</a></h3>
+<h4 id="annuity_distributionmt-x-i-tnone-m1-methodudd"><code>annuity_distribution(mt, x, i, t=None, m=1, method='udd')</code><a class="headerlink" href="#annuity_distributionmt-x-i-tnone-m1-methodudd" title="Permanent link">&para;</a></h4>
+<p>Returns the complete probability distribution of annuity present values.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Get complete distribution for whole life annuity</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">distribution</span> <span class="o">=</span> <span class="n">annuities_rv</span><span class="o">.</span><span class="n">annuity_distribution</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Annuity Distribution:&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Possible outcomes: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">distribution</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">for</span> <span class="n">outcome</span> <span class="ow">in</span> <span class="n">distribution</span><span class="p">[:</span><span class="mi">5</span><span class="p">]:</span>  <span class="c1"># Show first 5 outcomes</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">years</span> <span class="o">=</span> <span class="n">outcome</span><span class="p">[</span><span class="s1">&#39;years_survived&#39;</span><span class="p">]</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="n">pv</span> <span class="o">=</span> <span class="n">outcome</span><span class="p">[</span><span class="s1">&#39;present_value&#39;</span><span class="p">]</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="n">prob</span> <span class="o">=</span> <span class="n">outcome</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">]</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">years</span><span class="si">}</span><span class="s2"> years: PV=</span><span class="si">{</span><span class="n">pv</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, P=</span><span class="si">{</span><span class="n">prob</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="percentiles-and-risk-measures">Percentiles and Risk Measures<a class="headerlink" href="#percentiles-and-risk-measures" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Calculate risk measures</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Extract present values and probabilities</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">outcomes</span> <span class="o">=</span> <span class="n">annuity_distribution</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">pvs</span> <span class="o">=</span> <span class="p">[</span><span class="n">outcome</span><span class="p">[</span><span class="s1">&#39;present_value&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">outcome</span> <span class="ow">in</span> <span class="n">outcomes</span><span class="p">]</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">probs</span> <span class="o">=</span> <span class="p">[</span><span class="n">outcome</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">outcome</span> <span class="ow">in</span> <span class="n">outcomes</span><span class="p">]</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1"># Calculate percentiles</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculate_percentile</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">probabilities</span><span class="p">,</span> <span class="n">percentile</span><span class="p">):</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="n">sorted_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="n">cumulative_prob</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">sorted_indices</span><span class="p">:</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="n">cumulative_prob</span> <span class="o">+=</span> <span class="n">probabilities</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        <span class="k">if</span> <span class="n">cumulative_prob</span> <span class="o">&gt;=</span> <span class="n">percentile</span><span class="o">/</span><span class="mi">100</span><span class="p">:</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>            <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="k">return</span> <span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="c1"># Risk measures</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="n">percentile_5</span> <span class="o">=</span> <span class="n">calculate_percentile</span><span class="p">(</span><span class="n">pvs</span><span class="p">,</span> <span class="n">probs</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="n">percentile_95</span> <span class="o">=</span> <span class="n">calculate_percentile</span><span class="p">(</span><span class="n">pvs</span><span class="p">,</span> <span class="n">probs</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="n">median</span> <span class="o">=</span> <span class="n">calculate_percentile</span><span class="p">(</span><span class="n">pvs</span><span class="p">,</span> <span class="n">probs</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;5th percentile: </span><span class="si">{</span><span class="n">percentile_5</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Median: </span><span class="si">{</span><span class="n">median</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95th percentile: </span><span class="si">{</span><span class="n">percentile_95</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Value at Risk (5%): </span><span class="si">{</span><span class="n">rv_stats</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">percentile_5</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="comparison-of-annuity-types">Comparison of Annuity Types<a class="headerlink" href="#comparison-of-annuity-types" title="Permanent link">&para;</a></h2>
+<h3 id="risk-comparison">Risk Comparison<a class="headerlink" href="#risk-comparison" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Compare risk across different annuity types</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">ages</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">terms</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>  <span class="c1"># None for whole life</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Risk Analysis (Coefficient of Variation):&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Age  | 10-year | 20-year | Whole Life&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="k">for</span> <span class="n">age</span> <span class="ow">in</span> <span class="n">ages</span><span class="p">:</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">cv_10</span> <span class="o">=</span> <span class="n">annuities_rv</span><span class="o">.</span><span class="n">axt_n_rv</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)[</span><span class="s1">&#39;cv&#39;</span><span class="p">]</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="n">cv_20</span> <span class="o">=</span> <span class="n">annuities_rv</span><span class="o">.</span><span class="n">axt_n_rv</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)[</span><span class="s1">&#39;cv&#39;</span><span class="p">]</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="n">cv_whole</span> <span class="o">=</span> <span class="n">annuities_rv</span><span class="o">.</span><span class="n">ax_n_rv</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)[</span><span class="s1">&#39;cv&#39;</span><span class="p">]</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">age</span><span class="si">:</span><span class="s2">2d</span><span class="si">}</span><span class="s2">   | </span><span class="si">{</span><span class="n">cv_10</span><span class="si">:</span><span class="s2">7.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">cv_20</span><span class="si">:</span><span class="s2">8.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">cv_whole</span><span class="si">:</span><span class="s2">10.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="impact-of-interest-rates">Impact of Interest Rates<a class="headerlink" href="#impact-of-interest-rates" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Analyze impact of interest rates on risk</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">interest_rates</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Interest Rate Impact on Annuity Risk:&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rate | Mean    | Std Dev | CV&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">30</span><span class="p">)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">for</span> <span class="n">rate</span> <span class="ow">in</span> <span class="n">interest_rates</span><span class="p">:</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">stats</span> <span class="o">=</span> <span class="n">annuities_rv</span><span class="o">.</span><span class="n">ax_n_rv</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">rate</span><span class="p">)</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rate</span><span class="si">:</span><span class="s2">2d</span><span class="si">}</span><span class="s2">%  | </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">7.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;std_dev&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">7.4f</span><span class="si">}</span><span class="s2"> | </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;cv&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">6.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="monte-carlo-simulation">Monte Carlo Simulation<a class="headerlink" href="#monte-carlo-simulation" title="Permanent link">&para;</a></h2>
+<h3 id="simulation-verification">Simulation Verification<a class="headerlink" href="#simulation-verification" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Verify analytical results with Monte Carlo simulation</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">simulate_annuity_pv</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">n_simulations</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Monte Carlo simulation of annuity present value&quot;&quot;&quot;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">present_values</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_simulations</span><span class="p">):</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>        <span class="n">age</span> <span class="o">=</span> <span class="n">x</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>        <span class="n">pv</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>        <span class="n">year</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>        <span class="k">while</span> <span class="n">age</span> <span class="o">&lt;=</span> <span class="n">mt</span><span class="o">.</span><span class="n">w</span><span class="p">:</span>  <span class="c1"># While alive</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>            <span class="c1"># Check if survives this year</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>            <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">mt</span><span class="o">.</span><span class="n">nqx</span><span class="p">(</span><span class="n">age</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>                <span class="c1"># Survived - receives payment</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>                <span class="n">pv</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">i</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="n">year</span><span class="p">)</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>                <span class="n">age</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>                <span class="n">year</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>                <span class="c1"># Died - no more payments</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>                <span class="k">break</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>    <span class="n">present_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pv</span><span class="p">)</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a>        <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">present_values</span><span class="p">),</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a>        <span class="s1">&#39;std_dev&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">present_values</span><span class="p">),</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a>        <span class="s1">&#39;variance&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">present_values</span><span class="p">)</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a>    <span class="p">}</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a>
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="c1"># Compare analytical vs. simulation</span>
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="n">analytical</span> <span class="o">=</span> <span class="n">annuities_rv</span><span class="o">.</span><span class="n">ax_n_rv</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="n">simulated</span> <span class="o">=</span> <span class="n">simulate_annuity_pv</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a>
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Analytical vs. Simulation:&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean:     </span><span class="si">{</span><span class="n">analytical</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">simulated</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Std Dev:  </span><span class="si">{</span><span class="n">analytical</span><span class="p">[</span><span class="s1">&#39;std_dev&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">simulated</span><span class="p">[</span><span class="s1">&#39;std_dev&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variance: </span><span class="si">{</span><span class="n">analytical</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">simulated</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="practical-applications">Practical Applications<a class="headerlink" href="#practical-applications" title="Permanent link">&para;</a></h2>
+<h3 id="pension-risk-management">Pension Risk Management<a class="headerlink" href="#pension-risk-management" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Assess pension liability risk for a group</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">group_size</span> <span class="o">=</span> <span class="mi">1000</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">individual_mean</span> <span class="o">=</span> <span class="n">annuities_rv</span><span class="o">.</span><span class="n">ax_n_rv</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">65</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">individual_variance</span> <span class="o">=</span> <span class="n">annuities_rv</span><span class="o">.</span><span class="n">ax_n_rv</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">65</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># Portfolio statistics (assuming independence)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">portfolio_mean</span> <span class="o">=</span> <span class="n">group_size</span> <span class="o">*</span> <span class="n">individual_mean</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">portfolio_std_dev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">group_size</span> <span class="o">*</span> <span class="n">individual_variance</span><span class="p">)</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">portfolio_cv</span> <span class="o">=</span> <span class="n">portfolio_std_dev</span> <span class="o">/</span> <span class="n">portfolio_mean</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pension Portfolio Risk (n=</span><span class="si">{</span><span class="n">group_size</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected liability: $</span><span class="si">{</span><span class="n">portfolio_mean</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Standard deviation: $</span><span class="si">{</span><span class="n">portfolio_std_dev</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient of variation: </span><span class="si">{</span><span class="n">portfolio_cv</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;95% confidence interval: $</span><span class="si">{</span><span class="n">portfolio_mean</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">portfolio_std_dev</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2"> to $</span><span class="si">{</span><span class="n">portfolio_mean</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1.96</span><span class="o">*</span><span class="n">portfolio_std_dev</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="reserve-requirements">Reserve Requirements<a class="headerlink" href="#reserve-requirements" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Calculate reserve requirements based on risk tolerance</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">confidence_level</span> <span class="o">=</span> <span class="mf">0.95</span>  <span class="c1"># 95% confidence</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">target_age</span> <span class="o">=</span> <span class="mi">30</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">interest_rate</span> <span class="o">=</span> <span class="mi">5</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">stats</span> <span class="o">=</span> <span class="n">annuities_rv</span><span class="o">.</span><span class="n">ax_n_rv</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">target_age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">interest_rate</span><span class="p">)</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">mean_pv</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="n">std_dev</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;std_dev&#39;</span><span class="p">]</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># Conservative reserve (mean + 2 std deviations)</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="n">conservative_reserve</span> <span class="o">=</span> <span class="n">mean_pv</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">std_dev</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="c1"># Risk-based reserve (95th percentile)</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="n">distribution</span> <span class="o">=</span> <span class="n">annuities_rv</span><span class="o">.</span><span class="n">annuity_distribution</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">target_age</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">interest_rate</span><span class="p">)</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="n">pvs</span> <span class="o">=</span> <span class="p">[</span><span class="n">outcome</span><span class="p">[</span><span class="s1">&#39;present_value&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">outcome</span> <span class="ow">in</span> <span class="n">distribution</span><span class="p">]</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="n">probs</span> <span class="o">=</span> <span class="p">[</span><span class="n">outcome</span><span class="p">[</span><span class="s1">&#39;probability&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">outcome</span> <span class="ow">in</span> <span class="n">distribution</span><span class="p">]</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="n">risk_based_reserve</span> <span class="o">=</span> <span class="n">calculate_percentile</span><span class="p">(</span><span class="n">pvs</span><span class="p">,</span> <span class="n">probs</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reserve Analysis:&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean reserve: </span><span class="si">{</span><span class="n">mean_pv</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Conservative (μ + 2σ): </span><span class="si">{</span><span class="n">conservative_reserve</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Risk-based (95th %ile): </span><span class="si">{</span><span class="n">risk_based_reserve</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Safety margin: </span><span class="si">{</span><span class="p">(</span><span class="n">conservative_reserve</span><span class="o">/</span><span class="n">mean_pv</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="mathematical-background">Mathematical Background<a class="headerlink" href="#mathematical-background" title="Permanent link">&para;</a></h2>
+<h3 id="variance-formula">Variance Formula<a class="headerlink" href="#variance-formula" title="Permanent link">&para;</a></h3>
+<p>For a whole life annuity, the variance can be calculated as:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Var[PV] = ²Ax - (Ax)²
+</code></pre></div>
+<p>Where ²Ax is the second moment of the insurance random variable.</p>
+<h3 id="relationship-to-insurance">Relationship to Insurance<a class="headerlink" href="#relationship-to-insurance" title="Permanent link">&para;</a></h3>
+<p>The annuity and insurance random variables are related:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Verify the relationship: PV_annuity + PV_insurance = constant</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary</span><span class="w"> </span><span class="kn">import</span> <span class="n">mortality_insurance_rv</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">annuity_stats</span> <span class="o">=</span> <span class="n">annuities_rv</span><span class="o">.</span><span class="n">ax_n_rv</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">insurance_stats</span> <span class="o">=</span> <span class="n">mortality_insurance_rv</span><span class="o">.</span><span class="n">Ax_n_rv</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># The sum should have zero variance (constant)</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="n">sum_variance</span> <span class="o">=</span> <span class="n">annuity_stats</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">insurance_stats</span><span class="p">[</span><span class="s1">&#39;variance&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">covariance</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sum variance (should be 0): </span><span class="si">{</span><span class="n">sum_variance</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="usage-tips">Usage Tips<a class="headerlink" href="#usage-tips" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Risk Assessment</strong>: Use coefficient of variation to compare relative risk</li>
+<li><strong>Portfolio Effects</strong>: Individual variances add for independent lives</li>
+<li><strong>Interest Sensitivity</strong>: Higher rates generally reduce variance</li>
+<li><strong>Age Effects</strong>: Older ages typically have lower variance</li>
+<li><strong>Validation</strong>: Compare with simulations for complex scenarios</li>
+<li><strong>Applications</strong>: Reserve setting, capital requirements, risk management</li>
+</ol>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../annuities_certain/" class="btn btn-neutral float-left" title="Annuities Certain"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../mortality_insurance/" class="btn btn-neutral float-right" title="Life Insurance">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/parcr/lifeactuary" class="fa fa-code-fork" style="color: #fcfcfc"> parcr/lifeactuary</a>
+        </span>
+    
+    
+      <span><a href="../annuities_certain/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../mortality_insurance/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

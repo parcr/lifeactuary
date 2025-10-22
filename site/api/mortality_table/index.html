@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="PedroCR" /><link rel="canonical" href="https://your-site-url.github.io/lifeactuary/api/mortality_table/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Mortality Tables - lifeActuary Documentation</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Mortality Tables";
+        var mkdocs_page_input_path = "api/mortality_table.md";
+        var mkdocs_page_url = "/lifeactuary/api/mortality_table/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> lifeActuary Documentation
+        </a>
+        <div class="version">
+          {'provider': 'mike'}
+        </div><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/quick-start/">Quick Start</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../user-guide/tutorials/">Tutorials</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">API Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Mortality Tables</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#lifeActuary.mortality_table.MortalityTable">MortalityTable</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#lifeActuary.mortality_table.MortalityTable.exn">exn</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lifeActuary.mortality_table.MortalityTable.force_qw_0">force_qw_0</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lifeActuary.mortality_table.MortalityTable.get_integral_px_method">get_integral_px_method</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lifeActuary.mortality_table.MortalityTable.npx">npx</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lifeActuary.mortality_table.MortalityTable.nqx">nqx</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#lifeActuary.mortality_table.MortalityTable.t_nqx">t_nqx</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#usage-examples">Usage Examples</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#creating-a-mortality-table-from-qx-values">Creating a Mortality Table from qx values</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#creating-from-lx-values">Creating from lx values</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#creating-from-px-values">Creating from px values</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#key-methods">Key Methods</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#survival-and-mortality-probabilities">Survival and Mortality Probabilities</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#life-expectancy">Life Expectancy</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#table-properties">Table Properties</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#interpolation-methods">Interpolation Methods</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#udd-uniform-distribution-of-deaths">UDD (Uniform Distribution of Deaths)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cfm-constant-force-of-mortality">CFM (Constant Force of Mortality)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#balducci-assumption">Balducci Assumption</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#advanced-features">Advanced Features</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#force-of-mortality">Force of Mortality</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#fractional-age-calculations">Fractional Age Calculations</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#life-table-statistics">Life Table Statistics</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../annuities/">Life Annuities</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../annuities_certain/">Annuities Certain</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../annuities_rv/">Annuities Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mortality_insurance/">Life Insurance</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mortality_insurance_frac/">Life Insurance (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mortality_rv/">Mortality Random Variables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commutation_table/">Commutation Tables</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../commutation_table_frac/">Commutation Tables (Fractional)</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../life_2heads/">Two Lives Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mortality_table_2heads/">Two Lives Mortality Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/basic/">Basic Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/advanced/">Advanced Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../examples/soa_tables/">SOA Tables</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/release-notes/">Release Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/license/">License</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">lifeActuary Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">API Reference</li>
+      <li class="breadcrumb-item active">Mortality Tables</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/parcr/lifeactuary/edit/master/docs/api/mortality_table.md">Edit on parcr/lifeactuary</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="mortality-tables">Mortality Tables<a class="headerlink" href="#mortality-tables" title="Permanent link">&para;</a></h1>
+<p>The <code>MortalityTable</code> class is the foundation of the lifeActuary package, providing comprehensive mortality table functionality with support for various input formats and interpolation methods.</p>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="lifeActuary.mortality_table.MortalityTable" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">lifeActuary</span><span class="o">.</span><span class="n">mortality_table</span><span class="o">.</span><span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">perc</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">last_q</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span></code>
+
+<a href="#lifeActuary.mortality_table.MortalityTable" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+
+
+        <p>Instantiates a life table, where you can pass it in the form of the lx, qx or px. Note that the first value is
+the first age considered in the table.
+The life table will be complete, that is, from age 0 to age w, that is, the last age where lx&gt;0.</p>
+
+        <p>Initializes the MortalityTable class, so we can construct a mortality table with the usual fields.
+:param data_type: Should be "l" for lx, "p" for px and "q" for qx.
+:param mt: Should be "l" for lx, "p" for px and "q" for qx.
+:param perc: The percentage of qx to use, e.g., you should use 50 for 50%.
+:param last_q: The value for qw.</p>
+
+
+
+
+
+
+
+
+                  <details class="quote">
+                    <summary>Source code in <code>lifeActuary/mortality_table.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span>
+<span class="normal"><a href="#__codelineno-0-35">35</a></span>
+<span class="normal"><a href="#__codelineno-0-36">36</a></span>
+<span class="normal"><a href="#__codelineno-0-37">37</a></span>
+<span class="normal"><a href="#__codelineno-0-38">38</a></span>
+<span class="normal"><a href="#__codelineno-0-39">39</a></span>
+<span class="normal"><a href="#__codelineno-0-40">40</a></span>
+<span class="normal"><a href="#__codelineno-0-41">41</a></span>
+<span class="normal"><a href="#__codelineno-0-42">42</a></span>
+<span class="normal"><a href="#__codelineno-0-43">43</a></span>
+<span class="normal"><a href="#__codelineno-0-44">44</a></span>
+<span class="normal"><a href="#__codelineno-0-45">45</a></span>
+<span class="normal"><a href="#__codelineno-0-46">46</a></span>
+<span class="normal"><a href="#__codelineno-0-47">47</a></span>
+<span class="normal"><a href="#__codelineno-0-48">48</a></span>
+<span class="normal"><a href="#__codelineno-0-49">49</a></span>
+<span class="normal"><a href="#__codelineno-0-50">50</a></span>
+<span class="normal"><a href="#__codelineno-0-51">51</a></span>
+<span class="normal"><a href="#__codelineno-0-52">52</a></span>
+<span class="normal"><a href="#__codelineno-0-53">53</a></span>
+<span class="normal"><a href="#__codelineno-0-54">54</a></span>
+<span class="normal"><a href="#__codelineno-0-55">55</a></span>
+<span class="normal"><a href="#__codelineno-0-56">56</a></span>
+<span class="normal"><a href="#__codelineno-0-57">57</a></span>
+<span class="normal"><a href="#__codelineno-0-58">58</a></span>
+<span class="normal"><a href="#__codelineno-0-59">59</a></span>
+<span class="normal"><a href="#__codelineno-0-60">60</a></span>
+<span class="normal"><a href="#__codelineno-0-61">61</a></span>
+<span class="normal"><a href="#__codelineno-0-62">62</a></span>
+<span class="normal"><a href="#__codelineno-0-63">63</a></span>
+<span class="normal"><a href="#__codelineno-0-64">64</a></span>
+<span class="normal"><a href="#__codelineno-0-65">65</a></span>
+<span class="normal"><a href="#__codelineno-0-66">66</a></span>
+<span class="normal"><a href="#__codelineno-0-67">67</a></span>
+<span class="normal"><a href="#__codelineno-0-68">68</a></span>
+<span class="normal"><a href="#__codelineno-0-69">69</a></span>
+<span class="normal"><a href="#__codelineno-0-70">70</a></span>
+<span class="normal"><a href="#__codelineno-0-71">71</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">perc</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">last_q</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="sd">    Initializes the MortalityTable class, so we can construct a mortality table with the usual fields.</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="sd">    :param data_type: Should be &quot;l&quot; for lx, &quot;p&quot; for px and &quot;q&quot; for qx.</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="sd">    :param mt: Should be &quot;l&quot; for lx, &quot;p&quot; for px and &quot;q&quot; for qx.</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="sd">    :param perc: The percentage of qx to use, e.g., you should use 50 for 50%.</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="sd">    :param last_q: The value for qw.</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a>    <span class="k">if</span> <span class="n">data_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="s1">&#39;p&#39;</span><span class="p">):</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a>        <span class="k">return</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a>    <span class="k">if</span> <span class="n">mt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a>        <span class="k">return</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__data_type</span> <span class="o">=</span> <span class="n">data_type</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__methods</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;udd&#39;</span><span class="p">,</span> <span class="s1">&#39;cfm&#39;</span><span class="p">,</span> <span class="s1">&#39;bal&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a>    <span class="n">mt_</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mt</span><span class="p">)</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__mt</span> <span class="o">=</span> <span class="n">mt_</span><span class="p">[</span><span class="o">~</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">mt_</span><span class="p">)]</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">(</span><span class="n">mt</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__last_q</span> <span class="o">=</span> <span class="n">last_q</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__w</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__lx</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__px</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__qx</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__dx</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__ex</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__perc</span> <span class="o">=</span> <span class="n">perc</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">msn</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a>    <span class="n">radical</span> <span class="o">=</span> <span class="mf">100000.</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a>    <span class="n">pperc</span> <span class="o">=</span> <span class="n">perc</span> <span class="o">/</span> <span class="mf">100.</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="n">mt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mt</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a>    <span class="n">mt</span><span class="o">=</span><span class="n">mt</span><span class="p">[</span><span class="o">~</span><span class="n">pd</span><span class="o">.</span><span class="n">isnull</span><span class="p">(</span><span class="n">mt</span><span class="p">)]</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a>    <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s1">&#39;l&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a>        <span class="k">if</span> <span class="n">mt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a>            <span class="n">mt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mt</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__qx</span> <span class="o">=</span> <span class="p">(</span><span class="n">mt</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">mt</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">/</span> <span class="n">mt</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">pperc</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a>        <span class="c1"># self.__qx = np.append(np.zeros(self.x0), self.__qx)</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a>    <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__qx</span> <span class="o">=</span> <span class="n">mt</span> <span class="o">*</span> <span class="n">pperc</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a>    <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="s1">&#39;p&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__qx</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">mt</span><span class="p">)</span> <span class="o">*</span> <span class="n">pperc</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__last_q</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">__qx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">.1e-10</span><span class="p">:</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__qx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__qx</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__last_q</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">__qx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">.1e-10</span><span class="p">:</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__qx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__qx</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__qx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x0</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">__qx</span><span class="p">)</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__px</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__qx</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__lx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">radical</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__qx</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__dx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__qx</span><span class="p">))</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__ex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__qx</span><span class="p">))</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="k">for</span> <span class="n">idx_p</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__px</span><span class="p">):</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__lx</span><span class="p">[</span><span class="n">idx_p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lx</span><span class="p">[</span><span class="n">idx_p</span><span class="p">]</span> <span class="o">*</span> <span class="n">p</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__dx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lx</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">__qx</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>    <span class="n">sum_lx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__lx</span><span class="p">[</span><span class="n">l</span><span class="p">:])</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__qx</span><span class="p">))])</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__ex</span> <span class="o">=</span> <span class="n">sum_lx</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lx</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__ex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__ex</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">.5</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__w</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__lx</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+</code></pre></div></td></tr></table></div>
+                  </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="lifeActuary.mortality_table.MortalityTable.exn" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">exn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;udd&#39;</span><span class="p">)</span></code>
+
+<a href="#lifeActuary.mortality_table.MortalityTable.exn" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Computes the approximated life expectancy between two ages.
+:param x: Initial age.
+:param n: Period to be considered.
+:param method: The method used to interpolate.
+:return: The approximated life span between x and x+n, considering the interpolation methods implemented to approximate the integral of the survival function.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>lifeActuary/mortality_table.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-281">281</a></span>
+<span class="normal"><a href="#__codelineno-0-282">282</a></span>
+<span class="normal"><a href="#__codelineno-0-283">283</a></span>
+<span class="normal"><a href="#__codelineno-0-284">284</a></span>
+<span class="normal"><a href="#__codelineno-0-285">285</a></span>
+<span class="normal"><a href="#__codelineno-0-286">286</a></span>
+<span class="normal"><a href="#__codelineno-0-287">287</a></span>
+<span class="normal"><a href="#__codelineno-0-288">288</a></span>
+<span class="normal"><a href="#__codelineno-0-289">289</a></span>
+<span class="normal"><a href="#__codelineno-0-290">290</a></span>
+<span class="normal"><a href="#__codelineno-0-291">291</a></span>
+<span class="normal"><a href="#__codelineno-0-292">292</a></span>
+<span class="normal"><a href="#__codelineno-0-293">293</a></span>
+<span class="normal"><a href="#__codelineno-0-294">294</a></span>
+<span class="normal"><a href="#__codelineno-0-295">295</a></span>
+<span class="normal"><a href="#__codelineno-0-296">296</a></span>
+<span class="normal"><a href="#__codelineno-0-297">297</a></span>
+<span class="normal"><a href="#__codelineno-0-298">298</a></span>
+<span class="normal"><a href="#__codelineno-0-299">299</a></span>
+<span class="normal"><a href="#__codelineno-0-300">300</a></span>
+<span class="normal"><a href="#__codelineno-0-301">301</a></span>
+<span class="normal"><a href="#__codelineno-0-302">302</a></span>
+<span class="normal"><a href="#__codelineno-0-303">303</a></span>
+<span class="normal"><a href="#__codelineno-0-304">304</a></span>
+<span class="normal"><a href="#__codelineno-0-305">305</a></span>
+<span class="normal"><a href="#__codelineno-0-306">306</a></span>
+<span class="normal"><a href="#__codelineno-0-307">307</a></span>
+<span class="normal"><a href="#__codelineno-0-308">308</a></span>
+<span class="normal"><a href="#__codelineno-0-309">309</a></span>
+<span class="normal"><a href="#__codelineno-0-310">310</a></span>
+<span class="normal"><a href="#__codelineno-0-311">311</a></span>
+<span class="normal"><a href="#__codelineno-0-312">312</a></span>
+<span class="normal"><a href="#__codelineno-0-313">313</a></span>
+<span class="normal"><a href="#__codelineno-0-314">314</a></span>
+<span class="normal"><a href="#__codelineno-0-315">315</a></span>
+<span class="normal"><a href="#__codelineno-0-316">316</a></span>
+<span class="normal"><a href="#__codelineno-0-317">317</a></span>
+<span class="normal"><a href="#__codelineno-0-318">318</a></span>
+<span class="normal"><a href="#__codelineno-0-319">319</a></span>
+<span class="normal"><a href="#__codelineno-0-320">320</a></span>
+<span class="normal"><a href="#__codelineno-0-321">321</a></span>
+<span class="normal"><a href="#__codelineno-0-322">322</a></span>
+<span class="normal"><a href="#__codelineno-0-323">323</a></span>
+<span class="normal"><a href="#__codelineno-0-324">324</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-281" name="__codelineno-0-281"></a><span class="k">def</span><span class="w"> </span><span class="nf">exn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;udd&#39;</span><span class="p">):</span>
+<a id="__codelineno-0-282" name="__codelineno-0-282"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-283" name="__codelineno-0-283"></a><span class="sd">    Computes the approximated life expectancy between two ages.</span>
+<a id="__codelineno-0-284" name="__codelineno-0-284"></a><span class="sd">    :param x: Initial age.</span>
+<a id="__codelineno-0-285" name="__codelineno-0-285"></a><span class="sd">    :param n: Period to be considered.</span>
+<a id="__codelineno-0-286" name="__codelineno-0-286"></a><span class="sd">    :param method: The method used to interpolate.</span>
+<a id="__codelineno-0-287" name="__codelineno-0-287"></a><span class="sd">    :return: The approximated life span between x and x+n, considering the interpolation methods implemented to approximate the integral of the survival function.</span>
+<a id="__codelineno-0-288" name="__codelineno-0-288"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-289" name="__codelineno-0-289"></a>    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__methods</span><span class="p">:</span>
+<a id="__codelineno-0-290" name="__codelineno-0-290"></a>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<a id="__codelineno-0-291" name="__codelineno-0-291"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-0-292" name="__codelineno-0-292"></a>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<a id="__codelineno-0-293" name="__codelineno-0-293"></a>    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-0-294" name="__codelineno-0-294"></a>        <span class="k">return</span> <span class="mf">1.</span>
+<a id="__codelineno-0-295" name="__codelineno-0-295"></a>
+<a id="__codelineno-0-296" name="__codelineno-0-296"></a>    <span class="n">n_max</span> <span class="o">=</span> <span class="n">n</span>
+<a id="__codelineno-0-297" name="__codelineno-0-297"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">+</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">:</span>
+<a id="__codelineno-0-298" name="__codelineno-0-298"></a>        <span class="n">n_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">-</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-0-299" name="__codelineno-0-299"></a>
+<a id="__codelineno-0-300" name="__codelineno-0-300"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<a id="__codelineno-0-301" name="__codelineno-0-301"></a>        <span class="n">next_age</span> <span class="o">=</span> <span class="n">x</span>
+<a id="__codelineno-0-302" name="__codelineno-0-302"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-303" name="__codelineno-0-303"></a>        <span class="n">next_age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-0-304" name="__codelineno-0-304"></a>    <span class="n">to_complete_age</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">next_age</span> <span class="o">-</span> <span class="n">x</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<a id="__codelineno-0-305" name="__codelineno-0-305"></a>    <span class="k">if</span> <span class="n">to_complete_age</span> <span class="o">&gt;=</span> <span class="n">n_max</span><span class="p">:</span>
+<a id="__codelineno-0-306" name="__codelineno-0-306"></a>        <span class="k">return</span> <span class="n">n_max</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">npx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n_max</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a id="__codelineno-0-307" name="__codelineno-0-307"></a>
+<a id="__codelineno-0-308" name="__codelineno-0-308"></a>    <span class="k">if</span> <span class="n">to_complete_age</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-0-309" name="__codelineno-0-309"></a>        <span class="n">integral1</span> <span class="o">=</span> <span class="n">to_complete_age</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">npx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">to_complete_age</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a id="__codelineno-0-310" name="__codelineno-0-310"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-311" name="__codelineno-0-311"></a>        <span class="n">integral1</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-0-312" name="__codelineno-0-312"></a>
+<a id="__codelineno-0-313" name="__codelineno-0-313"></a>    <span class="n">complete_years</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_max</span> <span class="o">-</span> <span class="n">to_complete_age</span><span class="p">)</span>
+<a id="__codelineno-0-314" name="__codelineno-0-314"></a>    <span class="n">integrals</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">npx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">to_complete_age</span> <span class="o">+</span> <span class="n">t</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span> <span class="o">*</span>
+<a id="__codelineno-0-315" name="__codelineno-0-315"></a>                 <span class="bp">self</span><span class="o">.</span><span class="n">get_integral_px_method</span><span class="p">(</span><span class="n">next_age</span> <span class="o">+</span> <span class="n">t</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">complete_years</span><span class="p">)]</span>
+<a id="__codelineno-0-316" name="__codelineno-0-316"></a>    <span class="n">final_period</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">n_max</span> <span class="o">-</span> <span class="n">to_complete_age</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_max</span> <span class="o">-</span> <span class="n">to_complete_age</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+<a id="__codelineno-0-317" name="__codelineno-0-317"></a>
+<a id="__codelineno-0-318" name="__codelineno-0-318"></a>    <span class="k">if</span> <span class="n">final_period</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-0-319" name="__codelineno-0-319"></a>        <span class="n">integral2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">npx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_max</span> <span class="o">-</span> <span class="n">to_complete_age</span><span class="p">),</span> <span class="n">method</span><span class="p">)</span> <span class="o">*</span> \
+<a id="__codelineno-0-320" name="__codelineno-0-320"></a>                    <span class="n">final_period</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">npx</span><span class="p">(</span><span class="n">next_age</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">to_complete_age</span><span class="p">),</span> <span class="n">final_period</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a id="__codelineno-0-321" name="__codelineno-0-321"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-322" name="__codelineno-0-322"></a>        <span class="n">integral2</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-0-323" name="__codelineno-0-323"></a>
+<a id="__codelineno-0-324" name="__codelineno-0-324"></a>    <span class="k">return</span> <span class="n">integral1</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">integrals</span><span class="p">)</span> <span class="o">+</span> <span class="n">integral2</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="lifeActuary.mortality_table.MortalityTable.force_qw_0" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">force_qw_0</span><span class="p">()</span></code>
+
+<a href="#lifeActuary.mortality_table.MortalityTable.force_qw_0" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>forces the last qx to be equal to zero, to state that there are no more decrements after w
+:return: the qx, px and lx adjusted</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>lifeActuary/mortality_table.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-271">271</a></span>
+<span class="normal"><a href="#__codelineno-0-272">272</a></span>
+<span class="normal"><a href="#__codelineno-0-273">273</a></span>
+<span class="normal"><a href="#__codelineno-0-274">274</a></span>
+<span class="normal"><a href="#__codelineno-0-275">275</a></span>
+<span class="normal"><a href="#__codelineno-0-276">276</a></span>
+<span class="normal"><a href="#__codelineno-0-277">277</a></span>
+<span class="normal"><a href="#__codelineno-0-278">278</a></span>
+<span class="normal"><a href="#__codelineno-0-279">279</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-271" name="__codelineno-0-271"></a><span class="k">def</span><span class="w"> </span><span class="nf">force_qw_0</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-0-272" name="__codelineno-0-272"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-273" name="__codelineno-0-273"></a><span class="sd">    forces the last qx to be equal to zero, to state that there are no more decrements after w</span>
+<a id="__codelineno-0-274" name="__codelineno-0-274"></a><span class="sd">    :return: the qx, px and lx adjusted</span>
+<a id="__codelineno-0-275" name="__codelineno-0-275"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-276" name="__codelineno-0-276"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__qx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-0-277" name="__codelineno-0-277"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__px</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-0-278" name="__codelineno-0-278"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__lx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__lx</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-0-279" name="__codelineno-0-279"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">__dx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="lifeActuary.mortality_table.MortalityTable.get_integral_px_method" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_integral_px_method</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;udd&#39;</span><span class="p">)</span></code>
+
+<a href="#lifeActuary.mortality_table.MortalityTable.get_integral_px_method" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>This function can be used to approximate the life expectancy between to ages, using the interpolation rules implemented.
+:param x: the value of x, that should be integer
+:param method: the chosen method to approximate px
+:return: the integral of tpx in the interval [0,1] that can be used to approximate life expectancy between ages.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>lifeActuary/mortality_table.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-181">181</a></span>
+<span class="normal"><a href="#__codelineno-0-182">182</a></span>
+<span class="normal"><a href="#__codelineno-0-183">183</a></span>
+<span class="normal"><a href="#__codelineno-0-184">184</a></span>
+<span class="normal"><a href="#__codelineno-0-185">185</a></span>
+<span class="normal"><a href="#__codelineno-0-186">186</a></span>
+<span class="normal"><a href="#__codelineno-0-187">187</a></span>
+<span class="normal"><a href="#__codelineno-0-188">188</a></span>
+<span class="normal"><a href="#__codelineno-0-189">189</a></span>
+<span class="normal"><a href="#__codelineno-0-190">190</a></span>
+<span class="normal"><a href="#__codelineno-0-191">191</a></span>
+<span class="normal"><a href="#__codelineno-0-192">192</a></span>
+<span class="normal"><a href="#__codelineno-0-193">193</a></span>
+<span class="normal"><a href="#__codelineno-0-194">194</a></span>
+<span class="normal"><a href="#__codelineno-0-195">195</a></span>
+<span class="normal"><a href="#__codelineno-0-196">196</a></span>
+<span class="normal"><a href="#__codelineno-0-197">197</a></span>
+<span class="normal"><a href="#__codelineno-0-198">198</a></span>
+<span class="normal"><a href="#__codelineno-0-199">199</a></span>
+<span class="normal"><a href="#__codelineno-0-200">200</a></span>
+<span class="normal"><a href="#__codelineno-0-201">201</a></span>
+<span class="normal"><a href="#__codelineno-0-202">202</a></span>
+<span class="normal"><a href="#__codelineno-0-203">203</a></span>
+<span class="normal"><a href="#__codelineno-0-204">204</a></span>
+<span class="normal"><a href="#__codelineno-0-205">205</a></span>
+<span class="normal"><a href="#__codelineno-0-206">206</a></span>
+<span class="normal"><a href="#__codelineno-0-207">207</a></span>
+<span class="normal"><a href="#__codelineno-0-208">208</a></span>
+<span class="normal"><a href="#__codelineno-0-209">209</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-181" name="__codelineno-0-181"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_integral_px_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;udd&#39;</span><span class="p">):</span>
+<a id="__codelineno-0-182" name="__codelineno-0-182"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-183" name="__codelineno-0-183"></a><span class="sd">    This function can be used to approximate the life expectancy between to ages, using the interpolation rules implemented.</span>
+<a id="__codelineno-0-184" name="__codelineno-0-184"></a><span class="sd">    :param x: the value of x, that should be integer</span>
+<a id="__codelineno-0-185" name="__codelineno-0-185"></a><span class="sd">    :param method: the chosen method to approximate px</span>
+<a id="__codelineno-0-186" name="__codelineno-0-186"></a><span class="sd">    :return: the integral of tpx in the interval [0,1] that can be used to approximate life expectancy between ages.</span>
+<a id="__codelineno-0-187" name="__codelineno-0-187"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-188" name="__codelineno-0-188"></a>    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__methods</span><span class="p">:</span>
+<a id="__codelineno-0-189" name="__codelineno-0-189"></a>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<a id="__codelineno-0-190" name="__codelineno-0-190"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-0-191" name="__codelineno-0-191"></a>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<a id="__codelineno-0-192" name="__codelineno-0-192"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-0-193" name="__codelineno-0-193"></a>        <span class="k">return</span> <span class="mi">0</span>
+<a id="__codelineno-0-194" name="__codelineno-0-194"></a>    <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">!=</span> <span class="n">x</span><span class="p">:</span>
+<a id="__codelineno-0-195" name="__codelineno-0-195"></a>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<a id="__codelineno-0-196" name="__codelineno-0-196"></a>    <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-0-197" name="__codelineno-0-197"></a>
+<a id="__codelineno-0-198" name="__codelineno-0-198"></a>    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;udd&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-199" name="__codelineno-0-199"></a>        <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="mf">.5</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">qx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+<a id="__codelineno-0-200" name="__codelineno-0-200"></a>    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;cfm&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-201" name="__codelineno-0-201"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">px</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-0-202" name="__codelineno-0-202"></a>            <span class="k">return</span> <span class="mf">.0</span>
+<a id="__codelineno-0-203" name="__codelineno-0-203"></a>        <span class="k">return</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">qx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">px</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<a id="__codelineno-0-204" name="__codelineno-0-204"></a>    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;bal&#39;</span><span class="p">:</span>
+<a id="__codelineno-0-205" name="__codelineno-0-205"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">px</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-0-206" name="__codelineno-0-206"></a>            <span class="k">return</span> <span class="mf">.0</span>
+<a id="__codelineno-0-207" name="__codelineno-0-207"></a>        <span class="k">return</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">px</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">qx</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">px</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<a id="__codelineno-0-208" name="__codelineno-0-208"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-209" name="__codelineno-0-209"></a>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="lifeActuary.mortality_table.MortalityTable.npx" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">npx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;udd&#39;</span><span class="p">)</span></code>
+
+<a href="#lifeActuary.mortality_table.MortalityTable.npx" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Obtains the probability that a life x dies before x+t
+:param method: the method used to approximate lx for non-integer x's
+:param x: age at beginning
+:param n: period
+:return: probability of x dying before x+t</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>lifeActuary/mortality_table.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-233">233</a></span>
+<span class="normal"><a href="#__codelineno-0-234">234</a></span>
+<span class="normal"><a href="#__codelineno-0-235">235</a></span>
+<span class="normal"><a href="#__codelineno-0-236">236</a></span>
+<span class="normal"><a href="#__codelineno-0-237">237</a></span>
+<span class="normal"><a href="#__codelineno-0-238">238</a></span>
+<span class="normal"><a href="#__codelineno-0-239">239</a></span>
+<span class="normal"><a href="#__codelineno-0-240">240</a></span>
+<span class="normal"><a href="#__codelineno-0-241">241</a></span>
+<span class="normal"><a href="#__codelineno-0-242">242</a></span>
+<span class="normal"><a href="#__codelineno-0-243">243</a></span>
+<span class="normal"><a href="#__codelineno-0-244">244</a></span>
+<span class="normal"><a href="#__codelineno-0-245">245</a></span>
+<span class="normal"><a href="#__codelineno-0-246">246</a></span>
+<span class="normal"><a href="#__codelineno-0-247">247</a></span>
+<span class="normal"><a href="#__codelineno-0-248">248</a></span>
+<span class="normal"><a href="#__codelineno-0-249">249</a></span>
+<span class="normal"><a href="#__codelineno-0-250">250</a></span>
+<span class="normal"><a href="#__codelineno-0-251">251</a></span>
+<span class="normal"><a href="#__codelineno-0-252">252</a></span>
+<span class="normal"><a href="#__codelineno-0-253">253</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-233" name="__codelineno-0-233"></a><span class="k">def</span><span class="w"> </span><span class="nf">npx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;udd&#39;</span><span class="p">):</span>
+<a id="__codelineno-0-234" name="__codelineno-0-234"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-235" name="__codelineno-0-235"></a><span class="sd">    Obtains the probability that a life x dies before x+t</span>
+<a id="__codelineno-0-236" name="__codelineno-0-236"></a><span class="sd">    :param method: the method used to approximate lx for non-integer x&#39;s</span>
+<a id="__codelineno-0-237" name="__codelineno-0-237"></a><span class="sd">    :param x: age at beginning</span>
+<a id="__codelineno-0-238" name="__codelineno-0-238"></a><span class="sd">    :param n: period</span>
+<a id="__codelineno-0-239" name="__codelineno-0-239"></a><span class="sd">    :return: probability of x dying before x+t</span>
+<a id="__codelineno-0-240" name="__codelineno-0-240"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-241" name="__codelineno-0-241"></a>    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__methods</span><span class="p">:</span>
+<a id="__codelineno-0-242" name="__codelineno-0-242"></a>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<a id="__codelineno-0-243" name="__codelineno-0-243"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-0-244" name="__codelineno-0-244"></a>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<a id="__codelineno-0-245" name="__codelineno-0-245"></a>    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-0-246" name="__codelineno-0-246"></a>        <span class="k">return</span> <span class="mf">1.</span>
+<a id="__codelineno-0-247" name="__codelineno-0-247"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">+</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-0-248" name="__codelineno-0-248"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__px</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-0-249" name="__codelineno-0-249"></a>    <span class="n">l_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lx_method</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a id="__codelineno-0-250" name="__codelineno-0-250"></a>    <span class="n">l_x_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lx_method</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a id="__codelineno-0-251" name="__codelineno-0-251"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">msn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">_p_</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">l_x_t</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">l_x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-252" name="__codelineno-0-252"></a>    <span class="k">if</span> <span class="n">l_x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mf">.0</span>
+<a id="__codelineno-0-253" name="__codelineno-0-253"></a>    <span class="k">return</span> <span class="n">l_x_t</span> <span class="o">/</span> <span class="n">l_x</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="lifeActuary.mortality_table.MortalityTable.nqx" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">nqx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;udd&#39;</span><span class="p">)</span></code>
+
+<a href="#lifeActuary.mortality_table.MortalityTable.nqx" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Obtains the probability that a life x dies before x+t
+:param method: the method used to approximate lx for non-integer x's
+:param x: age at beginning
+:param n: period
+:return: probability of x dying before x+t</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>lifeActuary/mortality_table.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-211">211</a></span>
+<span class="normal"><a href="#__codelineno-0-212">212</a></span>
+<span class="normal"><a href="#__codelineno-0-213">213</a></span>
+<span class="normal"><a href="#__codelineno-0-214">214</a></span>
+<span class="normal"><a href="#__codelineno-0-215">215</a></span>
+<span class="normal"><a href="#__codelineno-0-216">216</a></span>
+<span class="normal"><a href="#__codelineno-0-217">217</a></span>
+<span class="normal"><a href="#__codelineno-0-218">218</a></span>
+<span class="normal"><a href="#__codelineno-0-219">219</a></span>
+<span class="normal"><a href="#__codelineno-0-220">220</a></span>
+<span class="normal"><a href="#__codelineno-0-221">221</a></span>
+<span class="normal"><a href="#__codelineno-0-222">222</a></span>
+<span class="normal"><a href="#__codelineno-0-223">223</a></span>
+<span class="normal"><a href="#__codelineno-0-224">224</a></span>
+<span class="normal"><a href="#__codelineno-0-225">225</a></span>
+<span class="normal"><a href="#__codelineno-0-226">226</a></span>
+<span class="normal"><a href="#__codelineno-0-227">227</a></span>
+<span class="normal"><a href="#__codelineno-0-228">228</a></span>
+<span class="normal"><a href="#__codelineno-0-229">229</a></span>
+<span class="normal"><a href="#__codelineno-0-230">230</a></span>
+<span class="normal"><a href="#__codelineno-0-231">231</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-211" name="__codelineno-0-211"></a><span class="k">def</span><span class="w"> </span><span class="nf">nqx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;udd&#39;</span><span class="p">):</span>
+<a id="__codelineno-0-212" name="__codelineno-0-212"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-213" name="__codelineno-0-213"></a><span class="sd">    Obtains the probability that a life x dies before x+t</span>
+<a id="__codelineno-0-214" name="__codelineno-0-214"></a><span class="sd">    :param method: the method used to approximate lx for non-integer x&#39;s</span>
+<a id="__codelineno-0-215" name="__codelineno-0-215"></a><span class="sd">    :param x: age at beginning</span>
+<a id="__codelineno-0-216" name="__codelineno-0-216"></a><span class="sd">    :param n: period</span>
+<a id="__codelineno-0-217" name="__codelineno-0-217"></a><span class="sd">    :return: probability of x dying before x+t</span>
+<a id="__codelineno-0-218" name="__codelineno-0-218"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-219" name="__codelineno-0-219"></a>    <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__methods</span><span class="p">:</span>
+<a id="__codelineno-0-220" name="__codelineno-0-220"></a>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<a id="__codelineno-0-221" name="__codelineno-0-221"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-0-222" name="__codelineno-0-222"></a>        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<a id="__codelineno-0-223" name="__codelineno-0-223"></a>    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-0-224" name="__codelineno-0-224"></a>        <span class="k">return</span> <span class="mf">.0</span>
+<a id="__codelineno-0-225" name="__codelineno-0-225"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">+</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-0-226" name="__codelineno-0-226"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__qx</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-0-227" name="__codelineno-0-227"></a>    <span class="n">l_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lx_method</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a id="__codelineno-0-228" name="__codelineno-0-228"></a>    <span class="n">l_x_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lx_method</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a id="__codelineno-0-229" name="__codelineno-0-229"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">msn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">_q_</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">=1-(</span><span class="si">{</span><span class="n">l_x_t</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">l_x</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-230" name="__codelineno-0-230"></a>    <span class="k">if</span> <span class="n">l_x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mf">1.</span>
+<a id="__codelineno-0-231" name="__codelineno-0-231"></a>    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">l_x_t</span> <span class="o">/</span> <span class="n">l_x</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="lifeActuary.mortality_table.MortalityTable.t_nqx" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">t_nqx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;udd&#39;</span><span class="p">)</span></code>
+
+<a href="#lifeActuary.mortality_table.MortalityTable.t_nqx" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Obtains the probability that a life x dies survives to age x+t and dies before x+t+n
+:param method: the method used to approximate lx for non-integer x's
+:param x: age at beginning
+:param t: deferment period
+:param n: period
+:return: probability of x dying after age x+t and before x+t+n</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>lifeActuary/mortality_table.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-255">255</a></span>
+<span class="normal"><a href="#__codelineno-0-256">256</a></span>
+<span class="normal"><a href="#__codelineno-0-257">257</a></span>
+<span class="normal"><a href="#__codelineno-0-258">258</a></span>
+<span class="normal"><a href="#__codelineno-0-259">259</a></span>
+<span class="normal"><a href="#__codelineno-0-260">260</a></span>
+<span class="normal"><a href="#__codelineno-0-261">261</a></span>
+<span class="normal"><a href="#__codelineno-0-262">262</a></span>
+<span class="normal"><a href="#__codelineno-0-263">263</a></span>
+<span class="normal"><a href="#__codelineno-0-264">264</a></span>
+<span class="normal"><a href="#__codelineno-0-265">265</a></span>
+<span class="normal"><a href="#__codelineno-0-266">266</a></span>
+<span class="normal"><a href="#__codelineno-0-267">267</a></span>
+<span class="normal"><a href="#__codelineno-0-268">268</a></span>
+<span class="normal"><a href="#__codelineno-0-269">269</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-255" name="__codelineno-0-255"></a><span class="k">def</span><span class="w"> </span><span class="nf">t_nqx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;udd&#39;</span><span class="p">):</span>
+<a id="__codelineno-0-256" name="__codelineno-0-256"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-257" name="__codelineno-0-257"></a><span class="sd">    Obtains the probability that a life x dies survives to age x+t and dies before x+t+n</span>
+<a id="__codelineno-0-258" name="__codelineno-0-258"></a><span class="sd">    :param method: the method used to approximate lx for non-integer x&#39;s</span>
+<a id="__codelineno-0-259" name="__codelineno-0-259"></a><span class="sd">    :param x: age at beginning</span>
+<a id="__codelineno-0-260" name="__codelineno-0-260"></a><span class="sd">    :param t: deferment period</span>
+<a id="__codelineno-0-261" name="__codelineno-0-261"></a><span class="sd">    :param n: period</span>
+<a id="__codelineno-0-262" name="__codelineno-0-262"></a><span class="sd">    :return: probability of x dying after age x+t and before x+t+n</span>
+<a id="__codelineno-0-263" name="__codelineno-0-263"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-264" name="__codelineno-0-264"></a>    <span class="n">l_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lx_method</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a id="__codelineno-0-265" name="__codelineno-0-265"></a>    <span class="n">l_x_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lx_method</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">t</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a id="__codelineno-0-266" name="__codelineno-0-266"></a>    <span class="n">l_x_t_n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lx_method</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">t</span> <span class="o">+</span> <span class="n">n</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a id="__codelineno-0-267" name="__codelineno-0-267"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">msn</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">|</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">_q_</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">t</span><span class="si">}</span><span class="s2">_p_</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">  </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">_q_</span><span class="si">{</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">t</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">l_x_t</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">l_x</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">l_x_t</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">l_x_t_n</span><span class="si">}</span><span class="s2">) / </span><span class="si">{</span><span class="n">l_x_t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-268" name="__codelineno-0-268"></a>    <span class="k">if</span> <span class="n">l_x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="mf">1.</span>
+<a id="__codelineno-0-269" name="__codelineno-0-269"></a>    <span class="k">return</span> <span class="p">(</span><span class="n">l_x_t</span> <span class="o">-</span> <span class="n">l_x_t_n</span><span class="p">)</span> <span class="o">/</span> <span class="n">l_x</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="usage-examples">Usage Examples<a class="headerlink" href="#usage-examples" title="Permanent link">&para;</a></h2>
+<h3 id="creating-a-mortality-table-from-qx-values">Creating a Mortality Table from qx values<a class="headerlink" href="#creating-a-mortality-table-from-qx-values" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">lifeActuary.mortality_table</span><span class="w"> </span><span class="kn">import</span> <span class="n">MortalityTable</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Example mortality rates (qx values)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">qx_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.008</span><span class="p">,</span> <span class="mf">0.012</span><span class="p">,</span> <span class="mf">0.018</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Create mortality table</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">mt</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">qx_values</span><span class="p">,</span> <span class="n">perc</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># Access survival probability</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">p_30_1</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">npx</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 1-year survival probability at age 30</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1-year survival probability at age 30: </span><span class="si">{</span><span class="n">p_30_1</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># Access mortality probability  </span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="n">q_30_1</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">nqx</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 1-year mortality probability at age 30</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1-year mortality probability at age 30: </span><span class="si">{</span><span class="n">q_30_1</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="creating-from-lx-values">Creating from lx values<a class="headerlink" href="#creating-from-lx-values" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Example lx values (number of survivors)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">lx_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">99900</span><span class="p">,</span> <span class="mi">99780</span><span class="p">,</span> <span class="mi">99630</span><span class="p">,</span> <span class="mi">99440</span><span class="p">,</span> <span class="mi">99200</span><span class="p">,</span> <span class="mi">98900</span><span class="p">,</span> <span class="mi">98520</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">mt</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">lx_values</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="creating-from-px-values">Creating from px values<a class="headerlink" href="#creating-from-px-values" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Example px values (survival probabilities)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">px_values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.999</span><span class="p">,</span> <span class="mf">0.998</span><span class="p">,</span> <span class="mf">0.997</span><span class="p">,</span> <span class="mf">0.995</span><span class="p">,</span> <span class="mf">0.992</span><span class="p">,</span> <span class="mf">0.988</span><span class="p">,</span> <span class="mf">0.982</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">mt</span> <span class="o">=</span> <span class="n">MortalityTable</span><span class="p">(</span><span class="n">data_type</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">mt</span><span class="o">=</span><span class="n">px_values</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="key-methods">Key Methods<a class="headerlink" href="#key-methods" title="Permanent link">&para;</a></h2>
+<h3 id="survival-and-mortality-probabilities">Survival and Mortality Probabilities<a class="headerlink" href="#survival-and-mortality-probabilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>npx(x, n, method='udd')</code></strong>: n-year survival probability from age x</li>
+<li><strong><code>nqx(x, n, method='udd')</code></strong>: n-year mortality probability from age x</li>
+<li><strong><code>tpx(x, t, method='udd')</code></strong>: t-year survival probability (fractional ages)</li>
+<li><strong><code>tqx(x, t, method='udd')</code></strong>: t-year mortality probability (fractional ages)</li>
+</ul>
+<h3 id="life-expectancy">Life Expectancy<a class="headerlink" href="#life-expectancy" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>ex(x, method='udd')</code></strong>: Complete life expectancy at age x</li>
+<li><strong><code>ex_curtate(x, method='udd')</code></strong>: Curtate life expectancy at age x</li>
+</ul>
+<h3 id="table-properties">Table Properties<a class="headerlink" href="#table-properties" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>lx</code></strong>: Array of survivors at each age</li>
+<li><strong><code>qx</code></strong>: Array of mortality rates</li>
+<li><strong><code>px</code></strong>: Array of survival rates</li>
+<li><strong><code>dx</code></strong>: Array of deaths at each age</li>
+<li><strong><code>w</code></strong>: Terminal age of the table</li>
+</ul>
+<h2 id="interpolation-methods">Interpolation Methods<a class="headerlink" href="#interpolation-methods" title="Permanent link">&para;</a></h2>
+<p>The package supports three interpolation methods for fractional ages:</p>
+<h3 id="udd-uniform-distribution-of-deaths">UDD (Uniform Distribution of Deaths)<a class="headerlink" href="#udd-uniform-distribution-of-deaths" title="Permanent link">&para;</a></h3>
+<p>The default method assuming deaths are uniformly distributed within each year.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Using UDD method (default)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">prob</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">tpx</span><span class="p">(</span><span class="mf">30.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;udd&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="cfm-constant-force-of-mortality">CFM (Constant Force of Mortality)<a class="headerlink" href="#cfm-constant-force-of-mortality" title="Permanent link">&para;</a></h3>
+<p>Assumes constant force of mortality within each year.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Using CFM method</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">prob</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">tpx</span><span class="p">(</span><span class="mf">30.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;cfm&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="balducci-assumption">Balducci Assumption<a class="headerlink" href="#balducci-assumption" title="Permanent link">&para;</a></h3>
+<p>Assumes linearly decreasing conditional survival probability.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Using Balducci method</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">prob</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">tpx</span><span class="p">(</span><span class="mf">30.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;bal&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="advanced-features">Advanced Features<a class="headerlink" href="#advanced-features" title="Permanent link">&para;</a></h2>
+<h3 id="force-of-mortality">Force of Mortality<a class="headerlink" href="#force-of-mortality" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Calculate force of mortality at exact age</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">mu_x</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">force_mortality</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">30.5</span><span class="p">)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Force of mortality at age 30.5: </span><span class="si">{</span><span class="n">mu_x</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="fractional-age-calculations">Fractional Age Calculations<a class="headerlink" href="#fractional-age-calculations" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Calculate survival probability for fractional periods</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">t_px</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">tpx</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;udd&#39;</span><span class="p">)</span>  <span class="c1"># 2.5-year survival from age 30</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2.5-year survival probability: </span><span class="si">{</span><span class="n">t_px</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="life-table-statistics">Life Table Statistics<a class="headerlink" href="#life-table-statistics" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Get complete expectation of life</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">e_30</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">ex</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Complete life expectancy at age 30: </span><span class="si">{</span><span class="n">e_30</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> years&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># Get curtate expectation of life  </span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">e_30_curtate</span> <span class="o">=</span> <span class="n">mt</span><span class="o">.</span><span class="n">ex_curtate</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Curtate life expectancy at age 30: </span><span class="si">{</span><span class="n">e_30_curtate</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> years&quot;</span><span class="p">)</span>
+</code></pre></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../../user-guide/tutorials/" class="btn btn-neutral float-left" title="Tutorials"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../annuities/" class="btn btn-neutral float-right" title="Life Annuities">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/parcr/lifeactuary" class="fa fa-code-fork" style="color: #fcfcfc"> parcr/lifeactuary</a>
+        </span>
+    
+    
+      <span><a href="../../user-guide/tutorials/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../annuities/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
